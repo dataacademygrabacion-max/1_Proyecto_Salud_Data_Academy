@@ -1,838 +1,193 @@
-%PDF-1.3
-%âãÏÓ
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
 <<
-/PageMode /UseNone
-/Pages 2 0 R
-/Type /Catalog
+/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 5 0 R /F5 8 0 R /F6 11 0 R
 >>
 endobj
 2 0 obj
 <<
-/Count 2
-/Kids [ 3 0 R 10 0 R ]
-/Type /Pages
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
 >>
 endobj
 3 0 obj
 <<
-/Contents 4 0 R
-/MediaBox [ 0 0 595.2756 841.8898 ]
-/Parent 2 0 R
-/Resources <<
-/Font 5 0 R
-/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->>
-/Rotate 0
-/Trans <<
->>
-/Type /Page
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
 >>
 endobj
 4 0 obj
 <<
-/Length 8838
+/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
 >>
-stream
-1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
-BT /F1 7.5 Tf 9 TL ET
-.501961 .501961 .501961 rg
-BT 1 0 0 1 56.69291 34.01575 Tm (Data Academy \267 Proyecto Integrador Data Analyst \267 Sector Salud \(RCM\)) Tj T* ET
-BT 1 0 0 1 516.9002 34.01575 Tm (P\341g. 1) Tj T* ET
-q
-1 0 0 1 62.69291 762.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Fase 4: Conectar Power BI a Databricks) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 743.8661 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Proyecto Integrador \267 Sector Salud \226 Ciclo de Ingresos \(RCM\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 735.8661 cm
-Q
-q
-1 0 0 1 62.69291 707.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (0. Antes de empezar) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 688.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Cuenta en ) Tj /F2 9.5 Tf (Databricks Free Edition) Tj /F1 9.5 Tf ( \(o tu workspace de Databricks\) y ) Tj /F2 9.5 Tf (Power BI Desktop) Tj /F1 9.5 Tf ( instalado.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 656.8661 cm
-q
-BT 1 0 0 1 0 16.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En Databricks: ) Tj /F2 9.5 Tf (Workspace > Import) Tj /F1 9.5 Tf ( y sube los 3 notebooks \(carpetas ) Tj /F2 9.5 Tf (2_EDA_Python) Tj /F1 9.5 Tf ( y) Tj T* /F2 9.5 Tf (3_SQL_Databricks) Tj /F1 9.5 Tf (\).) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 637.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Ejecuta en orden: ) Tj /F2 9.5 Tf (01_carga_y_EDA) Tj /F1 9.5 Tf ( \(Python\) > ) Tj /F2 9.5 Tf (02_plata_SQL) Tj /F1 9.5 Tf ( \(SQL\) > ) Tj /F2 9.5 Tf (03_oro_SQL) Tj /F1 9.5 Tf ( \(SQL\).) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 618.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Comprueba en ) Tj /F2 9.5 Tf (Catalog > workspace > salud_oro) Tj /F1 9.5 Tf ( que existen las 7 tablas dim_ / fact_.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 590.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (1. Obtener los datos de conexi\363n \(Server hostname y HTTP path\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 571.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Men\372 izquierdo: ) Tj /F2 9.5 Tf (SQL Warehouses) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 552.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( Abre el warehouse \(en Free Edition: ) Tj /F2 9.5 Tf (Serverless Starter Warehouse) Tj /F1 9.5 Tf (\). Si est\341 detenido, pulsa ) Tj /F2 9.5 Tf (Start) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 533.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Pesta\361a ) Tj /F2 9.5 Tf (Connection details) Tj /F1 9.5 Tf (: copia ) Tj /F2 9.5 Tf (Server hostname) Tj /F1 9.5 Tf ( y ) Tj /F2 9.5 Tf (HTTP path) Tj /F1 9.5 Tf ( en un bloc de notas.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 510.8661 cm
-%PreformattedPara
-0 0 0 rg
-BT 1 0 0 1 5 11.8 Tm /F3 7.2 Tf 9.5 TL (Server hostname : dbc-xxxxxxxx-xxxx.cloud.databricks.com) Tj T* (HTTP path       : /sql/1.0/warehouses/xxxxxxxxxxxxxxxx) Tj T* ET
-Q
-q
-1 0 0 1 62.69291 482.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (2. Crear un token de acceso personal \(PAT\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 463.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Clic en tu avatar \(arriba a la derecha\) > ) Tj /F2 9.5 Tf (Settings) Tj /F1 9.5 Tf ( > ) Tj /F2 9.5 Tf (Developer) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 444.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En ) Tj /F2 9.5 Tf (Access tokens) Tj /F1 9.5 Tf ( pulsa ) Tj /F2 9.5 Tf (Manage) Tj /F1 9.5 Tf ( > ) Tj /F2 9.5 Tf (Generate new token) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 425.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Descripci\363n: ) Tj /F4 9.5 Tf (powerbi_salud) Tj /F1 9.5 Tf ( \267 Duraci\363n: 90 d\355as > ) Tj /F2 9.5 Tf (Generate) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 406.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Copia el token \(empieza con ) Tj /F2 9.5 Tf (dapi...) Tj /F1 9.5 Tf (\). Solo se muestra una vez. No lo compartas ni lo subas a GitHub.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 378.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (3. Conectar desde Power BI Desktop) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 359.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( ) Tj /F2 9.5 Tf (Inicio > Obtener datos > M\341s...) Tj /F1 9.5 Tf ( y busca ) Tj /F2 9.5 Tf (Databricks) Tj /F1 9.5 Tf ( \(si tu workspace es de Azure, usa ) Tj /F2 9.5 Tf (Azure Databricks) Tj /F1 9.5 Tf (\).) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 340.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( Pega ) Tj /F2 9.5 Tf (Server hostname) Tj /F1 9.5 Tf ( y ) Tj /F2 9.5 Tf (HTTP path) Tj /F1 9.5 Tf (. Cat\341logo \(opcional\): ) Tj /F2 9.5 Tf (workspace) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 321.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Modo de conectividad: ) Tj /F2 9.5 Tf (Importar) Tj /F1 9.5 Tf ( \(m\341s r\341pido y suficiente para este proyecto\).) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 302.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Autenticaci\363n: ) Tj /F2 9.5 Tf (Token de acceso personal) Tj /F1 9.5 Tf ( > pega el token > ) Tj /F2 9.5 Tf (Conectar) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 283.8661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (5.) Tj /F1 9.5 Tf ( En el Navegador: ) Tj /F2 9.5 Tf (workspace > salud_oro) Tj /F1 9.5 Tf ( > marca las 7 tablas > ) Tj /F2 9.5 Tf (Cargar) Tj /F1 9.5 Tf (.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 255.8661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (4. Modelo de datos \(vista Modelo\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 236.8661 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Power BI puede detectar relaciones solo; verifica que queden as\355 \(1 a muchos, filtro \372nico\):) Tj T* ET
-Q
-Q
-q
-1 0 0 1 56.69291 156.8661 cm
-q
-.043137 .145098 .270588 rg
-n 0 80 481.8898 -16 re f*
-1 1 1 rg
-n 0 64 481.8898 -16 re f*
-.960784 .972549 .984314 rg
-n 0 48 481.8898 -16 re f*
-1 1 1 rg
-n 0 32 481.8898 -16 re f*
-.960784 .972549 .984314 rg
-n 0 16 481.8898 -16 re f*
-1 1 1 rg
-BT /F1 10 Tf 12 TL ET
-q
-1 0 0 1 6 67 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Desde \(lado 1\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 119.3858 67 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Hacia \(lado muchos\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 346.1575 67 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Columna) Tj T* ET
-Q
-Q
-0 0 0 rg
-q
-1 0 0 1 6 51 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_pacientes) Tj T* ET
-Q
-Q
-q
-1 0 0 1 119.3858 51 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones / fact_reclamos) Tj T* ET
-Q
-Q
-q
-1 0 0 1 346.1575 51 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_paciente) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 35 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_departamentos) Tj T* ET
-Q
-Q
-q
-1 0 0 1 119.3858 35 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones) Tj T* ET
-Q
-Q
-q
-1 0 0 1 346.1575 35 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_departamento) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 19 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_medicos) Tj T* ET
-Q
-Q
-q
-1 0 0 1 119.3858 19 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones) Tj T* ET
-Q
-Q
-q
-1 0 0 1 346.1575 19 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_medico) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Calendario) Tj T* ET
-Q
-Q
-q
-1 0 0 1 119.3858 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones) Tj T* ET
-Q
-Q
-q
-1 0 0 1 346.1575 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Date - fecha_servicio) Tj T* ET
-Q
-Q
-q
-1 J
-1 j
-.784314 .819608 .862745 RG
-.3 w
-n 0 80 m 481.8898 80 l S
-n 0 0 m 481.8898 0 l S
-n 0 0 m 0 80 l S
-n 481.8898 0 m 481.8898 80 l S
-n 0 64 m 481.8898 64 l S
-n 0 48 m 481.8898 48 l S
-n 0 32 m 481.8898 32 l S
-n 0 16 m 481.8898 16 l S
-n 113.3858 0 m 113.3858 80 l S
-n 340.1575 0 m 340.1575 80 l S
-Q
-Q
-Q
-q
-1 0 0 1 62.69291 111.8661 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 29.5 Tm /F1 9.5 Tf 13 TL (Nota: los datos son sint\351ticos; solo ~5% de las transacciones encuentran su m\351dico en dim_medicos. Para) Tj T* (an\341lisis por m\351dico ver\341s muchas filas "\(En blanco\)": es esperado, com\351ntalo como hallazgo de calidad de) Tj T* (datos.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 92.86614 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Tabla Calendario \(Modelado > Nueva tabla\):) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 69.86614 cm
-%PreformattedPara
-0 0 0 rg
-BT 1 0 0 1 5 11.8 Tm /F3 7.2 Tf 9.5 TL (Calendario =) Tj T* (ADDCOLUMNS \() Tj T* ET
-Q
- 
-
-endstream
 endobj
 5 0 obj
 <<
-/F1 6 0 R
-/F2 7 0 R
-/F3 8 0 R
-/F4 9 0 R
+/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
 >>
 endobj
 6 0 obj
 <<
-/BaseFont /Helvetica
-/Encoding /WinAnsiEncoding
-/Name /F1
-/Subtype /Type1
-/Type /Font
+/Contents 17 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
 7 0 obj
 <<
-/BaseFont /Helvetica-Bold
-/Encoding /WinAnsiEncoding
-/Name /F2
-/Subtype /Type1
-/Type /Font
+/Contents 18 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
 8 0 obj
 <<
-/BaseFont /Courier
-/Encoding /WinAnsiEncoding
-/Name /F3
-/Subtype /Type1
-/Type /Font
+/BaseFont /Times-Roman /Encoding /WinAnsiEncoding /Name /F5 /Subtype /Type1 /Type /Font
 >>
 endobj
 9 0 obj
 <<
-/BaseFont /Helvetica-Oblique
-/Encoding /WinAnsiEncoding
-/Name /F4
-/Subtype /Type1
-/Type /Font
+/Contents 19 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
 10 0 obj
 <<
-/Contents 11 0 R
-/MediaBox [ 0 0 595.2756 841.8898 ]
-/Parent 2 0 R
-/Resources <<
-/Font 5 0 R
-/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->>
-/Rotate 0
-/Trans <<
->>
-/Type /Page
+/Contents 20 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
 11 0 obj
 <<
-/Length 8496
+/BaseFont /Helvetica-BoldOblique /Encoding /WinAnsiEncoding /Name /F6 /Subtype /Type1 /Type /Font
 >>
-stream
-1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
-BT /F1 7.5 Tf 9 TL ET
-.501961 .501961 .501961 rg
-BT 1 0 0 1 56.69291 34.01575 Tm (Data Academy \267 Proyecto Integrador Data Analyst \267 Sector Salud \(RCM\)) Tj T* ET
-BT 1 0 0 1 516.9002 34.01575 Tm (P\341g. 2) Tj T* ET
-q
-1 0 0 1 62.69291 737.3661 cm
-%PreformattedPara
-0 0 0 rg
-BT 1 0 0 1 5 40.3 Tm /F3 7.2 Tf 9.5 TL (    CALENDAR \( MIN \( fact_transacciones[fecha_servicio] \), MAX \( fact_transacciones[fecha_servicio] \) \),) Tj T* (    "A\361o", YEAR \( [Date] \),) Tj T* (    "NumMes", MONTH \( [Date] \),) Tj T* (    "Mes", FORMAT \( [Date], "mmm" \)) Tj T* (\)) Tj T* ET
-Q
-q
-1 0 0 1 62.69291 709.3661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (5. Medidas DAX esenciales \(Modelado > Nueva medida\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 589.3661 cm
-%PreformattedPara
-0 0 0 rg
-BT 1 0 0 1 5 106.8 Tm /F3 7.2 Tf 9.5 TL (Total Facturado      = SUM \( fact_transacciones[monto_facturado] \)) Tj T* (Total Pagado         = SUM \( fact_transacciones[monto_pagado] \)) Tj T* (% Cobrado            = DIVIDE \( [Total Pagado], [Total Facturado] \)) Tj T* (Pacientes Atendidos  = DISTINCTCOUNT \( fact_transacciones[clave_paciente] \)) Tj T* (Total Atenciones     = COUNTROWS \( fact_atenciones \)) Tj T* (Ticket Promedio      = DIVIDE \( [Total Facturado], COUNTROWS \( fact_transacciones \) \)) Tj T* (Total Reclamos       = COUNTROWS \( fact_reclamos \)) Tj T* (Reclamos Aprobados   = CALCULATE \( [Total Reclamos], fact_reclamos[estado_reclamo] IN { "Aprobado", "Pagado" } \)) Tj T* (Reclamos Rechazados  = CALCULATE \( [Total Reclamos], fact_reclamos[estado_reclamo] IN { "Rechazado", "Denegado" } \)) Tj T* (% Aprobaci\363n         = DIVIDE \( [Reclamos Aprobados], [Total Reclamos] \)) Tj T* (% Rechazo            = DIVIDE \( [Reclamos Rechazados], [Total Reclamos] \)) Tj T* (Saldo Pendiente      = SUMX \( fact_reclamos, fact_reclamos[monto_reclamado] - fact_reclamos[monto_pagado] \)) Tj T* ET
-Q
-q
-1 0 0 1 62.69291 568.3661 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Valida: Total Facturado y % Aprobaci\363n deben coincidir con las consultas SQL del notebook 03_oro_SQL.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 540.3661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (6. Dashboard ejecutivo \(1 p\341gina\)) Tj T* ET
-Q
-Q
-q
-1 0 0 1 56.69291 402.3661 cm
-q
-.043137 .145098 .270588 rg
-n 0 132 481.8898 -16 re f*
-1 1 1 rg
-n 0 116 481.8898 -26 re f*
-.960784 .972549 .984314 rg
-n 0 90 481.8898 -16 re f*
-1 1 1 rg
-n 0 74 481.8898 -16 re f*
-.960784 .972549 .984314 rg
-n 0 58 481.8898 -16 re f*
-1 1 1 rg
-n 0 42 481.8898 -26 re f*
-.960784 .972549 .984314 rg
-n 0 16 481.8898 -16 re f*
-1 1 1 rg
-BT /F1 10 Tf 12 TL ET
-q
-1 0 0 1 6 119 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Zona) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 119 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Visual) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 119 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Campos) Tj T* ET
-Q
-Q
-0 0 0 rg
-q
-1 0 0 1 6 103 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Arriba) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 103 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (5 tarjetas) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 93 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (Total Facturado, Total Pagado, % Cobrado, Pacientes Atendidos, %) Tj T* (Aprobaci\363n) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 77 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Centro izq.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 77 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Gr\341fico de l\355neas) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 77 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Calendario[Mes] vs Total Facturado y Total Pagado) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 61 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Centro der.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 61 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Barras horizontales) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 61 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_departamentos[nombre] vs Total Facturado) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 45 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Abajo izq.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 45 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Anillo) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 45 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_reclamos[estado_reclamo] vs Total Reclamos) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 29 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Abajo der.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 29 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Tabla) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 19 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (fact_reclamos[aseguradora], Total Reclamos, % Aprobaci\363n, Saldo) Tj T* (Pendiente) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Lateral) Tj T* ET
-Q
-Q
-q
-1 0 0 1 91.03937 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Segmentadores) Tj T* ET
-Q
-Q
-q
-1 0 0 1 204.4252 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fuente \(hospital\), tipo_visita, Calendario[Mes]) Tj T* ET
-Q
-Q
-q
-1 J
-1 j
-.784314 .819608 .862745 RG
-.3 w
-n 0 132 m 481.8898 132 l S
-n 0 0 m 481.8898 0 l S
-n 0 0 m 0 132 l S
-n 481.8898 0 m 481.8898 132 l S
-n 0 116 m 481.8898 116 l S
-n 0 90 m 481.8898 90 l S
-n 0 74 m 481.8898 74 l S
-n 0 58 m 481.8898 58 l S
-n 0 42 m 481.8898 42 l S
-n 0 16 m 481.8898 16 l S
-n 85.03937 0 m 85.03937 132 l S
-n 198.4252 0 m 198.4252 132 l S
-Q
-Q
-Q
-q
-1 0 0 1 62.69291 370.3661 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 16.5 Tm /F1 9.5 Tf 13 TL (Tip: los valores de las categor\355as ya vienen en espa\361ol \(ej. Aprobado, Pagado\); no necesitas traducirlos.) Tj T* (Revisa la tabla de valores en el Diccionario de Datos.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 342.3661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (7. Publicar y actualizar) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 323.3661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( ) Tj /F2 9.5 Tf (Inicio > Publicar) Tj /F1 9.5 Tf ( a tu \341rea de trabajo de Power BI Service.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 291.3661 cm
-q
-BT 1 0 0 1 0 16.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En Service: modelo sem\341ntico > ) Tj /F2 9.5 Tf (Configuraci\363n > Credenciales del origen de datos) Tj /F1 9.5 Tf ( > Editar > Token de) Tj T* (acceso personal.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 272.3661 cm
-q
-BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Activa ) Tj /F2 9.5 Tf (Actualizaci\363n programada) Tj /F1 9.5 Tf ( \(ej. diaria 7:00 a. m.\). El warehouse se enciende solo al consultar.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 62.69291 244.3661 cm
-q
-.043137 .145098 .270588 rg
-BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (Problemas comunes) Tj T* ET
-Q
-Q
-q
-1 0 0 1 56.69291 138.3661 cm
-q
-.043137 .145098 .270588 rg
-n 0 100 481.8898 -16 re f*
-1 1 1 rg
-n 0 84 481.8898 -16 re f*
-.960784 .972549 .984314 rg
-n 0 68 481.8898 -26 re f*
-1 1 1 rg
-n 0 42 481.8898 -16 re f*
-.960784 .972549 .984314 rg
-n 0 26 481.8898 -26 re f*
-1 1 1 rg
-BT /F1 10 Tf 12 TL ET
-q
-1 0 0 1 6 87 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Problema) Tj T* ET
-Q
-Q
-q
-1 0 0 1 176.0787 87 cm
-q
-1 1 1 rg
-BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Soluci\363n) Tj T* ET
-Q
-Q
-0 0 0 rg
-q
-1 0 0 1 6 71 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Power BI no conecta / tiempo agotado) Tj T* ET
-Q
-Q
-q
-1 0 0 1 176.0787 71 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (El SQL Warehouse est\341 detenido: in\355cialo y reintenta.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 55 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Error de credenciales) Tj T* ET
-Q
-Q
-q
-1 0 0 1 176.0787 45 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (El token expir\363 o se copi\363 mal: genera otro y ed\355talo en Configuraci\363n del origen de) Tj T* (datos.) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 29 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (No veo salud_oro en el Navegador) Tj T* ET
-Q
-Q
-q
-1 0 0 1 176.0787 29 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (No ejecutaste 03_oro_SQL o est\341s en otro cat\341logo \(debe ser workspace\).) Tj T* ET
-Q
-Q
-q
-1 0 0 1 6 13 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Muchos "\(En blanco\)" por m\351dico) Tj T* ET
-Q
-Q
-q
-1 0 0 1 176.0787 3 cm
-q
-0 0 0 rg
-BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (Esperado: los IDs de m\351dico de las transacciones casi no existen en el maestro) Tj T* (\(dato sint\351tico\).) Tj T* ET
-Q
-Q
-q
-1 J
-1 j
-.784314 .819608 .862745 RG
-.3 w
-n 0 100 m 481.8898 100 l S
-n 0 0 m 481.8898 0 l S
-n 0 0 m 0 100 l S
-n 481.8898 0 m 481.8898 100 l S
-n 0 84 m 481.8898 84 l S
-n 0 68 m 481.8898 68 l S
-n 0 42 m 481.8898 42 l S
-n 0 26 m 481.8898 26 l S
-n 170.0787 0 m 170.0787 100 l S
-Q
-Q
-Q
- 
-
-endstream
 endobj
 12 0 obj
 <<
-/Author (\050anonymous\051)
-/CreationDate (D\07220261008013548\05505\04700\047)
-/Creator (\050unspecified\051)
-/Keywords ()
-/ModDate (D\07220261008013548\05505\04700\047)
-/Producer (ReportLab PDF Library \055 \050opensource\051)
-/Subject (\050unspecified\051)
-/Title (\050anonymous\051)
-/Trapped /False
+/Contents 21 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
 >>
 endobj
+13 0 obj
+<<
+/Contents 22 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 16 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+14 0 obj
+<<
+/PageMode /UseNone /Pages 16 0 R /Type /Catalog
+>>
+endobj
+15 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20261008110401-05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261008110401-05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+16 0 obj
+<<
+/Count 6 /Kids [ 6 0 R 7 0 R 9 0 R 10 0 R 12 0 R 13 0 R ] /Type /Pages
+>>
+endobj
+17 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 2150
+>>
+stream
+Gau0Dhf%7/%"@)@_3Y8P6`8Y(m3I*.d.PG^^q._?!.,"`.(5FV[4PIce"qQm;0Ls/[CW0u2$Fo=[RB[2q2pmL%fX#hs!S'G1kqbu(L.Kj5Jd#L&*#<^1&eDgh^<u#0O3E[J`@5-(S6,W\QRjnp'sD%%_\PDe0g7qoPod'HKVA;E#Q!KVb<D%@37s2/pUDe\B5.B="KXElF/O7/9Oh)F^n`TE5RhoL.Uk2g%FF!Ie(%>clc^MOq1g6VlKn:s+9du/+jiuglMpba*Xi2BL7,k:;C]u])T!@'7)/:qS#<$+^,_Zpm=$)F_MqRlNb^S!6"1b_-lcVHj@=2a>gd'^`=9e4O;s;]4@@_Igk4[Sqr1Oi!I=qhp*KGBUTaa1D(oG@ZH8g("Z>Z]KQLjXd/6U9`9]q(<saJf@'SRHG2m!&6ru"12\/aDC-("Ed[cprOrpHn`eDA6aR@M>F]9pO1E`E@dQ&T(E2*k?hph^O<f4in5YHd)qWE#M!d+T1@ni*f_s2@%e\TWEI<;n"uBNG6=.3#A.7m!%Oa#t)*WjRDQ`%Oi@37NAcbgR3%BCde[EI\/%^.*C%fWp3qUcp()<ZTYg<NE4G`&lZ.7P4ZQ:[0qqW2!S'Z1*XjQt9ZGI($;*;F$O">q5lsK]d==SH+pI!_"k:.2P<_#j-$NqOR$*b1,bp=XFGJjp&#SI=Oh>h.a@$-i'OChek,FPs$m_qdD$0:<tP\[QlS-@aj)%nb467_%5<!hOq9`9P^DZQ<E+.:hK!D4:7<ii^7c#jsdF/i6d[@hX`o\:fl2DY-&7E5:u2f$U?nuHt8@am-mN)kU=.aHus(55$K-Tqc)#nKqil't0^$#\G#)Otks=3)@LL.RM8!:Ab\a5%OGUrsYkD_!:h+nt\)3Y\od$,)6T*gW>oYsngji!Nsu't2W@jU>8p;k66%$U0dFcHm$+CX*;]!H3:(IQAK$Md+,FfgIikhL,2Uh8i*(g(%lEU=;=NNGcWjGaZ#)G"@,QW2r?\WgIE7<#p1?fZ`#jBn5Fl3pG0s@0iH,<dW:X6-p$dh6jZpF=NQ_^:k!5iL<d#h[4U!pBUUiVR\2PXFe)pr#$]Da>r8Nd#)CO$Dg%b$_XJ+r3t$A7GJgXJFR>+@ZaFEW2`P??#Y-W=)[,0Qb^?l<!^%UUfknK=n+;6%9.IK;uWj0G*_UAd;9c)G2tO,-FE5mGe>[5=0]-.%L+Zc@#Eja;Y+e&hSClE0R,)V>=l@Wj4,iRc4i3Cl,24Kj9(@[G-Pe4Tc7CL>&]aGXl0JrOTInH_5RO#klPc+E*\jV#>>MhM-(fc?7)+D:cCK("ZA^<hJD#6nS59uL]Or!Tkgq09P,0NG,@8bKU><AnTKj?QjXjBPrmo)l69_Pf)rI9oq1c!"?@uMpHgp6`*8r)f1>G(;PgHCGW]Gm=Wn97%gFoKpc)eb;ppcWN:T_m3/2YnIJgeT<#5ZBN%u`";nkmLe#'W6`^'J_L*M,=*4a!JC'%T]rI4Hc_:KVV]oA:q,up#ARGul/QPgM.NZ0VRM]s.,9Xh2O%`"qUT8k9(45fT&NFqXuY&,&[09\B`RL4m7/mC"cYZP(_)dX4&RqmCpc5/U*#fJpS8-ct8dF_'sD&KPGdO_N;WU[[)A"fCW06-#0bLkVB'VA*JAiLuHr1VuCMk$1[+slg1+F&i$*Y'#C1"Dc8r>Z'lk5!AT\/Nk@)$=Ri^(p=CCtk8\8#p7C&o1^BDckW>>i:9<c+fg4(:.6W6L<5q-Im*$=sAMJF%jDX_&iu2`VE`tIVFfg$bNi@R,9lsi&-/5UA1XVm/eRCs#6[G82N*&%ghN"QKMc>%f3^6GGge9N'Fr*lald>'9SBD#4"adDGj9g\iO*$q%7E#XON@YV`$?)D)fu'ae0.:=iKW8WV@X$R%r1X]Q17KL4a]JXL='h+(:-'SAFg.]S*0/@[+-tT>PY=Rc=fe),nF"#KIdfFoe=%I!6??bBWuU+ChsRI]tt>LmZ/I;5$1W@$^WmV^9>r+efFlG#jZ2kQku<GA]OlYhD[4mCRo9n"&(T):@%*\h.Hr1Es3n.pJ[3YuDL?G+>X0+D&]]maXjf/=pPY)e53"_g9O5T?&'k:.B4/O*S_3.Cp'4<HC/-YE"lL5>rV]aE!AXHt*Xm3hCm5rrL;<=;V~>endstream
+endobj
+18 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 2849
+>>
+stream
+GauHMD0+E%')q<+dD`8ln/bUeH:)5hY/5]&h\kc<jR0I8.l@oK7k),2P44cYFo0q&Hh;oC"NG!@O;!^fVOsHXH_u-n$rjm,r87#Fc=ZS.S,q)HFq;en%%(>;BQfJ#mj]YAoWkBPWNr,7@/W05TE-U-D-DhIds;FE6W'9)71h_jLHOPBGPFN"cS3tP/mLp*ZZ)'=/qQJR7!oS9OS0$kpDbPpY:4UN@*61E!p8m>_0CEn[_,hiFjoDj*W@B034h/%fb^%SPc8#'_^qX^W`iDlla^o;#6hK_TW\Ur(e`%ad'YFD[W$t]O3NPskY1Gs_@0B1fq<"ae[4_Ol)PpMhOJAsF@iN-oX,,3`o07/+Y3aIGS8"BlsK6s_FLG(p_=@1QGar*951J6C+N@kd0$`\Ol2lu_EW<.-<0s]5)8'L!D$m%0cSW.WhBaW'IHKC`7%Rd[mG7BWK/$<:BV%H\RDU!4Gq4('*5rPnJ$;m`-i!O&^BQu(nU!^,'#j8kF@C7h"P7TkU,*>/G8=,^bUF"6r%7^i/8_?:3>rN8VFDRO2I1V#"cacQog<I"qig,NlV)P<aI\7V<Wr#);t!F'),hqo-=p+CEE"uSEdCk/7>QW=K)ZF\:SP-Js=ak<b0$<No'17LP)YN&*(bG*P?V(p_i]W8!@B]#+rf;59&"ZVJ8R*)#hALW3cI?TBduR&io5V7()l4h-sfn"2BjoJ[`/A`*L(:AEf.DN#fr?PM,hM4k"<3=#]1=Ct5]k/`6;,p$P2X?<a5sYM6ujL!Kj]%dT7L@"3J(/bf\_\sQ#:8Ouhg*(ro^%<Uk#YO\iX]_X'qF71TH!L^mllr)9b\mM0n#m?mGDD!:):l0S@l<-RCs5;H(*6'hOU+c.CnD@!lnu:&XL+RYPoTEP5i.IoW.ss&*Qa<O(=Ku9n\`.@fBX8-j?)n"eofLDtGXAPd\`Ol:ks#+%Z;o\SleL#lp1\s!HP&^%GA1p;4Y.6fA)F>#+T`_,%40%W/SpT]E?/QGNa2q-%X;DUre4QC9R6a=Kd78?GL&LIYHl)h_YMRhgOs:@qjL(%/>TsmTb>As7N'rIJ`f)8*q"EJ6^h\&+)9_]bThlVVgb#Q!@%Laa79Eu:CHT)+mq[_cG#VrrC+"a(p>9%'Ta-_=F"ps9MX"Q?DkW5?n5^WdKh(3(2W,ML2k:A,40@T(2cO`"?0dQOH`Y9$=U)][D6q[r93N;p55Zg@-**R,p`k2*%#i`bnSpP[UWpCC2j1d$Df9=e$GLS-p:5jg'/t=Y%AS8r3d3Za9UD`MfLCZ&%RGnU0PBO8h\7sNKYnTR7r65l%N='K-fE/?8!V;:o3/M>+Y9+?r(5cedk3.2P.Bh>/f(dq6Fk*N]q0OD>+$UO.O@4OOVUb+R'=+&[iM&+C4&tQT*QC.^XKcAjTX#kUI^r./ktjH[smm-i$ld!FOo#*u*EM5K4mnEh+`rDPd_90)p9ep&L43jf.d.%.+->)9NN!&7i(JMp@NdgGE^#JY5.kl@+Dck3H.(#?B&_$XL@>C7,I]s0rW$4A%RRR^OVNn?iMD*p[\S'P.27<+`Ij/(WI5X%1rUaU1-!Zj4I?i)b8uVS)"HgZDji;<Ec?-I9:`f)N^mp7s(,7>(BMj1d5P8iKI"&-LAlbe@mdlP_,*]K8r3poR*'r)N;R[iS4SP?Mj#/!&4Ya&865JhVm/[GY?I?rr*8.h#+s8e$$32dc\fC;@Ho6*EsL?\,Nj36T.+ekHTI.MOflX`[>2aY_M;s3=huflV>_m;=r[eM6/cOac+A\uGpkU%^B9mP^Seb9maerO4.__V`LgTIe/M*!Qtd6'<>hih+]bddQ<Ajm,l8X"I?`34(p11PhCUdl?n83b"@T!Tn#j,,161iMu:UB'OFuC>eV3TO[+hlfr2$/=1rY:DecU(/M\OQla=4F3in(*b6/9iL[[>MkZrU_s'fQ]=XUUFsq'n$B/tZ$`%@ds#86/<^lXlo9P>WV3beC7fbrB3gW-5[Y-$rUp]18+mrj;E)U%M'L)rF]m&`-S,1#O*gEE)*mKc()'5)+>&`Dl8Mh\99q+8^cR?R7K_Q`&OiLOHQ6c]pm5rsT0iP>`>AZd/2:iaZ+dJJ@EOT1NE?4-'"K!9\<8aeFU:5T-dIZCH52`SK5"gS=_G;[Z]*NcE&*oD(W!L55qDj,]20JBG3.I6f(0Or?E*\T*`:2cY(IM?=>8u4/OC$B!3Y1]+8+WE/dIL2jFETAVbQ_,jd[F[`/?;XT/@EFM9bt_V7A[qlX+*hOWHk9mX&TSo5=XTZ0"%FirQE$4bH0uU>=H>q<lEfl6"1GgpNLR2TittZOQqt[dR('.-#s0;6alj21Ih?HkX$D#%rnj2TH@c%c7:3#(9Y!M139-f<GIE)fkD@:rIW7uT\!1dAPYQk%(5(%a2]l+goj@:'r#?@R>$dE2N;gLb;V3b=-c^s![8^cEVU8]A]on0ihZ^(qXb728>aN?ZM^JtW%+(mZ"j`eXh*`()4\L]\WjO7Lc[T8F]tCn<W&bnS\V?]Olc$frZt6Vb%qN#c4+m_KD,JF'Rc`P?pC/!->!;g:tJ@qK?D3jK_%.TLm&.CT3B!F&$62!S>[D6hh>"t>+<a)pTE@Wcs7!'e"?Pj_D(U80;kSgd9njNf!^rM*fC96#tA16Hm.uQ\9s9V68+[ei.3oPT?2rEesSBVDsd%s_Qm_Q1E*!tf%UbT2lCZB5#58"gNjuLO)Am/)PZ(R\eaR^*cj+G:'*fYO7HSTL?Xo^qV2aOmaZ96=OVi=eJl-+Xfru3Y6/q52Ca6&SjT\<^'L\>b>i4PTHQAH70Z^Yp-hrN<SB8T8mh;3F?#S)7PR^2?(C)(/cl9-!;;U&ec~>endstream
+endobj
+19 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 6012
+>>
+stream
+Gau`XD/U@RP5alV5pQ_tb[rqam?\gd%ZY&FjY/]*-Jl]^iaC,qg)bO9DGNpJ-?FP6rJKEA<Cndc[\DtDfWk'jFg5%"4tKSWQ&tK2FoNK,KQqVl?CWI<ZoGf7asL/Zs!1@cNrkn!c9E]YRQ.:(</L:_m?N/e"l1e*dR"aB(n4(X1/K\=:LBHH;B1b?EAdVC/p*P=GAZrZ)D)ltVI!5'D)lK;d7`$Oo]pnP9>1'DXa"2JQXb%*oTtcN(XMq*5;"UJF/=-5r1e#GX#JACq6`3^+de>AW&,s!e>q05].d8k-,QmQIQr_YUcR!J9@G.^Tn]<[4AM\0b%)\nf#]*PM9_p?o<mjVd1u329FGDm\)uOq:X__%=0keP("5`Ss3X)CWqg*ZD8^6g:M/^111-7^c^7!__nSo8faNiIm8W`FU_G_[m+tpTbTqW0eOh8i7[@p?j7eNoI,082KuXhFdiXof4"^]dXqHZX$afE%R5L]he%6p=n8n^!ppI6D^Wq8f-J.jd%Pk!T.Ca0SgT%q:_,F>seFGQe2t=)BF6E&eoLfK#/R.2acNaeahS[1D,D=3(H.Q)`9fjjAMe`0mCs.g09ncV>g,HWt?B]TH-KuKKJ&J+nS5kVVMFYE\j$&VJ4ca2;(#mUXUAgsV2XMK;5!4.]Vm"OtZU`?\UW;Z<SK,E053h/ZJ":a):UF-mU_hD2Ys%M=^9Z&*imGd]h4Mj;hlkaG=c^5sO3dC'iiLT6[Aqj]V6r/"5?O/BVUb3M<7Qp+8T04Uhck[:qn"@(qJC"dWVq/n'fK,bT#7m!_j@eEQTp!us"DMc\Oe+s;OQWI,XnT$/`:OW7G7GO4JA,67`@";6*Jg_)Q_C^7Iu?"fN*0d<JRa"+qPf`hKu2EV=3Zi/7!dO4V1tudqT)(e_D(q9"ID@]pn_ZVS8R*/_b;&\M1"^Dsok6c[+uJ\L2&l/)#L<W:4]JU["Pm?4lHK(-:c-D'R&c\EVWe8AWbC3@gdIWY$_/=TAaYSP/KAA6R!(jfGH%h0X^O+.o-rWAF9R/D@D$hiqtXO!^]b:U^$B;\/T@8I;3gGqr`me%6W`DUkpK(=:Y`:dAC<=%tcZk"sZT3Ef*?_\bN)+.UW+?\62X&Ahq%XTI8>i%]6C,n.uAlr.-&']HIj3H.(l(c'EIAT_lh;,0P'T6P"O3:FC2ZDoRIhj5&dOBW]=h1H_nmdl%LEn\b+p>ZYJhcElR-3!`F;Noep;_oG@GMas'#=MtJk>:hC%=W(\.Air/quI;0?sHCDqrO_E1_Fc/Rmh]\GD/4=>F_CF#?uP$%IFOUkcu2;^<k8J>2JY4>mab/TJ75o-Gq>+1%US^+'dgcD:KbKZ\0=&Mm:=+cVEkA#g`=B(??riX1GIB\4;sBG<0XhGj'0gI@kK3>/2`'%_Ba0B=B(Dl[@;YRSQ*!&$J.k6lb*kc)8Xj,)l?r_meQ/&Vg;3Hcp3G*W`-UfB3,Q.e4\Ns6HF*l\DhmLW!K8TU_o@K0JeJO%5$=s1jbB7cTm93Yh+q8!6)u/$NQ99]QsXIUqW&,Un?HQp$"=nGs'PliDKl%q&dW&)^Z>TN<V;A+<"82l8MWIZDGHHs9M4dX*<"pQu:uM0M1O=8ai6a-i*FW4UMWB,.a`CSK/<#$ntBoPJkP6BP38KE+`(qSHch<jhF:;NE3#Z5+SBa+ddAQWI0Kkm,.(;pQ9IEYRO)in6K#Bq6#rYqQ1dR0T@7#4!H/'Ek%]+I*M6+$K`a?;$dCHJ5_D*L$P@<>ba#8EW<DKes;sDsImNBMfl;'Mt2m<1i9cqOsrPAWBo.+U)6kA<MRS5k;cAjc.X0V+"H`\tPoER*/'<;@Tr=l"=JP.uk<;.;WTJ@FHG1ITD>9g'0"q]@JKgd_1_Z*?bV"M3>I!7@<Vo5PPetCR>EP;J6.V,I/&hku"$c=/;9nBeQ8R4$uusKc&N),n+RBg9K3rIuTJ;3stB'`JTE@;BIG-31gH'V?ck]i)F\4.LDZ+9p,,d&&uF)9#Aqk>p<:25s,ia@f;`"@FHHodR9plaam`(bTe"8c#L\D?3]*p0o?3jKbbp#YuSmMM?gGPikZK,P]=o<PR?+^K(2*.ZusNq=<l68CH_=A!TJY;Ab#7(BDlTZkV+$!I:6iQl.+=niIf)A;3JF#=/gb\8T2!<gk/X$S#]$VWF(`i1B`Ag>QPA'0EFqREZ9865(Z'V[(-PJbS]II8d51%!5k)NH.TcYX;I0VZ$d!neND"mQ=oNP#`7Z&NYlAY`^'W>Eb`9ML[dc5Ti<bn1oT<qk]/7q>TY*aHJkm`RqCB.8fWdY?G0'jfKSV:EdJg"^_,:7c5eg,r<aY,%\">l.*404\L82=)Bm$>KFrD^/G*i.*Z9KEi+#?cQ+011R=H-lPg#m:1(tkaeq=WZ&;G"Wg6")pr]8,&&e!gVEAAF)1S6W!(!KV-js],J6^S5uLR`g2VG!<GqcQGV(Fm?f`Ga$!B!UVaT%;EqN6hOWHktGNnkX86XC,N3;KOG%^GbJg167-R.mtI7%q1SRHsEYP.#:f<>f^R%A)X2(g2\XQXpG\L!eplm+AItsW'"N1Z3mG,2GqqrIX>WIRmK5!T9OEZdGL"1BIHcm5X2S;;Aq%Nocj[S;M4otB:.+mPQFXJC]u86)<g%85mC."?+.g.#l@TtT=:P<PP7sc6UZ1M&i#uc7#Z/IW1>(9FWhN;j]P6X&S[<6*r>2q=c3cToMP.m](4%eh9U-A*r>ZJ',^2OB[D%b=!q@J1#eRMH1d0@U9k:?TgP5(L-\HMmm%sR1<k5O]+@PA@ZYT7op&,_C]0&U;J'2J,-ee0ljFZ;Aa[T!e>1?8GoEH;X?nA9:"2"uhd2^>5ti(QoBNY-MbRft@npOL%pA=$R&.$D1YSrb$VXB=OYTTrH5EA$ZOfIIJf%u5_BQ=ZG%;AqJXD.--"_^[+gnQP9k0qte4p:W2.FKT%#Zu0m9&\*^CHCT@%j)nc5YYL0B9Y-Te[O,!$datfj:uge6U/uAef`h1\*d>]0+;-Egq)QJ2p8a+nC/ONE/jm8`b,$'-`At#`Dt02'FPZH&Ol4.[!EU2%Ai[?h29H`.hNEPs"F-,7b6IJ2DoJA`VgV5c_5MP=IRh-ksR@RRa@(eJNo!5o>^h_a=)Em?%Ik"sOS`Q,l<c#Rsr+2l2@/;*,qUF@D/0K42#SW#]Y:nCI]^K*iW^a/K%2j?V52WdcsMlnM,=/9*+7MJ&$4C;0tAo-cI]'J`H%Aq9l5'W.=T@$D9n;9H,1hP,0eJ^FZ;V._B;d`a&RU($WDk!:Id.3TD%Lp8?S/4M('a!_u'lOZpNL%6X?&qAe#<.n0"%iM(\6@,)(`?Wl)j[U=4TGArQa>H7aVElOc-34sS#Z5OR'VYgI`rO#ofsD6+ACERIM7/WW1Yn+,SQ(Pp6>0PX(n9(g(Af"ba8S'fdikT2==B6SGNEMtf4=$<>ZCB@1-X?R&p(o5A(2up(g!)i)"gNVb35*5oh-r@`hPA3;(@;L+V^i1Ys9Td7Oi/n:dl<O<lnC"<LE_2Y&FfU8k,eYSIe0","Ai[YZN."NjTr'lN"1^Ks%`Fb'&RC`@5lD6+Jg)H70)6]8#n0,!BCOOWH5^C55q"oJ";tB\lL=0@Br:k#oF(7M!G+qYcD`6k:/rQ_>/j!:XR*!:a'p!7=\G:s8nQogB(&A4pH8'3't!*W##^94Y'dCZn-;G4p<T-SZn^2bbf7e\Ock%Ef,9Ct).F1V\4=]P<clh6s>$^X0K]9W-lejgRgrmP`D[CH:7TN;1isC-8kF2nPc+Ds@+k_Su$Fn?mM*Om?a+'$F`7n_O,M$fIt]S(7)8,/Ddg;2/fteZ@BgqlI[3eY=t.R9OS:f=-&1_$LeDUbLU5q3I<X(22/`KnRmSmhJIlS_68#2XWrhTnPq82X%OaAuSf]Y4lAek2<2Nn3=YSf3H'U2phHhjsk3]%3k[-f.YS^o^9QNeF-5>q;0Bh;m(8VHS@B2X7"YGm;nb>^#*][1g$LCmUrBpRd9$2miK^GNMa%q#D:=.U#']Hf0H)s?=NYG0#YS&miK^GNMcGF]>jjrXnU)O#+@*djPF%k8ibDumH.U0A1HKKF"L(]#'r4rq]1iH^7-qQF#BfhDGC?;A*+cKr7ZBCKmOmR@CnNk.SV%>b.:rI&;.`3Onj.nTO%A)''Y1nBEKG'4qS)<bO?+]<#r@[&oHPu54.JX\QC*+NjTr)l]=\eTgAo@9LAcoo(uZJS#5-iL%nTUr?")YP@94G^7(>[2ug1K]+@B8r#*CWi`#sSZ4A2?f4#m?H7;Ch1&,33."Aldb:Ju8l^AC4m(Ip85j*if$$u/a]sO:r%rEMiBQqr^W7ucNe]MnLc`QIj-=YH#K*D?oJbB7JlP^thq_6[8-Q^?%!I+@qe.AAY8;`gS2On?1MK[`sV]tdus6<k)k`e*B-ZU]P7Ce"O3*,hAh*r+\-;r-dh$FC;f#9+K4k!#o4+@543"Cg"WGk:h'uhY_)$OT=h!am%&BeCPZ7r&*c3b=Ikh=jnrckC4F/gG3Y1nR6q'jPUrN:1(4*oe2,7@rE]7eZ83\Iq=-e<\*O9RKh$hWe$-)%aF;%Q9mP"\1G&aN59m.i"s^SMK^@E.M#B/#/&.;*`)FJfJj\]s>EMXb%=(o*9/0fiaa\PYHYEjUBP3nh^n^"^*U,f<U?H79ac&7OBE@Z8]+%`bNHSPCI>r,n*n&4<-AN..J,lt:fnJ.gtV]'>T#g?tp"kdU,DZ5,6G(h`hd#Q&Wu(qE!'T?=U%lS_PW0:ch7\pMlh,/b"S3FS&%NJ8obc"PgEK5lYk]CsG"SFVZ^ehnU;"H-A)@FTodNMS?b8"5lFZ)20IDL3[Nit(q^[TapHm!J`=#$u7&"^q7[X0IUjE6/kM>h-gM8B\if0-j!a6<Iau[b)R%Jh9Pm`Y`RS)5EHgRcb)854/&AN4gFP=up+T@mi=fbc%(7Fl9HUr59?X?/_-S0$G!KEHP3gMfO&;s*Ob#(2UUJ<jZ,:CH\NMGqk\k$Xo/2E:jrk".*[=]AP_&PEP7#&CKjXJ-At=4ieRE)IjSjM56m%;9tnQhe,B&KjE8j`SZ!Wdbk/LNV@HAC"Na9]C+cO2r;*MH7t'0Gf@ZCpLea)]B`pdK&<hAms?cZ]'6&Hgq$q##N(I0pstY4g2@bL+<TH/mGI?As$6Yhjt>O_pIRBWflG0i5TZ(]aR+3!*H0[L:!:jeO6GmM0!8$#`WPZ**cBl3L_G7Y6$L\Q^Tlu+QIt$mF,pOYV:5n?%%[r^[+#A22jQ7P;a:8#9g!cTQI-S?,Y@pgpLr8dXR+ZlB?(CP(Y;af/dAs(,[BbZl0fD`(V6[KNV%FL/F]ZuD35t`IMKoj29';X[VFW'@=IhlhU7)mHJ?Zeaf*m5;]!Ek%TSAk)Eu(M+7F*th<Hu%i]2JHO8mgq;9:GB.Jk*Y\QR[7dD]pH\`p9MC;rsa\pk=J$&regi]R->&US^0n"B?dhol+\>;*&'ji'%G`SK@?l.1GE]=Hh%8im2;VtON2!@1A/pfDPqmFF=Y]<sQR'QSDVfWE/_NQ2"+Sr?;JM3m5hA3+RB0E]bB;Tp&O/g_cKq#XuW(:Vh*'eW%WC0%IOL^tmTY`Ico^=LE/0!t1.<h=\lG$DXskjf*PG?;>V8oD79%qZmoNgndU"J\i_E(/!3XXD[m@$U_SNILU+edcnDg`<+n$fBa\Vq74/YF"7ES3hakmA0RI[[KS4J17,5CZ7K(d-i"N(iG4_p](,e=:=ca4[<rW@"2*^2Mq42JuQi8LNa%:p8V>FGqP\i^N+O3mni7nm>mm/c)Z"cOl\5s9Wd<V7VEREcknO/\X5>SNJ,fl7nkRAKCEtd5s,Wl!b"0_LrE8>Y1e.,o"#D@E'`"`qr(i,VZ)1KlZ.Uf.+$iu<Hi.Klmd($=KOQ)A)ol4%\Rq:I\(Y#faf:9>kYMt`eI]Mr%*H7@Hjd65?1gr3J]<b.98(u.Hn&Z]5lScNL0V=)bdi'l)h`SA=c#,f6&,6*5BjA?._?`](b6Opq35`M51(QLPCEn~>endstream
+endobj
+20 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1300
+>>
+stream
+Gau0BD/\/e&H;*)EBk)N/Q.9:obq3?&ha_Me6&.V6\ft9(l<EI8>8c!ag,9g,P>LpZ!Gts+P8Gpa60&+HUs>%_2"KJ-j-uJ_YKQ#[:)*$l<"Ni5Jm)8:s]$)WsrK#CUo+Q*ei3a[Eo:pNU;%X(YU#9k#d;J5!id6r/I$_/gDEqlih"0kJNjR0-VklgubG8-lu"bPul8[Q_LRo*jgiW#G/).QjrLSPM*RjEjM>lfB$s!T7qltgNP>W_Xr7N^L]bq.jW($ZalP[LFt,s3fC]_hIPQT`!SWN0ZqaY&Vj6GK1-fIKE52`:Y[)>l0!@5F2/*\'a/4I5WqpFk3im]5E-0_3^-=!@tbuo!sbpS[p:B"GCZBWAsI:Y(9t!W34m.`R"VL5Qp)24B=mTp-=[Q6lRZ8m:([fb\npP>)ZkXW1rAaX;nZ!%D"-f,npI)+8&>1m'Pj<.`25Au=PsBR@?5ZAP/U147^1j)dA*qd;Ipj@*2WR)ljSHA->nOnD9j/;g;EUo..n1V2bJ"AGnN])"f-H3jaus(:L!^(J#ocgY*T2R?bhJq,*09,jHk]Ore;3trQ(>2#s.E44G\sZ*$%qu['/0X)X":33,KI:Y*==p;)2W&bCA;O^ZOCJbRETjBhQ+\%M&u>,DXHIQRbdfUjuh2@pL^CA6tK?:GMVJaI,EbS;Li,<D2glA36$7c9RW9pU.dmDJ$LsU45/`FCtEO3RfB\7J\8DD%D@`.[)6M/'br'_YbKXiTl?d!OaT.R`<^L?Hg$(?HPD\FMj_OMuR9!3dX`g!?upP9(>[M$aj=2p^g0*r>G"P,\h%R7K0:imbCJO?[*_0C\*>"4-KKrQ/''/^@?\aA\H@OdXlB=M._[d93tl=I1>mb7FfGX/:%*3A[c-0am9NQMju:BPuDAk`hJ9.EsXF!_qg+QVd#`mrO'^]7C?oD6^/lm;7%bWPVH^[Djq/8Q!kp!7dGcrC5`C-!O\0d1t)PrrNn20!tNAbW;j%RO,70.1/>-YYul!GndKl"g<=.%W'jFI/Z23AA#ut5mfC!\?<1ut<1Q`2JTp3]O3LW;rr^*,QVDl4dq9M8A0Gu\,\\`L;4QYW;,ffZ0F@>].J:5TQ+`qg@R)XD.RgJ-mC"Uohsn#m=FPCRZ3%\:'"kIQT'\TlgtrMk#1)\E/_aO%oItuSp9p:;0$PB8B$aH#C_drP/NE,3l.K8DdPm7hiO>nmm7,XG@l%q2;T`bA)3<%Horpf]^?JT6mBDd)hE*ghERYipK%Vm:kS5c!A(C-fBojC69jS88dUQ825FD`\rrGeO&ZG~>endstream
+endobj
+21 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 2884
+>>
+stream
+Gau0ED,933(B2U_3)UPA<*\JR]D6sk=D50IDV6>F\fW+r'71"^[O7$)m'=C?kD\fH+\lK5X(XFOA"U6n]UOJ/+/](!14[O[SD>l,(5s;b3JIX2cYu$.WdjaPQO^n/=2QmukV7>\Xet^jX(f2;iIt=R^ig-M\NZ1t@.9;F*/5&d7J6dmbOa[faVPPS&jGERQms.M"k?m=:LB!b]'Gr*;/jk1Gmr`Lf;mZr8TjUIHu-DILHG<+.(K1s!i%+[rEP8qP_OHQBU[M`1j<Ha@8d9`ejIbRbqkqkCZ'Q2&U:6_Pi8lU3]=<m0UUmh@/u&DRr/eM;VqW%ip=YdAo"^WAA1?;^djZc.EkVZ9GHY$M\;<8$949,aCZ&_%M:(j@bqaa$\#[?6]G-`X\"%(CEZ6!cPjp06IO@*22/m8P:'3S$[E4EKh!2X$)9>65iaWF8\S,*i,>>$F9,Pbd]"QMLb%M,W;`aAQ])-)eH:lT3T1='_LP0Pk\ilXAWn%cU_"Ei3sco0T.)eZ;)5RC4!1)b2V&bY_"1e2)A0C9-o3Np<:a)%5Xr#GEE2R'jJ=CMRu="?W*piJfr/NTYV^EfQEDI-QB&4]a>Bc"8&DEZ(pGkM.iuFV_;i(i`XX]+EtBcOP%'GZ\u,\jL5E++"T3bu\m1r*9#Y59P"[:7q;AA'2BO0m:A@c.m2rh6"!SJ$oI^VL6?2['a)<NEJim1l<#"AV*cQ@TI4-(0?js,bGdNmO4h<+.6ltlTpd#K'YOKB,8/@_)ID^4=WJDTUKk#_.7J?,SA,Vn1r,&A].O$=UcVjE63`=$20QJ5sH(;f8hB7R8L>aB6O/OTs8uI4AUK)!/,+6_4r'kBW<p1#1obGVt_"+#i`f@_K.rT2Mg`JUb`@NGA=_\,&LK\nT&?1,0'oDLG7PsE:NBT7/iLr07_V-E`?DFlp4EhIl@?ipuPZWc)f&<Ga;Ipj6p4][)k\O*?o+"E`2m0k\@;NLJFlfUfQ&idLP#=?(V8A0CWCl,nKa[#JbI:jMd8&F.'tW*Gq,C9,$Ak%/=OATrS'pS(.*/MFNf%C>_+[@c':gMms*%K\/1Hk^3L/.74\3@L0OreR5MX&(GCjo1q+$prgCr?_7uS3=V&fZl(E'"=.@"#:WWgV)55@pPAC=U/2PBt?,t_"31fa,bcRGQ^#BkZsj)R<Q/hs;tmfS)eE5>l_i9^]`h-0@GoPZOC3cq[t+Hi.oo+qU/.E_iua^7QIT>r>BA2,g8r4\$-V(AYsE<3sT;+KD=kU@+0i]DlV"motDBF77kFO*<@6*[dR[?+W^\u2Ihr^\`6!70'joLp>4D"iJ2]2&*52]aZZ7SMi"\5/cf;bL?EV(n;j'.Td4O!P:tI/$H+CrBY6mLC,Zp[ea/$5ned9Mk$?!/MPp>KfE>YTW(mM/n!J&1S:GnY[;FLEn(aLQo)I/i_,p4HCQ8IKT2K6e=VhYn?'Gg+#<m3j*=SR-?<Hl&$U'/;/B8TK/l5JWg3+`$@Ou.58fdO?[/k6t<ATK'jA]Wb%g*_=?oBD"%c@pk,JXi4:?u7n5g!a0on`_b3RLK!Ij$aeL+V<"J45p(#l]A2^4L8WcH<"i#t@>3bC9U0Epm,3<1$hI,&e8gXMMs73]NB,2\+RQa,bd8lVagQg:a!Bl/eQ&\MBCAF0hXTSD'M?KnTq)mPLN9-:BKml7bEdH#N^^8A6!M97FH%8WO_p:l<50Z5kcukB]HDVcD@"c8U3[&qWaN@XL`N6b;6gk#lJ[q,Mf;[7@\k]/hCNSr=Q1c)i;os3fdMj9,7u10sZBg]Lldf/jAQ`pmRii(q"]NIo-Z%X].bX)?QK]6Hj]VnOa7ps9/MLTXPO/C.?Jnl&[rfq2EOJ>a,YK\`2pJY&LB[u;q7t3Q-cCM#AXG*i/,ip!Gdl^s*U8=:J_F@/bEi+<*5LN#E6:N9e7FYk^Rup)@@;HV$1'UW3Gt(31UpE62t#;[!&f:6YiBJlpq\^:6tD&kGgfm]hdI;?N/K!$=:,sdjS$T&WQ,$eJl<ZaG)5Rl!tZ<Xf5=Ph&;QK_I8i1VT7[`,:^j9m!674Yku%0/A+4Z:'@HDV>K?\g*PhD=9Y_-sY]d?WS7?B:h"BcJZ?H%j<77Uc]IV1=4_TVOWDtku)1TJ]H42j=IUI4]W-Z&r2IGR\"5&Me-VOua<\p;).J:,K2R#O,M04c:a8^2Ha5^M1:Wpf/_(IZ+`!\%&Lg4/WhFgpke1;>G0,qQp0*455SXT!c?C+-riP298_lns.&R^VVZ%!*CbBI4dqTG"0_ma1jQ*#p+?)DSEO3I<K\b<A_]!6D$(.-N([?'ftH%]HjqZnjE,AaSf-[=/]"D`sJQ"8a?.c*btB8s[4@W/Gi[o^f,)KXI`B44V&7NsB:)I:*olgZPX%'?rR8"dXc=DZ=R9b.ZQ%P;Fu[`tGFKn19J#60sH6tCs8\f\B\;5-R)]u>Ll:=Cr+kGEICfU6;S%ZTo?O#X3qCtI-J^5mR030@Ibg4a6(Mt7"J?.1>:4m"6;$3%3?$6'hlRnlq>?jp?+T5a)j_0ZSeQ?DZu[.arn2NQZe@;BpRqiiI*66"3>_2]<ZZqm@:<s`/&8u3?toOmbb'(1HW,Z,Xk=SVl\hqiPq/:>ddmlGCZ3JU;fX@`kV9[E\a/K?B$8(O_Q1"<QA(N?3=/95c\;%:09,u^M,M^fPri&XWsXloqIjBqbZ[@N+AU%^GKmCj(`]sCaEs'+q:fNR]fj84YkQC[iUM6FpbfXFNhcZn6U6PWB$`!KKO#QNR9JK'[gZjF6;i>YhK7l`4*mAgO%CeR:j;A:oYZ]@q2XQdG\OS?K1B_-JT2:2NL7.5GjKaUY%W&9QBk^ohqL#/!Tf[nP[^%U>?s/TbA.j)tI':t,A"Z%.s%8oP9jo~>endstream
+endobj
+22 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 1384
+>>
+stream
+Gat=*D0)1+&H88.Z!VCgl.clh48I6k1ei;,8ZkYFc@#td)]<0V3C'_mgA'R_$4M[?-B<kd6*.Hjm'A>r!?3[is/-%9LFJ`u&g.ZXk<M/QKBY6u9TRcn6d%E?Gl?4aD%['VI_O!Z3C)0,rP/bL-RRbtQ;.8g<>7._82Z+-P\."!6/i"jge+h\W>9GQC:93\',$a>--]L`2nSM&(('^lY;/Wq?d<SQj$rU=8mL8OE%?Ak#p6=1@JUD]GAHso)A6/WD*(*A[u'F5K`sd2d'oeD9]3!8#_TpM!q\/u:i+gV9AC(0iq[a;J`VQn+%8E)DaSC$jO+(gf!Io$^'VA4b?7+GUnXe[VL#-.nCj8u#kVVF5P(^3(I[1M`/5b'rBULH%-I"TWO^_G^9_[;'aJn!H!nUbj*NN;,;eM)Vqdqhb1WqcfEZ)M]iQA4d5Ka_kT.1D*O)m#-bBjS'@=<EloKaD\c@%*JmA.H>WT9F,]MH_Lh[Cm+:!(ESqMZKNeI^P^DD0\o#)!mEi/rVmDb.J^9>:b-:?SS&qa(ip6JgD'M^o7<\+F$L!Wr7Hh_]5jbk,Hn#kUk.bU#a'Eb5>WEmT4AgPdA.IbdXJX"Vg^^B,CZ(7,J>%8O3mb<jpM1$d^O@khDdb#M<iJl;se.gTt[2/eI'%kBj9+t/6JBk'%=iV<cR\.HKPtY'e=rPFaAn]PG"[%#^auNg.P-,H"J`e.$a#!MC_Ob:;$T5q'*57i>CS@D/MCD@m;/+A_M2VJ[kB)G$M<=%Dl#M==cc-HKF(7/(P)G)7VB00&J]fLJQWF?Js/l]V4m$lThJE$I3*Tj7GC5lPTuDu>g3U#"WjGfV2:gFD9X_05E_1='7J'<[]JJAb+2=`?&`1EqVYXZAd[V(>4j7(*7,-h`(_LU$H=QLq[O=fYAkg6,$+8i]R>-qdcS[%d/il<G/[!\C$:`uj7IsMVpiC<PTm_1(8OClDnqQAl;QN9,r4>8HbE@.)*\apo_Nb`^WfN+dF[1R@bMe;TfNg;To,IcZ;pb<CWI/:r+1b/"h:4T=S9R[6OmsDP9/Z`EEMi<_MjJ!-,aG6=0q7?+RIQ5JD9ttS6$P3(L%k%@<Mg!J:?\,KQU2J?:>gO:=>ST<#>."*1.LSH]LQl$mA<K1X_QA-jIud99UT?,CG^1UR8/t5eS,NXct^\HaEhSV)6Q.QP:2tnZS7M0dRr%&J5K;$7$G<'V45J\9t?ql8Wt1;8Q%KY;"toDHY%61NP*$qpO$M*c/`A'3/ZHM'h3`fH9Q`PFC_rOUDjZ#c+%8LpfX^fG$eVf?JE/Q]e);[RF/;n_IY+3q6;TiALAZhKk(8dB>^;D=03Sb3"p0P$k`+33!9%QCS$3&'7YY.>I7/]eJB5(&(d+1MZ~>endstream
+endobj
 xref
-0 13
+0 23
 0000000000 65535 f 
-0000000015 00000 n 
-0000000083 00000 n 
-0000000149 00000 n 
-0000000348 00000 n 
-0000009238 00000 n 
-0000009299 00000 n 
-0000009406 00000 n 
-0000009518 00000 n 
-0000009623 00000 n 
-0000009738 00000 n 
-0000009939 00000 n 
-0000018488 00000 n 
+0000000061 00000 n 
+0000000143 00000 n 
+0000000250 00000 n 
+0000000362 00000 n 
+0000000477 00000 n 
+0000000582 00000 n 
+0000000787 00000 n 
+0000000992 00000 n 
+0000001101 00000 n 
+0000001306 00000 n 
+0000001512 00000 n 
+0000001632 00000 n 
+0000001838 00000 n 
+0000002044 00000 n 
+0000002114 00000 n 
+0000002395 00000 n 
+0000002488 00000 n 
+0000004730 00000 n 
+0000007671 00000 n 
+0000013775 00000 n 
+0000015167 00000 n 
+0000018143 00000 n 
 trailer
 <<
-/Size 13
-/Root 1 0 R
-/Info 12 0 R
-/ID [ <7e9e40e9e59a60dc85d1f50e5f0482d7> <7e9e40e9e59a60dc85d1f50e5f0482d7> ]
+/ID 
+[<e9920eb293d4032c69644159a9741ebf><e9920eb293d4032c69644159a9741ebf>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 15 0 R
+/Root 14 0 R
+/Size 23
 >>
 startxref
-18813
+19619
 %%EOF

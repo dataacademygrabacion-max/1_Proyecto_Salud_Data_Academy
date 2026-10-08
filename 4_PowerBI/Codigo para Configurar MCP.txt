@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "powerbi-modeling-mcp": {
+      "type": "stdio",
+      "command": "RUTA",
+      "args": ["--start"],
+      "env": {}
+    }
+  }
+}

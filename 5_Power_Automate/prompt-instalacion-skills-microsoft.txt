@@ -1,0 +1,121 @@
+========================================================================
+INSTALAR LAS SKILLS DE POWER PLATFORM EN CLAUDE CODE
+========================================================================
+
+Copia TODO el bloque de "PROMPT" de abajo y pegalo dentro de una sesion
+de Claude Code (abre una terminal, escribe: claude, y pega esto como
+primer mensaje).
+
+Claude se encarga del resto: comprueba los requisitos, instala lo que
+falte, te hace iniciar sesion en Azure y deja el plugin de Power Automate
+listo para usar.
+
+
+------------------------------------------------------------------------
+PROMPT (copia desde aqui) v
+------------------------------------------------------------------------
+
+Quiero instalar las skills oficiales de Microsoft para Power Platform
+(https://github.com/microsoft/power-platform-skills) en este equipo, y en
+concreto el plugin de Power Automate para poder crear y depurar flujos
+desde Claude Code.
+
+Actua como instalador y hazlo tu paso a paso, explicandome en una linea
+que haces en cada momento. Sigue este orden y NO sigas al paso siguiente
+si el anterior ha fallado:
+
+1) REQUISITOS
+   - Comprueba mi sistema operativo y que tengo Node.js 18 o superior
+     (node -v). Si no lo tengo o es antiguo, instalalo
+     (en Windows: winget install OpenJS.NodeJS.LTS;
+      en Mac: brew install node) y vuelve a comprobarlo.
+   - Comprueba que tengo Azure CLI (az version). Si no la tengo, instalala
+     (Windows: winget install Microsoft.AzureCLI;
+      Mac: brew install azure-cli).
+     Si acabas de instalarla y el comando no se reconoce, avisame de que
+     tengo que cerrar y volver a abrir la terminal.
+
+2) INICIAR SESION EN AZURE
+   - Comprueba si ya tengo sesion con az account show.
+   - Si no la tengo, dime que vas a lanzar az login, ejecutalo y espera a
+     que yo termine el login en el navegador. Autenticame con mi cuenta de
+     trabajo (la misma con la que entro a Power Automate).
+   - Confirma con az account show que la sesion es correcta y dime con que
+     usuario y que tenant he entrado.
+
+3) INSTALAR LAS SKILLS
+   - Descarga y ejecuta el instalador oficial:
+     Windows PowerShell:
+       iwr https://raw.githubusercontent.com/microsoft/power-platform-skills/main/scripts/install.js -OutFile install.js; node install.js; del install.js
+     Mac/Linux:
+       curl -fsSL https://raw.githubusercontent.com/microsoft/power-platform-skills/main/scripts/install.js | node
+   - Si el instalador te pide elegir opciones de forma interactiva y no
+     puedes responder tu, PARATE y dime exactamente que debo teclear yo.
+   - Alternativa si el instalador falla: dime que escriba yo estos comandos
+     en la sesion de Claude Code (son comandos del propio Claude Code, no
+     de la terminal):
+       /plugin marketplace add microsoft/power-platform-skills
+       /plugin install power-automate@power-platform-skills
+     Y si me interesan las demas, indicame tambien las otras disponibles:
+     power-pages, model-apps, mcp-apps, code-apps-preview, mobile-app,
+     power-apps-mobile-extension y canvas-apps.
+
+4) REINICIAR Y VERIFICAR
+   - Dime que cierre Claude Code y lo vuelva a abrir para que cargue el
+     plugin y su servidor MCP (FlowAgent).
+   - Cuando vuelva, verifica que funciona listando mis entornos de Power
+     Platform y muestramelos en una tabla con nombre, tipo y region.
+   - Si algo no responde, diagnosticalo tu: revisa si el plugin aparece
+     instalado, si el servidor MCP esta conectado y si la sesion de az
+     sigue viva.
+
+5) PRIMER PASO UTIL
+   - Cuando este todo verde, dime que entorno quieres que fije como entorno
+     de trabajo por defecto, fijalo, y hazme un resumen de que puedo
+     pedirte ya: listar flujos, explicarme como funciona un flujo, ver el
+     historial de ejecuciones y depurar una ejecucion fallida.
+
+Importante: no inventes resultados. Si un comando falla, ensename la salida
+real del error y propon la solucion antes de continuar.
+
+------------------------------------------------------------------------
+^ PROMPT (copia hasta aqui)
+------------------------------------------------------------------------
+
+
+========================================================================
+REQUISITOS PREVIOS (resumen rapido)
+========================================================================
+
+- Node.js 18+            -> El plugin trae su propio motor MCP en local
+- Azure CLI + az login   -> Autenticacion contra Power Platform
+- Claude Code            -> Donde se instalan las skills
+  (o GitHub Copilot CLI)
+
+
+========================================================================
+LOS 8 PLUGINS DEL REPOSITORIO
+========================================================================
+
+power-pages · model-apps · mcp-apps · code-apps-preview · mobile-app
+power-apps-mobile-extension · canvas-apps · power-automate
+
+
+========================================================================
+COMANDOS QUE TE DEJA EL PLUGIN DE POWER AUTOMATE
+========================================================================
+
+/setup                 - comprobar requisitos
+/browse-flows          - navegar entornos y flujos
+/create-flow           - asistente guiado de creacion
+/build-flow            - construir un flujo completo desde una descripcion
+/debug-flow            - depurar una ejecucion fallida
+/diagnose-flow         - diagnostico profundo de un run concreto
+/manage-flows          - publicar, probar, inventario
+/manage-desktop-flows  - RPA y grupos de maquinas
+/route-environments    - gestionar el entorno por defecto
+
+
+------------------------------------------------------------------------
+Recurso compartido por Jesus Alonso · https://github.com/microsoft/power-platform-skills
+------------------------------------------------------------------------

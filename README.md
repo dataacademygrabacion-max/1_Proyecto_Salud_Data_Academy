@@ -13,7 +13,7 @@ Authon jhon velasque
 | `datos_bronce/` | 2 | 13 CSV crudos ya traducidos (lo que se sube a Databricks) |
 | `2_EDA_Python/` | 2 | `01_carga_y_EDA.py` – notebook Python: carga a Bronce + análisis exploratorio |
 | `3_SQL_Databricks/` | 3 | `02_plata_SQL.sql` (Bronce → Plata) · `03_oro_SQL.sql` (Plata → Oro + KPIs de validación) |
-| `4_PowerBI/` | 4 | `Guia_PowerBI.pdf` – conexión a Databricks, modelo, DAX y dashboard |
+| `4_PowerBI/` | 4 | `Guia_PowerBI.pdf` – conexión, modelo, DAX, diseño y drill del dashboard · `dashboard_salud.html` – prototipo interactivo a replicar |
 | `5_Power_Automate/` | 5 | `Guia_Alertas.pdf` – alertas e incidencias automáticas |
 
 > Abre los `.drawio` con [app.diagrams.net](https://app.diagrams.net) o draw.io Desktop. El archivo `Arquitectura.drawio` tiene 2 páginas: *Arquitectura Databricks* y *Modelo Power BI*.
@@ -86,8 +86,8 @@ Sigue `4_PowerBI/Guia_PowerBI.pdf`. Resumen:
 2. Avatar → **Settings → Developer → Access tokens** → genera un token.
 3. Power BI Desktop → **Obtener datos → Databricks** → hostname + HTTP path → modo **Importar** → token.
 4. Navegador: `workspace → salud_oro` → marca las 7 tablas → **Cargar**.
-5. Relaciones por `clave_paciente`, `clave_departamento`, `clave_medico` + tabla **Calendario** (DAX).
-6. Crea las medidas DAX y el dashboard de 1 página (tarjetas, líneas por mes, barras por departamento, anillo por estado de reclamo, tabla por aseguradora).
+5. Tablas de apoyo **Calendario** y **Hospital** (DAX) + relaciones por fechas, `fuente`, `clave_paciente`, `clave_departamento`, `clave_medico`.
+6. Crea las medidas DAX y el dashboard de 1 página: 5 tarjetas, **facturado vs. cobrado por mes** (drill a días), **% aprobación por mes** con meta 40% (drill a semanas), **% rechazo por aseguradora** y facturación por departamento. Prototipo de referencia: `4_PowerBI/dashboard_salud.html`.
 7. Valida contra los KPIs SQL de `03_oro_SQL` y **publica** en Power BI Service.
 
 ---

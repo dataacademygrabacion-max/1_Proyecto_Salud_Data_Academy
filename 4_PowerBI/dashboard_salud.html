@@ -1,0 +1,288 @@
+<title>Pulso Clínico RCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: icon rail + one column — header, KPI strip, monthly evolution with drill-down, three analysis cards. Soft raised surfaces on a cool grey ground. */
+:root{
+  --bg:#eef1f5; --card:#f8f9fb; --line:#dfe4eb; --shadow:0 1px 2px rgba(20,40,70,.06),0 6px 18px rgba(20,40,70,.06);
+  --ink:#122033; --ink-2:#4f5d70; --ink-3:#8592a3;
+  --fact:#86b6ef; --cob:#1c5cab; --solo:#2a78d6; --meta:#c2410c; --ok:#127a4a; --warn:#b45309;
+  --display:"Sora",ui-sans-serif,system-ui,sans-serif; --body:"Figtree",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f141b; --card:#171e27; --line:#273140; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.25);
+  --ink:#eef2f7; --ink-2:#aab6c5; --ink-3:#768397; --fact:#6da7ec; --cob:#2a78d6; --solo:#3987e5; --meta:#f08a4b; --ok:#3fbf7f; --warn:#f0a43a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141b; --card:#171e27; --line:#273140; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.25);
+  --ink:#eef2f7; --ink-2:#aab6c5; --ink-3:#768397; --fact:#6da7ec; --cob:#2a78d6; --solo:#3987e5; --meta:#f08a4b; --ok:#3fbf7f; --warn:#f0a43a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;margin:0}
+.app{display:grid;grid-template-columns:64px 1fr;gap:18px;padding-block:20px;padding-inline:20px;max-width:1440px;margin:0 auto}
+.card{background:var(--card);border-radius:16px;box-shadow:var(--shadow)}
+.rail{display:flex;flex-direction:column;align-items:center;gap:22px;padding-block:22px;height:calc(100vh - 40px);position:sticky;top:20px}
+.rail svg{width:20px;height:20px;stroke:var(--ink-2);fill:none;stroke-width:1.8}
+.rail .on svg{stroke:var(--cob)}
+.rail span{display:grid;place-items:center;width:40px;height:40px;border-radius:12px}
+.rail .on{background:color-mix(in srgb,var(--cob) 12%,transparent)}
+.rail .end{margin-top:auto}
+main{display:grid;gap:18px;min-width:0}
+header{display:grid;grid-template-columns:auto 1fr;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;padding:14px 22px}
+.brand b{font-family:var(--display);font-size:20px;letter-spacing:-.01em}
+.brand i{position:relative;width:30px;height:30px;border-radius:50%;background:var(--cob);display:grid;place-items:center}
+.brand i::before{content:"";width:14px;height:4px;background:var(--card);border-radius:2px}
+.brand i::after{content:"";position:absolute;width:4px;height:14px;background:var(--card);border-radius:2px}
+.title{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;padding:14px 22px;min-width:0}
+.title h1{font-family:var(--display);font-size:22px;font-weight:600;margin:0;letter-spacing:-.01em}
+.crumbs{color:var(--ink-2);font-size:14px;display:flex;flex-wrap:wrap;gap:4px 10px}
+.crumbs span+span::before{content:"|";color:var(--ink-3);margin-right:10px}
+.crumbs .drill{color:var(--cob);font-weight:600}
+.top{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:end}
+.seg{display:flex;gap:4px;padding:6px}
+.seg button,.back{font:600 13px var(--body);color:var(--ink-2);background:none;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--bg);color:var(--ink);box-shadow:inset 0 1px 2px rgba(0,0,0,.08)}
+button:focus-visible,.hit:focus-visible{outline:2px solid var(--solo);outline-offset:2px}
+.back{background:var(--bg);color:var(--cob);padding:6px 12px}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.kpi label{display:block;color:var(--ink-2);font-size:13px;margin:0 0 6px 2px}
+.kpi .card{padding:14px 16px;display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:4px 8px;min-height:64px}
+.kpi strong{font-family:var(--display);font-size:25px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.pill{font:600 11px var(--body);padding:3px 8px;border-radius:99px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,transparent)}
+.pill.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.panel{padding:18px 20px 12px;min-width:0}
+.panel h2{font:600 14px var(--body);margin:0;color:var(--ink)}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.phead>div{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--ink-2)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.legend i.ln{width:14px;height:2px;border-radius:0;vertical-align:3px}
+.sub{color:var(--ink-3);font-size:12px;margin:3px 0 0}
+.grid3{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}
+.scroll{max-height:250px;overflow-y:auto;margin-top:8px}
+svg text{font-family:var(--body)}
+.foot{color:var(--ink-3);font-size:12px;text-align:right;margin:0}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--card);font-size:12px;padding:7px 10px;border-radius:8px;line-height:1.45;opacity:0;transition:opacity .12s;z-index:9;font-variant-numeric:tabular-nums}
+.hit{cursor:pointer;outline:none}
+.hit:hover+.hl,.hl.on{opacity:1}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.grid3{grid-template-columns:1fr}}
+@media (max-width:720px){.app{grid-template-columns:1fr;padding-inline:16px}.rail{display:none}header,.top{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi strong{font-size:21px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+  <nav class="rail card" aria-label="Navegación">
+    <span class="on" title="Inicio"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg></span>
+    <span title="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+    <span title="Filtros"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg></span>
+    <span class="end" title="Información"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span>
+  </nav>
+
+  <main>
+    <header>
+      <div class="brand card"><i aria-hidden="true"></i><b>Red Salud</b></div>
+      <div class="title card">
+        <h1>Ciclo de Ingresos</h1>
+        <div class="crumbs"><span id="crPer">Evolutivo mensual · Ene – Nov 2024</span><span id="crHosp">Todos los hospitales</span><span>Fuente: salud_oro</span></div>
+      </div>
+    </header>
+
+    <section class="top">
+      <div class="seg card" role="group" aria-label="Hospital">
+        <button id="f-todos" aria-pressed="true" data-h="AB">Todos</button>
+        <button id="f-a" aria-pressed="false" data-h="A">Hospital A</button>
+        <button id="f-b" aria-pressed="false" data-h="B">Hospital B</button>
+      </div>
+      <div class="kpis" id="kpis"></div>
+    </section>
+
+    <section class="card panel">
+      <div class="phead">
+        <div><h2 id="tMain">Facturado vs. cobrado por mes</h2><button class="back" id="back" hidden>← Todos los meses</button></div>
+        <div class="legend"><span><i style="background:var(--fact)"></i>Facturado</span><span><i style="background:var(--cob)"></i>Cobrado</span></div>
+      </div>
+      <p class="sub" id="sMain">Sobre cada mes: % cobrado. Haz clic en un mes para ver su detalle día a día.</p>
+      <div id="chMain"></div>
+    </section>
+
+    <section class="grid3">
+      <div class="card panel">
+        <div class="phead"><h2 id="tAprob">% Aprobación de reclamos por mes</h2>
+          <div class="legend"><span><i class="ln" style="background:var(--solo)"></i>% Aprobación</span><span><i class="ln" style="background:var(--meta)"></i>Meta 40%</span></div></div>
+        <p class="sub" id="sAprob">Aprobado + Pagado / total de reclamos. Puntos naranjas: meses bajo la meta.</p>
+        <div id="chAprob"></div>
+      </div>
+      <div class="card panel"><div class="phead"><h2>¿Qué aseguradoras rechazan más?</h2></div>
+        <p class="sub" id="sAseg">% Rechazado + Denegado sobre sus reclamos</p><div id="chAseg"></div></div>
+      <div class="card panel"><div class="phead"><h2>Facturación por departamento</h2></div>
+        <p class="sub" id="sDepto">20 departamentos, de mayor a menor</p><div class="scroll" id="chDepto"></div></div>
+    </section>
+
+    <p class="foot">* Noviembre parcial: datos hasta el 06/11/2024 · fact_transacciones y fact_reclamos (20.000 filas c/u)</p>
+  </main>
+</div>
+<div id="tip" role="status"></div>
+
+<script>
+const DATA={"A":{"pac":4297,"m":[{"pac":947,"dias":[[24107.21,20146.46,45],[21399.18,18161.46,42],[20881.27,15559.46,37],[21467.62,15129.88,38],[16164.9,11896.46,27],[20998.5,16536.96,40],[16992.49,10090.08,32],[13296.63,11427.64,29],[20179.3,13546.86,36],[16852.43,12251.63,32],[17426.84,12431.4,34],[13361.81,12932.82,31],[21117.28,17389.92,41],[22260.28,19171.98,40],[10050.27,9256.95,21],[14343.89,14797.37,31],[19569.19,16470.68,39],[16406.82,12773.0,30],[19432.63,11388.3,33],[16723.05,15127.05,41],[14649.09,11455.42,33],[18668.6,15128.1,34],[17568.89,14277.96,32],[14470.68,11508.9,28],[17276.53,12433.12,31],[20902.58,18344.16,43],[15680.1,9155.95,29],[14316.12,12732.63,29],[13609.13,12521.33,32],[15761.45,12905.69,29],[12059.16,13733.1,26]],"sem":[[215,84,90],[250,115,96],[220,84,91],[222,88,89],[92,43,32]],"aseg":{"Aetna":[220,94,82],"BlueCross":[205,81,92],"Medicaid":[205,93,69],"Medicare":[171,60,81],"UnitedHealthcare":[198,86,74]},"depto":{"Anestesiología":19728.2,"Cardiología":26529.32,"Cirugía":32210.32,"Dermatología":27546.48,"Emergencia":28147.77,"Endocrinología":29455.09,"Gastroenterología":28005.35,"Ginecología":22413.78,"Nefrología":26348.28,"Neumología":35415.46,"Neurología":30053.68,"Oftalmología":27291.69,"Oncología":29467.94,"Patología":23109.7,"Pediatría":18521.55,"Psiquiatría":25960.21,"Radiología":21637.72,"Reumatología":35818.33,"Traumatología":30558.27,"Urología":19774.78}},{"pac":828,"dias":[[20358.83,18182.69,38],[13291.67,10453.11,24],[11571.7,9885.11,25],[11198.87,7066.76,19],[18529.25,13052.07,36],[12887.83,8894.87,25],[17512.32,12918.23,28],[19846.42,16060.69,35],[15642.81,13576.98,33],[18384.78,16540.84,38],[14066.48,10337.37,27],[22633.75,16821.07,38],[16773.76,14848.72,35],[18201.11,14137.79,33],[13747.33,8873.93,25],[19938.64,15187.01,39],[14347.78,8804.15,24],[14052.92,12063.83,28],[19008.09,13942.92,36],[17330.76,14457.77,34],[18427.98,13250.67,35],[8378.15,8545.22,21],[13647.76,13417.2,27],[13154.58,10126.0,25],[19393.62,14741.84,35],[19349.93,15495.25,37],[17207.63,16389.07,33],[15492.26,10194.74,26],[19516.65,14953.46,34]],"sem":[[207,82,81],[236,96,93],[230,77,99],[194,82,74],[41,14,16]],"aseg":{"Aetna":[179,76,64],"BlueCross":[182,63,77],"Medicaid":[193,72,79],"Medicare":[157,61,63],"UnitedHealthcare":[197,79,80]},"depto":{"Anestesiología":26551.31,"Cardiología":25944.03,"Cirugía":21453.84,"Dermatología":28570.34,"Emergencia":25814.34,"Endocrinología":26524.48,"Gastroenterología":27588.16,"Ginecología":22751.21,"Nefrología":20215.6,"Neumología":32494.25,"Neurología":24975.04,"Oftalmología":26048.22,"Oncología":15572.11,"Patología":22310.53,"Pediatría":25765.34,"Psiquiatría":22295.36,"Radiología":20739.8,"Reumatología":20185.87,"Traumatología":21594.5,"Urología":16499.33}},{"pac":925,"dias":[[15433.47,9072.15,27],[17040.6,11956.43,32],[17044.64,13017.46,30],[20223.49,16234.11,38],[16617.76,13451.19,35],[19437.75,12247.76,38],[15982.52,14573.75,31],[13437.19,10499.65,25],[16235.73,13776.89,32],[18037.68,12795.02,34],[16027.16,12505.69,30],[23866.72,21954.32,52],[18467.15,18182.77,39],[22362.95,14443.76,38],[24456.81,21499.72,43],[19811.43,12069.5,33],[20802.67,14713.49,35],[14408.84,10851.56,27],[15843.56,10871.18,27],[14240.68,11435.45,28],[21895.23,16790.81,40],[12102.31,8955.64,23],[20936.94,15722.35,38],[19142.71,13778.29,36],[19509.39,12979.67,34],[15241.94,9942.69,25],[17216.89,11397.16,30],[21407.08,11260.27,36],[13074.57,11790.16,27],[19266.98,15446.0,36],[14043.32,12187.68,32]],"sem":[[233,87,96],[215,82,90],[218,90,88],[248,105,103],[98,37,42]],"aseg":{"Aetna":[198,87,63],"BlueCross":[194,72,88],"Medicaid":[216,80,98],"Medicare":[197,74,87],"UnitedHealthcare":[207,88,83]},"depto":{"Anestesiología":32090.71,"Cardiología":19299.62,"Cirugía":27552.71,"Dermatología":26624.9,"Emergencia":32529.99,"Endocrinología":27836.01,"Gastroenterología":19839.75,"Ginecología":29417.13,"Nefrología":31406.91,"Neumología":30898.5,"Neurología":26143.9,"Oftalmología":28727.5,"Oncología":39404.1,"Patología":29488.9,"Pediatría":27826.51,"Psiquiatría":26955.26,"Radiología":23889.4,"Reumatología":27789.98,"Traumatología":21878.86,"Urología":24015.52}},{"pac":824,"dias":[[16352.48,11657.68,28],[17834.24,13141.37,31],[18239.48,14616.68,33],[22754.98,20788.93,48],[12289.01,9289.67,21],[24014.1,19269.96,45],[15243.56,11543.98,28],[15062.65,10705.33,28],[16780.45,12724.87,31],[17154.42,16975.53,33],[12164.28,8507.09,20],[10278.9,10000.38,25],[17087.28,12646.19,36],[19633.55,13496.19,36],[12006.71,9977.37,25],[12469.46,9270.96,26],[12305.81,8737.63,21],[16390.03,15204.72,35],[14773.68,12507.26,29],[12814.97,10555.38,24],[21589.76,16952.72,41],[20054.89,14006.14,40],[15186.19,10249.73,28],[12538.69,7894.5,22],[15394.4,11262.33,26],[15696.39,14326.13,32],[21092.52,16354.8,35],[20410.07,16998.28,38],[14621.5,10504.49,27],[16666.64,11635.56,29]],"sem":[[206,77,91],[225,94,81],[232,94,90],[234,86,99],[63,19,30]],"aseg":{"Aetna":[204,76,99],"BlueCross":[173,76,66],"Medicaid":[207,90,69],"Medicare":[187,64,79],"UnitedHealthcare":[189,64,78]},"depto":{"Anestesiología":21919.57,"Cardiología":24710.14,"Cirugía":22459.8,"Dermatología":23836.0,"Emergencia":25705.68,"Endocrinología":23314.77,"Gastroenterología":22777.38,"Ginecología":23435.49,"Nefrología":24904.15,"Neumología":28273.0,"Neurología":27690.48,"Oftalmología":22489.03,"Oncología":20676.82,"Patología":24018.2,"Pediatría":22256.31,"Psiquiatría":31042.74,"Radiología":22216.4,"Reumatología":27715.94,"Traumatología":21415.46,"Urología":28043.73}},{"pac":913,"dias":[[20608.87,14364.05,39],[21258.05,13287.16,34],[12616.68,11940.7,29],[19726.91,16135.11,36],[19137.22,12039.05,32],[18170.67,12838.04,32],[13339.3,9118.68,24],[15437.21,10548.89,33],[19280.18,12004.27,37],[20017.29,15408.48,37],[13201.76,12432.9,29],[18660.41,15157.13,36],[16740.6,11192.13,32],[19226.56,14713.29,39],[23672.19,19271.59,44],[16983.73,12804.98,30],[19068.76,16370.97,36],[20595.72,14229.82,33],[14150.79,10208.38,24],[17057.69,12786.28,29],[13224.85,11683.06,26],[13144.64,11423.96,27],[19932.3,14166.97,36],[18299.22,15490.22,34],[20718.33,14648.34,35],[23003.02,17430.94,44],[11698.75,12120.37,26],[13014.7,9926.14,26],[14416.47,11389.24,26],[18699.54,13817.65,32],[18752.0,14833.45,36]],"sem":[[243,108,94],[213,101,70],[232,90,99],[236,88,99],[103,39,41]],"aseg":{"Aetna":[211,84,84],"BlueCross":[219,98,88],"Medicaid":[176,75,65],"Medicare":[216,81,93],"UnitedHealthcare":[205,88,73]},"depto":{"Anestesiología":28047.7,"Cardiología":19008.17,"Cirugía":25274.17,"Dermatología":29022.52,"Emergencia":26027.17,"Endocrinología":26949.16,"Gastroenterología":29080.84,"Ginecología":29448.97,"Nefrología":31028.69,"Neumología":21904.68,"Neurología":30085.64,"Oftalmología":32618.7,"Oncología":35335.1,"Patología":23807.78,"Pediatría":25630.3,"Psiquiatría":31832.69,"Radiología":24364.07,"Reumatología":25887.55,"Traumatología":23937.51,"Urología":24563.0}},{"pac":897,"dias":[[20838.81,11777.34,33],[16720.95,12241.36,31],[19976.29,16354.45,40],[20673.82,15690.54,38],[22008.25,16064.29,40],[22257.28,18811.19,39],[13285.56,10113.7,28],[16940.34,14044.95,32],[16827.64,12569.45,29],[17561.77,15742.99,34],[8077.69,7230.03,18],[14096.92,12345.01,27],[20053.21,15711.42,36],[14926.21,8786.43,23],[17330.93,12245.54,29],[20661.61,17213.24,39],[14580.79,9960.68,25],[17811.3,14860.5,34],[18524.13,13686.51,33],[16804.37,11024.52,30],[18478.94,14025.72,32],[23828.79,16880.69,42],[20716.8,15111.98,40],[14741.55,13557.42,31],[19623.62,11326.06,32],[13593.73,10447.11,24],[21200.69,18219.99,38],[14365.76,15659.34,31],[19215.43,14503.31,35],[22900.42,14856.47,39]],"sem":[[224,81,100],[218,87,92],[240,102,94],[197,82,76],[59,26,22]],"aseg":{"Aetna":[182,83,72],"BlueCross":[207,87,78],"Medicaid":[180,61,77],"Medicare":[187,75,84],"UnitedHealthcare":[182,72,73]},"depto":{"Anestesiología":26539.97,"Cardiología":25418.2,"Cirugía":24863.66,"Dermatología":31432.71,"Emergencia":20490.25,"Endocrinología":31883.08,"Gastroenterología":22981.66,"Ginecología":21055.63,"Nefrología":26493.51,"Neumología":26000.05,"Neurología":26828.21,"Oftalmología":31628.48,"Oncología":30308.67,"Patología":29151.77,"Pediatría":30865.75,"Psiquiatría":30838.28,"Radiología":21617.61,"Reumatología":28422.77,"Traumatología":22434.55,"Urología":29368.79}},{"pac":921,"dias":[[25927.29,17056.29,44],[19469.35,14918.27,37],[12560.08,11458.67,25],[21254.73,13098.39,37],[18801.77,12228.74,30],[16589.64,13894.61,33],[11238.87,9575.92,23],[22850.04,17146.96,43],[17788.73,13637.07,35],[18129.53,13785.51,33],[16163.74,13873.92,34],[23088.39,20610.85,47],[17918.17,15328.72,34],[12808.0,9891.14,28],[14365.78,11985.01,30],[21888.58,17629.91,39],[19119.33,13208.88,34],[13978.64,13271.67,29],[15466.21,11258.3,28],[17948.53,15270.17,31],[17932.83,13585.07,37],[10208.74,10426.25,25],[14449.92,11142.99,25],[17744.49,12402.88,33],[15258.29,10592.31,30],[16822.2,14150.73,32],[17084.47,15481.77,36],[19929.34,15734.59,37],[19048.9,15292.6,37],[20947.34,15479.18,38],[14035.31,11301.22,25]],"sem":[[222,83,92],[205,89,75],[225,100,83],[227,93,91],[103,41,46]],"aseg":{"Aetna":[204,94,71],"BlueCross":[208,79,86],"Medicaid":[198,86,76],"Medicare":[173,66,76],"UnitedHealthcare":[199,81,78]},"depto":{"Anestesiología":34410.5,"Cardiología":23249.18,"Cirugía":26718.16,"Dermatología":28429.18,"Emergencia":27630.25,"Endocrinología":36277.8,"Gastroenterología":26655.06,"Ginecología":29336.67,"Nefrología":26026.84,"Neumología":24395.48,"Neurología":22191.03,"Oftalmología":19722.52,"Oncología":27758.15,"Patología":30651.6,"Pediatría":27140.79,"Psiquiatría":35199.85,"Radiología":30516.72,"Reumatología":20545.59,"Traumatología":24066.93,"Urología":19894.93}},{"pac":850,"dias":[[14182.3,10971.56,28],[14345.35,11744.13,30],[22104.56,17376.9,39],[21745.49,13889.52,34],[11804.57,9250.72,23],[15219.88,11480.77,33],[13890.89,12821.92,30],[16746.09,11935.54,29],[13933.68,15814.89,33],[8726.06,6075.76,16],[22969.02,14347.3,38],[20424.64,15529.49,35],[13162.14,11124.65,24],[9152.12,9449.21,21],[8454.48,7188.76,19],[18526.0,15992.4,39],[15912.76,15488.32,33],[16132.97,13305.9,31],[22842.04,19167.59,42],[16519.69,14744.48,32],[17442.42,15959.34,33],[12835.1,8662.04,21],[12372.27,11614.8,28],[14305.56,13364.15,28],[9327.79,9666.36,22],[15600.23,14470.98,34],[12464.05,11333.05,24],[16106.96,14770.05,32],[15517.37,12912.89,33],[17050.57,13724.15,37],[16662.62,11900.02,27]],"sem":[[233,86,91],[221,95,88],[216,96,74],[222,93,79],[85,36,32]],"aseg":{"Aetna":[221,88,90],"BlueCross":[183,80,65],"Medicaid":[188,77,62],"Medicare":[174,79,64],"UnitedHealthcare":[211,82,83]},"depto":{"Anestesiología":22286.41,"Cardiología":25148.48,"Cirugía":25585.93,"Dermatología":19715.16,"Emergencia":15447.78,"Endocrinología":25548.47,"Gastroenterología":21506.43,"Ginecología":23073.92,"Nefrología":25890.53,"Neumología":25749.16,"Neurología":14695.92,"Oftalmología":22404.15,"Oncología":25662.12,"Patología":28035.42,"Pediatría":35675.93,"Psiquiatría":27620.74,"Radiología":22879.51,"Reumatología":24879.21,"Traumatología":21270.84,"Urología":23403.56}},{"pac":913,"dias":[[11820.34,12615.41,30],[14592.58,14415.73,32],[16965.07,14641.15,32],[17626.88,13888.66,38],[20017.2,13187.65,39],[16127.75,11022.91,32],[12650.53,7984.48,21],[11801.53,9007.81,27],[19493.32,15126.48,35],[23272.79,17482.08,43],[17238.55,14481.6,37],[18328.78,13259.82,36],[15721.98,10047.68,25],[18279.48,10596.07,35],[17322.59,14431.4,30],[24491.2,17279.94,47],[13870.22,12240.3,27],[19209.0,13802.62,36],[18217.09,12204.37,34],[15287.77,11970.28,28],[19757.23,14937.42,39],[23727.54,18699.31,45],[14439.59,11533.61,30],[17528.29,14397.07,34],[18854.22,12437.78,32],[19605.15,14121.99,31],[15684.33,12365.15,27],[18582.57,14478.86,34],[19581.15,14679.2,36],[12529.92,11669.69,25]],"sem":[[218,89,80],[236,87,104],[246,103,96],[216,80,101],[75,31,29]],"aseg":{"Aetna":[190,68,81],"BlueCross":[192,88,72],"Medicaid":[201,82,83],"Medicare":[209,78,85],"UnitedHealthcare":[199,74,89]},"depto":{"Anestesiología":21698.99,"Cardiología":31781.27,"Cirugía":36013.1,"Dermatología":27384.18,"Emergencia":26574.63,"Endocrinología":22643.67,"Gastroenterología":27499.31,"Ginecología":25943.23,"Nefrología":29143.0,"Neumología":24641.04,"Neurología":23329.58,"Oftalmología":16546.53,"Oncología":22564.78,"Patología":27245.96,"Pediatría":23568.68,"Psiquiatría":31896.25,"Radiología":29141.78,"Reumatología":25037.13,"Traumatología":22467.14,"Urología":27504.39}},{"pac":873,"dias":[[14955.15,11699.66,30],[22435.08,16812.09,38],[18749.78,11937.02,31],[11510.53,9539.19,26],[14505.41,9299.13,27],[13297.66,10530.4,26],[21910.36,18284.84,44],[17450.32,12551.31,34],[16272.76,11452.26,30],[24454.89,20279.2,42],[10536.31,8292.64,22],[21296.81,14897.34,38],[15752.82,13145.67,33],[13711.42,9965.41,28],[14698.18,10406.21,25],[17454.27,12556.31,32],[14938.3,14458.55,29],[16360.97,11845.56,33],[14977.38,12021.01,28],[16778.3,10843.54,30],[15115.78,9334.33,28],[16439.67,12947.29,34],[14145.95,10917.72,27],[18499.04,14688.75,41],[12584.24,10849.2,26],[22237.16,14299.89,42],[12198.93,9176.38,22],[16191.26,12089.1,34],[18467.75,12583.41,32],[20183.59,16495.04,38],[8463.91,5010.43,14]],"sem":[[246,92,110],[221,85,97],[229,88,84],[213,84,79],[108,37,45]],"aseg":{"Aetna":[200,79,80],"BlueCross":[193,74,77],"Medicaid":[218,81,87],"Medicare":[217,80,90],"UnitedHealthcare":[189,72,81]},"depto":{"Anestesiología":29333.3,"Cardiología":24752.9,"Cirugía":30014.08,"Dermatología":25167.72,"Emergencia":33341.2,"Endocrinología":25488.31,"Gastroenterología":18384.11,"Ginecología":21408.29,"Nefrología":30297.05,"Neumología":24741.58,"Neurología":19039.43,"Oftalmología":22012.91,"Oncología":30846.02,"Patología":22907.51,"Pediatría":25976.05,"Psiquiatría":21146.06,"Radiología":28685.73,"Reumatología":28960.31,"Traumatología":24063.42,"Urología":20008.0}},{"pac":193,"dias":[[25325.25,17714.28,44],[20624.7,12701.58,36],[13460.9,9603.67,28],[21222.55,13353.34,35],[11938.18,10844.78,22],[15655.22,13966.38,32],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0]],"sem":[[189,77,76],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],"aseg":{"Aetna":[45,19,14],"BlueCross":[31,15,13],"Medicaid":[30,12,12],"Medicare":[49,20,22],"UnitedHealthcare":[34,11,15]},"depto":{"Anestesiología":4554.89,"Cardiología":4577.45,"Cirugía":3408.1,"Dermatología":7186.12,"Emergencia":2649.26,"Endocrinología":7653.1,"Gastroenterología":5555.24,"Ginecología":4694.18,"Nefrología":5112.28,"Neumología":6137.84,"Neurología":7119.55,"Oftalmología":5454.19,"Oncología":3078.04,"Patología":5664.18,"Pediatría":6238.96,"Psiquiatría":6014.37,"Radiología":4244.59,"Reumatología":5769.04,"Traumatología":7545.77,"Urología":5569.65}}]},"B":{"pac":4322,"m":[{"pac":836,"dias":[[16512.85,13338.86,28],[15420.21,10086.7,27],[10949.13,10038.48,21],[11296.19,9069.87,23],[14882.48,12525.34,28],[16220.32,12406.76,30],[19854.48,17439.09,37],[18872.19,16098.22,34],[9862.39,8133.47,21],[15728.95,12525.79,29],[12943.33,11857.78,25],[23013.11,18591.09,42],[15843.63,12162.52,30],[12500.0,12340.87,29],[20059.71,13112.54,31],[16150.16,11697.28,29],[18752.2,13737.93,36],[21068.03,18854.61,39],[13648.4,9248.84,27],[15201.7,13126.62,28],[18331.14,12715.51,31],[14762.09,13278.92,31],[15433.4,11602.6,30],[13017.19,12105.86,30],[16754.85,12019.82,32],[11684.81,10795.72,25],[18481.99,14467.1,34],[13743.22,10307.93,26],[13045.98,9526.9,25],[11068.07,7614.33,23],[18101.29,10900.68,30]],"sem":[[252,108,102],[218,98,77],[223,84,99],[220,92,92],[92,36,42]],"aseg":{"Aetna":[217,77,102],"BlueCross":[214,102,81],"Medicaid":[191,80,79],"Medicare":[191,81,74],"UnitedHealthcare":[192,78,76]},"depto":{"Anestesiología":23517.43,"Cardiología":24580.18,"Cirugía":22082.14,"Dermatología":19342.97,"Emergencia":21658.81,"Endocrinología":18647.29,"Gastroenterología":29603.36,"Ginecología":24564.66,"Nefrología":25138.14,"Neumología":20481.13,"Neurología":24694.03,"Oftalmología":29951.57,"Oncología":29807.78,"Patología":25421.3,"Pediatría":23918.3,"Psiquiatría":28676.0,"Radiología":21781.96,"Reumatología":24330.63,"Traumatología":22032.0,"Urología":22973.81}},{"pac":866,"dias":[[17918.16,14843.54,36],[17376.07,14303.22,36],[16977.79,14255.84,37],[15123.82,15411.87,32],[13753.23,8744.15,25],[10592.88,8722.5,21],[15941.67,13685.61,36],[17728.68,12585.88,32],[17283.9,12774.53,34],[12637.33,8587.89,23],[14456.23,12953.01,29],[16143.47,14610.01,28],[14857.11,11362.11,26],[18981.15,12449.43,34],[19487.6,14796.51,41],[16237.37,12630.28,32],[19977.3,16902.0,40],[14946.45,10136.04,31],[12562.56,10240.11,25],[17959.96,13992.32,34],[16219.16,10231.34,29],[24821.71,19253.06,45],[17289.98,16122.31,33],[14794.97,11249.59,30],[21427.7,17457.33,41],[20712.94,15840.04,38],[20985.61,16134.21,41],[18106.7,13665.23,33],[14031.02,13820.43,27]],"sem":[[237,88,102],[207,82,85],[226,93,85],[212,80,77],[26,12,8]],"aseg":{"Aetna":[177,60,81],"BlueCross":[169,63,62],"Medicaid":[193,77,85],"Medicare":[182,75,63],"UnitedHealthcare":[187,80,66]},"depto":{"Anestesiología":25834.74,"Cardiología":25064.2,"Cirugía":25084.4,"Dermatología":24247.92,"Emergencia":20635.82,"Endocrinología":22337.77,"Gastroenterología":21022.87,"Ginecología":20987.81,"Nefrología":23808.07,"Neumología":22216.75,"Neurología":24833.3,"Oftalmología":26953.83,"Oncología":20517.14,"Patología":24482.34,"Pediatría":28366.56,"Psiquiatría":29981.5,"Radiología":24290.98,"Reumatología":24001.77,"Traumatología":29279.16,"Urología":25385.59}},{"pac":906,"dias":[[19701.8,14874.96,37],[18188.91,15443.46,43],[18538.21,14491.6,32],[20680.24,17481.09,42],[15505.19,14724.49,32],[16108.77,12205.72,28],[20019.28,12920.8,36],[15445.93,12406.15,29],[14937.38,13359.75,28],[12972.54,11861.3,29],[18860.9,15170.32,38],[16751.26,15418.14,35],[17910.98,15388.31,34],[13683.45,10148.99,27],[14893.17,11662.63,28],[16532.47,13767.43,34],[15406.02,12959.59,29],[19344.35,14727.07,36],[14863.2,15469.12,39],[14372.45,8946.35,30],[10307.62,8404.45,19],[18334.99,17026.6,38],[18119.21,15076.04,30],[20073.09,11690.83,33],[17382.96,15561.05,36],[14235.95,12122.95,30],[15697.37,7253.85,26],[12992.31,11302.32,26],[18304.05,14357.58,32],[18002.76,12631.29,34],[17870.04,15390.65,36]],"sem":[[248,100,103],[219,86,91],[244,96,95],[217,87,87],[84,30,38]],"aseg":{"Aetna":[176,63,74],"BlueCross":[204,84,79],"Medicaid":[192,85,72],"Medicare":[204,81,85],"UnitedHealthcare":[236,86,104]},"depto":{"Anestesiología":30352.74,"Cardiología":27284.05,"Cirugía":23910.88,"Dermatología":26937.71,"Emergencia":26515.44,"Endocrinología":23993.8,"Gastroenterología":19924.89,"Ginecología":20097.81,"Nefrología":27062.79,"Neumología":29200.85,"Neurología":30441.92,"Oftalmología":30747.66,"Oncología":21983.44,"Patología":26996.26,"Pediatría":22576.89,"Psiquiatría":31383.83,"Radiología":32957.75,"Reumatología":21073.46,"Traumatología":23497.06,"Urología":19097.62}},{"pac":851,"dias":[[13545.28,9803.68,28],[24476.99,16391.92,44],[13183.88,9713.28,27],[8996.2,8065.48,22],[13590.46,13083.51,30],[14356.89,10747.28,27],[21688.86,16237.69,39],[14264.91,11207.82,24],[15639.78,14355.83,31],[19413.38,14117.8,35],[21004.06,16303.39,38],[15559.63,15309.12,30],[12378.62,14100.83,27],[14684.48,13359.92,33],[15605.13,11116.24,29],[18659.02,14880.79,37],[15348.52,10967.84,28],[18539.25,14323.68,34],[14449.4,13133.06,29],[18073.08,14830.43,35],[16256.19,10993.08,28],[11872.65,10521.59,27],[17757.12,14018.58,35],[18664.42,12988.63,31],[20246.64,17661.08,39],[18683.7,14092.19,36],[16242.14,11997.62,29],[10647.57,11981.74,24],[8926.97,7143.28,18],[22661.11,19126.98,40]],"sem":[[222,89,88],[214,94,78],[216,79,90],[216,91,84],[64,24,24]],"aseg":{"Aetna":[173,72,68],"BlueCross":[180,63,81],"Medicaid":[205,88,76],"Medicare":[194,79,74],"UnitedHealthcare":[180,75,65]},"depto":{"Anestesiología":26797.66,"Cardiología":31785.24,"Cirugía":18906.03,"Dermatología":25391.87,"Emergencia":23363.38,"Endocrinología":22829.18,"Gastroenterología":22893.97,"Ginecología":29042.63,"Nefrología":26963.96,"Neumología":28163.76,"Neurología":21948.57,"Oftalmología":24259.94,"Oncología":19076.27,"Patología":20560.42,"Pediatría":27424.0,"Psiquiatría":30922.18,"Radiología":21440.25,"Reumatología":22846.79,"Traumatología":16970.21,"Urología":23830.02}},{"pac":912,"dias":[[15677.42,12785.14,29],[12974.71,8058.94,24],[17236.43,13839.1,34],[11974.68,10897.69,26],[17133.26,13126.89,37],[17902.97,13338.46,38],[16856.24,12311.61,34],[18591.33,12847.4,32],[17595.25,14750.68,32],[20088.92,16132.06,40],[19552.32,14702.05,38],[15019.45,12685.39,31],[15314.0,12846.22,34],[12305.83,10823.5,24],[23787.17,19098.49,44],[22186.3,13575.46,38],[14871.76,12150.47,30],[20886.5,12992.45,34],[16196.11,11125.13,30],[20901.07,18898.12,41],[14892.14,11247.35,28],[15063.47,11544.97,28],[9165.85,9984.68,23],[20309.27,15473.32,38],[17493.41,12225.93,32],[17413.74,11620.82,31],[16970.53,15659.41,33],[18224.87,14391.82,34],[21327.04,17327.91,41],[25156.99,15475.05,44],[6950.74,7344.76,16]],"sem":[[236,106,90],[218,80,87],[220,89,85],[203,86,78],[98,42,40]],"aseg":{"Aetna":[197,71,88],"BlueCross":[187,72,73],"Medicaid":[193,93,65],"Medicare":[185,75,73],"UnitedHealthcare":[213,92,81]},"depto":{"Anestesiología":22701.44,"Cardiología":27505.84,"Cirugía":23868.14,"Dermatología":27905.29,"Emergencia":26482.15,"Endocrinología":36316.53,"Gastroenterología":22189.4,"Ginecología":20248.26,"Nefrología":25514.29,"Neumología":29295.4,"Neurología":24310.59,"Oftalmología":20132.85,"Oncología":26608.95,"Patología":34481.32,"Pediatría":22776.04,"Psiquiatría":33705.41,"Radiología":25126.15,"Reumatología":24918.39,"Traumatología":31339.92,"Urología":24593.41}},{"pac":845,"dias":[[16743.47,12745.81,33],[19387.09,16099.68,43],[18909.78,16226.26,36],[19060.03,14595.12,34],[16671.44,15077.37,31],[17145.51,14856.86,35],[24969.48,17055.9,41],[10528.55,10506.14,20],[15922.9,13511.77,32],[10829.55,5747.83,18],[21188.22,18820.12,37],[16901.27,15506.32,34],[14551.42,13872.93,29],[13996.18,12267.87,32],[19596.58,14793.16,37],[11829.59,9330.9,26],[15964.75,12566.49,30],[14585.68,11200.83,31],[14734.82,11721.65,33],[14787.11,11121.61,29],[17541.5,13977.86,36],[17527.63,13185.17,31],[14026.62,9745.94,26],[15475.19,10544.25,27],[11967.77,10387.88,27],[14432.91,9542.33,25],[17537.62,8449.65,27],[19109.42,13820.94,35],[11656.08,9700.81,26],[12959.13,11603.65,27]],"sem":[[220,93,83],[222,103,82],[236,86,91],[233,95,92],[66,22,30]],"aseg":{"Aetna":[217,84,89],"BlueCross":[189,72,76],"Medicaid":[201,81,81],"Medicare":[176,80,65],"UnitedHealthcare":[194,82,67]},"depto":{"Anestesiología":22342.45,"Cardiología":26083.61,"Cirugía":27428.97,"Dermatología":20422.95,"Emergencia":25056.95,"Endocrinología":28132.34,"Gastroenterología":28514.37,"Ginecología":26313.3,"Nefrología":20649.86,"Neumología":24409.24,"Neurología":20226.09,"Oftalmología":29020.27,"Oncología":16610.84,"Patología":25934.73,"Pediatría":20116.86,"Psiquiatría":17965.21,"Radiología":33459.17,"Reumatología":20907.85,"Traumatología":25740.1,"Urología":21202.13}},{"pac":958,"dias":[[23576.83,16371.32,38],[19293.18,11198.1,33],[20409.29,16492.34,37],[15954.29,8439.17,24],[17963.41,15457.89,34],[14581.73,13551.87,31],[17431.87,14632.97,34],[24729.36,22572.15,50],[18839.44,15180.21,34],[24342.15,15648.58,43],[13908.75,13395.47,28],[12622.58,8441.95,24],[16060.7,11794.16,30],[14090.8,11672.99,29],[15202.72,9900.26,27],[21771.81,14687.18,39],[18149.86,16968.16,35],[18710.33,13559.69,37],[18096.44,13629.05,34],[13130.34,12731.73,32],[22955.06,19845.73,45],[16318.74,10923.62,27],[10404.59,6123.25,19],[17236.07,11022.69,32],[16035.23,14827.16,32],[10696.93,10358.32,24],[20181.74,15366.61,34],[21389.32,20798.31,46],[24018.73,17234.18,42],[17455.65,12659.44,34],[18137.3,14432.93,36]],"sem":[[209,88,78],[231,97,88],[222,93,81],[207,87,94],[112,39,53]],"aseg":{"Aetna":[208,76,84],"BlueCross":[199,88,84],"Medicaid":[197,83,79],"Medicare":[198,90,69],"UnitedHealthcare":[179,67,78]},"depto":{"Anestesiología":27276.49,"Cardiología":27390.99,"Cirugía":20760.27,"Dermatología":21540.49,"Emergencia":23378.2,"Endocrinología":29385.53,"Gastroenterología":21692.27,"Ginecología":28324.0,"Nefrología":30034.15,"Neumología":30575.32,"Neurología":23486.84,"Oftalmología":28430.1,"Oncología":33679.45,"Patología":26463.79,"Pediatría":31611.57,"Psiquiatría":32893.07,"Radiología":31128.42,"Reumatología":37879.68,"Traumatología":22459.43,"Urología":25305.18}},{"pac":914,"dias":[[13669.85,11617.35,29],[18855.02,12336.38,28],[15890.1,13724.55,30],[17177.7,12791.39,30],[17118.21,11829.19,33],[17285.55,13173.39,33],[15199.18,13433.56,34],[17234.01,12412.51,34],[13488.76,12672.69,28],[20210.92,12726.37,33],[13671.11,10957.63,27],[15822.21,15545.11,31],[17328.25,14028.68,32],[19000.08,15496.39,37],[15903.0,10081.44,29],[14988.07,12598.08,29],[14414.9,11543.0,30],[14853.0,13414.86,32],[18883.2,11887.85,36],[20214.17,14024.78,38],[17875.51,13332.57,36],[16790.41,10955.36,29],[13974.98,13693.53,29],[18265.86,15568.55,37],[18056.91,12414.87,32],[20647.61,14232.76,34],[12550.55,9513.92,26],[16337.82,15866.78,31],[18453.43,16297.81,36],[16128.79,17292.82,41],[19504.35,13733.37,36]],"sem":[[215,90,94],[227,96,83],[231,88,98],[222,99,87],[87,38,35]],"aseg":{"Aetna":[194,85,81],"BlueCross":[192,87,65],"Medicaid":[200,79,84],"Medicare":[182,72,68],"UnitedHealthcare":[214,88,99]},"depto":{"Anestesiología":23486.62,"Cardiología":24929.29,"Cirugía":27475.23,"Dermatología":25725.78,"Emergencia":24848.32,"Endocrinología":17990.19,"Gastroenterología":29744.12,"Ginecología":35483.58,"Nefrología":19970.32,"Neumología":27690.42,"Neurología":29533.9,"Oftalmología":22186.26,"Oncología":25977.08,"Patología":27579.29,"Pediatría":20350.29,"Psiquiatría":28426.08,"Radiología":20374.93,"Reumatología":35082.24,"Traumatología":29021.2,"Urología":23918.37}},{"pac":935,"dias":[[17520.55,14111.53,34],[19087.65,12575.1,31],[17941.89,14356.52,35],[14398.85,11868.8,32],[20312.29,17114.96,39],[16335.01,14799.84,35],[18095.16,12083.01,33],[16107.45,11961.93,28],[17953.32,15709.8,41],[13499.85,11059.15,28],[14472.57,12266.2,31],[19675.99,15076.58,36],[16179.8,15076.35,34],[21544.53,17644.25,40],[17648.0,14407.93,41],[14909.59,11957.55,31],[13626.32,10362.47,27],[15334.65,13749.83,29],[22224.23,14929.85,39],[16878.75,14207.78,33],[18536.27,15393.9,37],[19012.76,17165.35,38],[23372.35,19384.31,47],[19958.0,14290.75,42],[19342.6,13063.68,39],[14157.81,12972.17,28],[20583.6,15896.67,37],[17146.09,12593.63,34],[17123.05,13939.93,35],[11032.76,10903.47,25]],"sem":[[228,98,95],[226,76,98],[250,108,99],[198,91,67],[49,24,17]],"aseg":{"Aetna":[200,82,77],"BlueCross":[180,77,67],"Medicaid":[177,74,65],"Medicare":[197,83,83],"UnitedHealthcare":[197,81,84]},"depto":{"Anestesiología":23100.8,"Cardiología":31321.21,"Cirugía":23048.59,"Dermatología":23483.59,"Emergencia":30820.89,"Endocrinología":23714.92,"Gastroenterología":28055.55,"Ginecología":28844.51,"Nefrología":23375.85,"Neumología":18039.15,"Neurología":30490.14,"Oftalmología":29916.03,"Oncología":29632.57,"Patología":26107.68,"Pediatría":24718.26,"Psiquiatría":23271.61,"Radiología":28863.17,"Reumatología":27550.06,"Traumatología":22010.5,"Urología":27646.66}},{"pac":903,"dias":[[15951.42,11159.42,28],[17647.37,12160.25,33],[19338.23,14642.38,31],[16648.81,13071.11,32],[20641.63,13173.79,33],[17805.53,14482.87,36],[12746.39,10149.41,29],[22414.31,18655.51,48],[17317.51,12932.11,36],[11411.13,10926.29,27],[23362.41,16015.43,40],[19911.08,14893.03,37],[14708.37,10387.31,29],[22482.75,12926.25,37],[13439.0,12651.87,30],[13855.89,12148.82,28],[15689.92,12501.88,29],[16026.93,13816.52,34],[20252.17,12462.03,36],[10724.85,9016.1,23],[16262.48,13469.66,31],[19382.65,14174.04,36],[17313.37,14068.04,29],[13638.37,9756.9,24],[14508.41,14977.32,30],[16109.97,11851.36,34],[13784.01,11000.39,29],[18484.67,13374.84,32],[16755.6,12216.19,28],[11590.24,9442.63,23],[17911.64,12855.81,33]],"sem":[[231,86,90],[244,89,101],[239,100,87],[262,114,102],[88,40,39]],"aseg":{"Aetna":[200,72,86],"BlueCross":[202,84,75],"Medicaid":[245,106,94],"Medicare":[195,79,70],"UnitedHealthcare":[222,88,94]},"depto":{"Anestesiología":21949.08,"Cardiología":28222.4,"Cirugía":27314.29,"Dermatología":30055.9,"Emergencia":31905.7,"Endocrinología":22593.56,"Gastroenterología":29580.46,"Ginecología":22391.13,"Nefrología":27275.28,"Neumología":25264.49,"Neurología":30362.49,"Oftalmología":22786.22,"Oncología":22128.75,"Patología":26044.19,"Pediatría":23701.04,"Psiquiatría":28043.24,"Radiología":29174.87,"Reumatología":20178.53,"Traumatología":25793.2,"Urología":23352.29}},{"pac":184,"dias":[[13658.01,8031.88,27],[8267.16,10486.16,21],[17319.31,11907.25,30],[20453.78,13952.53,36],[19848.67,14138.97,37],[19106.11,14280.78,35],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0],[0.0,0.0,0]],"sem":[[213,85,78],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],"aseg":{"Aetna":[42,15,20],"BlueCross":[48,14,23],"Medicaid":[40,17,11],"Medicare":[41,16,12],"UnitedHealthcare":[42,23,12]},"depto":{"Anestesiología":4364.74,"Cardiología":6317.45,"Cirugía":3465.64,"Dermatología":4368.16,"Emergencia":3553.89,"Endocrinología":6151.48,"Gastroenterología":7094.77,"Ginecología":5475.44,"Nefrología":4518.52,"Neumología":5366.51,"Neurología":5420.12,"Oftalmología":1340.32,"Oncología":5519.85,"Patología":3951.74,"Pediatría":5714.67,"Psiquiatría":4638.94,"Radiología":4935.02,"Reumatología":5358.04,"Traumatología":6155.99,"Urología":4941.75}}]}};
+const MES=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov"];
+const MESL=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre"];
+const NS="http://www.w3.org/2000/svg", META=.4;
+let sel="AB", mes=null;
+
+const money=v=>v>=1e6?"$"+(v/1e6).toFixed(2)+" M":v>=1e3?"$"+Math.round(v/1e3)+" K":"$"+Math.round(v);
+const full=v=>"$"+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=v=>(v*100).toFixed(1)+"%";
+const int=v=>v.toLocaleString("en-US");
+const H=()=>sel==="AB"?["A","B"]:[sel];
+const months=()=>mes==null?MES.map((_,i)=>i):[mes];
+const nice=m=>{const p=10**Math.floor(Math.log10(m)),s=[1,2,2.5,5,10].find(s=>s*p>=m/4);return s*p};
+
+// --- aggregation over the current hospital filter ---
+function monthAgg(i){
+  const o={fact:0,pag:0,n:0,pac:0,recl:0,ap:0,re:0};
+  H().forEach(h=>{const m=DATA[h].m[i];o.pac+=m.pac;
+    m.dias.forEach(([f,p,n])=>{o.fact+=f;o.pag+=p;o.n+=n});
+    m.sem.forEach(([n,a,r])=>{o.recl+=n;o.ap+=a;o.re+=r})});
+  return o;
+}
+function dayAgg(i){const len=DATA.A.m[i].dias.length;
+  return Array.from({length:len},(_,k)=>H().reduce((o,h)=>{const[f,p]=DATA[h].m[i].dias[k];o.fact+=f;o.pag+=p;return o},{fact:0,pag:0}))}
+function weekAgg(i){return [0,1,2,3,4].map(w=>H().reduce((o,h)=>{const[n,a,r]=DATA[h].m[i].sem[w];o.n+=n;o.ap+=a;return o},{n:0,ap:0})).filter(w=>w.n>0)}
+function dictAgg(key){const o={};
+  H().forEach(h=>months().forEach(i=>{const d=DATA[h].m[i][key];for(const k in d){
+    if(Array.isArray(d[k])){o[k]=o[k]||[0,0,0];d[k].forEach((v,j)=>o[k][j]+=v)}else o[k]=(o[k]||0)+d[k]}}));
+  return o;
+}
+
+// --- svg helpers ---
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+function txt(parent,x,y,s,a={}){const t=el("text",{x,y,"font-size":11,fill:"var(--ink-3)",...a},parent);t.textContent=s;return t}
+const tip=document.getElementById("tip");
+function hover(node,html){
+  node.addEventListener("mousemove",e=>{tip.innerHTML=html;tip.style.opacity=1;
+    tip.style.left=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8)+"px";tip.style.top=(e.clientY+14)+"px"});
+  node.addEventListener("mouseleave",()=>tip.style.opacity=0);
+}
+function clickable(node,label,fn){node.setAttribute("tabindex","0");node.setAttribute("role","button");node.setAttribute("aria-label",label);
+  node.addEventListener("click",fn);node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn()}})}
+function vbar(g,x,y,w,h,fill){const r=Math.min(4,h,w/2);
+  return el("path",{d:`M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`,fill},g)}
+function hbar(g,x,y,w,h,fill){const r=Math.min(4,w,h/2);
+  return el("path",{d:`M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`,fill},g)}
+function svgIn(id,h,label){const box=document.getElementById(id);box.innerHTML="";const W=Math.max(box.clientWidth,280);
+  return [el("svg",{viewBox:`0 0 ${W} ${h}`,width:"100%",role:"img","aria-label":label},box),W]}
+
+// --- KPIs ---
+function kpis(){
+  const t=months().map(monthAgg).reduce((a,o)=>{for(const k in o)a[k]+=o[k];return a});
+  if(mes==null)t.pac=H().reduce((s,h)=>s+DATA[h].pac,0);
+  const cob=t.pag/t.fact,ap=t.ap/t.recl;
+  const items=[["Total facturado",money(t.fact)],["Total cobrado",money(t.pag)],
+    ["% Cobrado",pct(cob),cob>=1?["ok","Meta"]:["warn","Brecha "+money(t.fact-t.pag)]],
+    ["Pacientes atendidos",int(t.pac)],
+    ["% Aprobación reclamos",pct(ap),ap>=META?["ok","Sobre meta"]:["warn","Bajo meta"]]];
+  document.getElementById("kpis").innerHTML=items.map(([l,v,p])=>
+    `<div class="kpi"><label>${l}</label><div class="card"><strong>${v}</strong>${p?`<span class="pill ${p[0]}">${p[1]}</span>`:""}</div></div>`).join("");
+}
+
+// --- main: facturado vs cobrado (month level / day level) ---
+function mainChart(){
+  const drill=mes!=null;
+  const rows=drill?dayAgg(mes).map((d,k)=>({...d,lab:String(k+1),tipLab:`${k+1} ${MESL[mes]}`}))
+                  :MES.map((m,i)=>{const a=monthAgg(i);return{fact:a.fact,pag:a.pag,lab:m+(i===10?"*":""),tipLab:MESL[i]+" 2024"+(i===10?" (parcial)":""),i}});
+  const Hh=250,m={t:24,r:8,b:28,l:56};
+  const [svg,W]=svgIn("chMain",Hh,"Facturado versus cobrado");
+  const max=Math.max(...rows.map(r=>r.fact)),step=nice(max),top=Math.ceil(max/step)*step;
+  const y=v=>m.t+(Hh-m.t-m.b)*(1-v/top);
+  for(let v=0;v<=top+1e-6;v+=step){el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--line)","stroke-dasharray":v?"3 4":""},svg);txt(svg,m.l-8,y(v)+4,money(v),{"text-anchor":"end"})}
+  const gw=(W-m.l-m.r)/rows.length,bw=Math.max(2,Math.min(26,(gw*.7-2)/2)),every=drill?(gw<16?5:gw<26?2:1):1;
+  rows.forEach((r,k)=>{const cx=m.l+gw*k+gw/2;
+    vbar(svg,cx-bw-1,y(r.fact),bw,y(0)-y(r.fact),"var(--fact)");
+    vbar(svg,cx+1,y(r.pag),bw,y(0)-y(r.pag),"var(--cob)");
+    if(!drill)txt(svg,cx,y(r.fact)-7,pct(r.pag/r.fact),{"text-anchor":"middle","font-size":10.5,fill:"var(--ink-2)"});
+    if(k%every===0||k===rows.length-1)txt(svg,cx,Hh-8,r.lab,{"text-anchor":"middle","font-size":drill?10.5:12,fill:"var(--ink-2)"});
+    const hit=el("rect",{x:m.l+gw*k,y:m.t,width:gw,height:Hh-m.t-m.b,fill:"transparent",class:"hit"},svg);
+    hover(hit,`<b>${r.tipLab}</b><br>Facturado: ${full(r.fact)}<br>Cobrado: ${full(r.pag)}<br>Brecha: ${full(r.fact-r.pag)} · ${pct(r.pag/r.fact)} cobrado`+(drill?"":"<br><i>Clic para ver el detalle diario</i>"));
+    if(!drill)clickable(hit,"Ver detalle de "+MESL[r.i],()=>setMes(r.i)); else hit.style.cursor="default";
+  });
+}
+
+// --- approval rate: monthly line (or weekly inside the drilled month) ---
+function aprobChart(){
+  const drill=mes!=null;
+  const pts=drill?weekAgg(mes).map((w,j)=>({v:w.ap/w.n,lab:"Sem "+(j+1),tip:`Semana ${j+1} de ${MESL[mes]}`,n:w.n,ap:w.ap}))
+                 :MES.map((mm,i)=>{const a=monthAgg(i);return{v:a.ap/a.recl,lab:mm+(i===10?"*":""),tip:MESL[i]+(i===10?" (parcial)":""),n:a.recl,ap:a.ap,i}});
+  const Hh=230,m={t:16,r:14,b:28,l:44};
+  const [svg,W]=svgIn("chAprob",Hh,"Porcentaje de aprobación de reclamos");
+  const vs=pts.map(p=>p.v).concat(META);
+  const lo=Math.floor((Math.min(...vs)-.01)*50)/50,hi=Math.ceil((Math.max(...vs)+.01)*50)/50;
+  const y=v=>m.t+(Hh-m.t-m.b)*(1-(v-lo)/(hi-lo));
+  const x=k=>m.l+(W-m.l-m.r)*(pts.length===1?.5:k/(pts.length-1));
+  for(let v=lo;v<=hi+1e-9;v+=.02){el("line",{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:"var(--line)","stroke-dasharray":"3 4"},svg);txt(svg,m.l-8,y(v)+4,Math.round(v*100)+"%",{"text-anchor":"end"})}
+  el("line",{x1:m.l,x2:W-m.r,y1:y(META),y2:y(META),stroke:"var(--meta)","stroke-width":1.5},svg);
+  const d=pts.map((p,k)=>`${k?"L":"M"}${x(k)},${y(p.v)}`).join("");
+  el("path",{d:d+`L${x(pts.length-1)},${Hh-m.b}L${x(0)},${Hh-m.b}Z`,fill:"var(--solo)",opacity:.08},svg);
+  el("path",{d,fill:"none",stroke:"var(--solo)","stroke-width":2,"stroke-linejoin":"round"},svg);
+  const step=(W-m.l-m.r)/Math.max(pts.length-1,1);
+  pts.forEach((p,k)=>{const bajo=p.v<META;
+    el("circle",{cx:x(k),cy:y(p.v),r:bajo?5:4,fill:bajo?"var(--warn)":"var(--solo)",stroke:"var(--card)","stroke-width":2},svg);
+    txt(svg,x(k),Hh-8,p.lab,{"text-anchor":"middle","font-size":10.5,fill:"var(--ink-2)"});
+    if(bajo||drill)txt(svg,x(k),y(p.v)+(bajo?17:-10),pct(p.v),{"text-anchor":"middle","font-size":10,fill:bajo?"var(--warn)":"var(--ink-2)"});
+    const hit=el("rect",{x:x(k)-step/2,y:m.t,width:step,height:Hh-m.t-m.b,fill:"transparent",class:"hit"},svg);
+    hover(hit,`<b>${p.tip}</b><br>Aprobación: ${pct(p.v)} ${bajo?"· bajo meta":""}<br>${int(p.ap)} de ${int(p.n)} reclamos`+(drill?"":"<br><i>Clic para ver por semana</i>"));
+    if(!drill)clickable(hit,"Ver semanas de "+MESL[p.i],()=>setMes(p.i)); else hit.style.cursor="default";
+  });
+}
+
+// --- horizontal single-series bars ---
+function hChart(id,rows,fmt,opt={}){
+  const lab=opt.lab||110,bh=12,rowH=26,m={t:4,r:56,b:22};
+  const Hh=m.t+rows.length*rowH+m.b;
+  const [svg,W]=svgIn(id,Hh,id);
+  const max=opt.max||Math.max(...rows.map(r=>r.v)),x=v=>lab+(W-lab-m.r)*v/max;
+  (opt.ticks||[0,max/2,max]).forEach(t=>{el("line",{x1:x(t),x2:x(t),y1:m.t,y2:Hh-m.b,stroke:"var(--line)","stroke-dasharray":t?"3 4":""},svg);
+    txt(svg,x(t),Hh-6,opt.tickFmt?opt.tickFmt(t):money(t),{"text-anchor":"middle","font-size":10.5})});
+  rows.forEach((r,i)=>{const yy=m.t+i*rowH+(rowH-bh)/2;
+    txt(svg,lab-10,yy+bh-2,r.k,{"text-anchor":"end","font-size":12,fill:"var(--ink-2)"});
+    hbar(svg,x(0),yy,x(r.v)-x(0),bh,i===0&&opt.top?"var(--cob)":"var(--fact)");
+    txt(svg,x(r.v)+5,yy+bh-2,fmt(r.v),{"font-size":10.5,fill:i===0&&opt.top?"var(--ink)":"var(--ink-2)","font-weight":i===0&&opt.top?600:400});
+    const hit=el("rect",{x:0,y:m.t+i*rowH,width:W,height:rowH,fill:"transparent"},svg);hover(hit,r.tip);
+  });
+}
+function asegChart(){
+  const d=dictAgg("aseg");
+  const rows=Object.entries(d).map(([k,[n,a,r]])=>({k,v:r/n,tip:`<b>${k}</b><br>Rechazo: ${pct(r/n)} (${int(r)} de ${int(n)})<br>Aprobación: ${pct(a/n)}`})).sort((a,b)=>b.v-a.v);
+  const max=Math.max(.5,Math.ceil(rows[0].v*10)/10);
+  hChart("chAseg",rows,pct,{lab:118,max,ticks:[0,max/2,max],tickFmt:t=>Math.round(t*100)+"%",top:true});
+}
+function deptoChart(){
+  const d=dictAgg("depto");
+  hChart("chDepto",Object.entries(d).map(([k,v])=>({k,v,tip:`<b>${k}</b><br>Facturado: ${full(v)}`})).sort((a,b)=>b.v-a.v),money,{lab:122});
+}
+
+// --- state ---
+function setMes(i){mes=i;render();document.getElementById(i==null?"chMain":"back").focus?.()}
+function render(){
+  const drill=mes!=null,per=drill?MESL[mes]+" 2024"+(mes===10?" (parcial)":""):"Ene – Nov 2024";
+  document.getElementById("crPer").innerHTML=drill?`Detalle de <span class="drill">${per}</span>`:"Evolutivo mensual · "+per;
+  document.getElementById("crHosp").textContent=sel==="AB"?"Todos los hospitales":"Hospital "+sel;
+  document.getElementById("back").hidden=!drill;
+  document.getElementById("tMain").textContent=drill?`Facturado vs. cobrado por día · ${MESL[mes]}`:"Facturado vs. cobrado por mes";
+  document.getElementById("sMain").textContent=drill?"Pasa el mouse sobre un día para ver la brecha. Vuelve a todos los meses con el botón.":"Sobre cada mes: % cobrado. Haz clic en un mes para ver su detalle día a día.";
+  document.getElementById("tAprob").textContent=drill?`% Aprobación por semana · ${MESL[mes]}`:"% Aprobación de reclamos por mes";
+  document.getElementById("sAprob").textContent=drill?"Semanas del mes (días 1-7, 8-14...). Detecta en qué semana empezó la caída.":"Aprobado + Pagado / total de reclamos. Puntos naranjas: meses bajo la meta. Clic para ver semanas.";
+  document.getElementById("sAseg").textContent="% Rechazado + Denegado sobre sus reclamos · "+per;
+  document.getElementById("sDepto").textContent="20 departamentos, de mayor a menor · "+per;
+  kpis();mainChart();aprobChart();asegChart();deptoChart();
+}
+document.getElementById("back").addEventListener("click",()=>setMes(null));
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+  sel=b.dataset.h;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  try{localStorage.setItem("rcm-hosp",sel)}catch(e){}
+  render();
+}));
+try{const s=localStorage.getItem("rcm-hosp");if(["AB","A","B"].includes(s)){sel=s;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.h===s))}}catch(e){}
+let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(render,120)});
+render();
+</script>

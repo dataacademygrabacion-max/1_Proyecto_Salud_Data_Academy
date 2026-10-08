@@ -85,3 +85,34 @@ FROM salud_oro.fact_transacciones t
 JOIN salud_oro.dim_departamentos d ON t.clave_departamento = d.clave_departamento
 GROUP BY d.nombre
 ORDER BY total_facturado DESC;
+
+-- COMMAND ----------
+
+-- Evolutivo mensual: facturado vs. cobrado (gráfico principal del dashboard)
+SELECT MONTH(fecha_servicio)                                     AS mes,
+       ROUND(SUM(monto_facturado), 2)                            AS total_facturado,
+       ROUND(SUM(monto_pagado), 2)                               AS total_cobrado,
+       ROUND(SUM(monto_pagado) / SUM(monto_facturado) * 100, 1)  AS pct_cobrado
+FROM salud_oro.fact_transacciones
+GROUP BY MONTH(fecha_servicio)
+ORDER BY mes;
+
+-- COMMAND ----------
+
+-- % Aprobación por mes (meta 40%): detecta los meses con caída
+SELECT MONTH(fecha_reclamo)                                                                     AS mes,
+       COUNT(*)                                                                                 AS total_reclamos,
+       ROUND(AVG(CASE WHEN estado_reclamo IN ('Aprobado', 'Pagado') THEN 1 ELSE 0 END) * 100, 1) AS pct_aprobacion
+FROM salud_oro.fact_reclamos
+GROUP BY MONTH(fecha_reclamo)
+ORDER BY mes;
+
+-- COMMAND ----------
+
+-- ¿Qué aseguradoras rechazan más?
+SELECT aseguradora,
+       COUNT(*)                                                                                     AS total_reclamos,
+       ROUND(AVG(CASE WHEN estado_reclamo IN ('Rechazado', 'Denegado') THEN 1 ELSE 0 END) * 100, 1) AS pct_rechazo
+FROM salud_oro.fact_reclamos
+GROUP BY aseguradora
+ORDER BY pct_rechazo DESC;
