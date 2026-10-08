@@ -3,7 +3,7 @@
 **Guía paso a paso** para un Analista de Datos Fullstack Junior: de archivos CSV crudos a un dashboard en Power BI con alertas automáticas, usando **Databricks** y el **Modelo Medallón** (Bronce → Plata → Oro).
 
 ---
-
+Authon jhon velasque
 ## Estructura de carpetas
 
 | Carpeta | Fase | Qué contiene |
