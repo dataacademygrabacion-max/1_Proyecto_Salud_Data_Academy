@@ -2,11 +2,6 @@
 
 **Guía paso a paso** para un Analista de Datos Fullstack Junior: de archivos CSV crudos a un dashboard en Power BI con alertas automáticas, usando **Databricks** y el **Modelo Medallón** (Bronce → Plata → Oro).
 
-> Adaptación sencilla del proyecto de ingeniería de datos *GCP End-to-End Healthcare* (Dataproc + BigQuery + Airflow).
-> Aquí: **Python (pandas)** para cargar y explorar, **Spark SQL** para limpiar y transformar, **Power BI** para visualizar y **Power Automate** para alertar.
-> Bases, tablas y columnas están en español; el **contenido** de los datos se mantiene en su idioma original (inglés).
-
-
 ---
 
 ## Estructura de carpetas
