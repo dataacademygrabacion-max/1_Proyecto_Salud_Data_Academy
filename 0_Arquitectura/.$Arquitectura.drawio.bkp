@@ -1,0 +1,164 @@
+<mxfile host="Electron" pages="2">
+  <diagram id="arq-databricks" name="Arquitectura Databricks">
+    <mxGraphModel dx="1398" dy="945" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="560" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" parent="1" style="text;html=1;fontSize=22;fontStyle=1;fontColor=#0B2545;align=left;verticalAlign=middle;" value="Proyecto Integrador Data Analyst · Sector Salud (Ciclo de Ingresos – RCM)" vertex="1">
+          <mxGeometry height="36" width="900" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#0B2545;fontColor=#0B2545;fontSize=13;" value="&lt;b&gt;Fase 1 · Requerimientos del cliente&lt;/b&gt; — problema de negocio, preguntas clave y KPIs (facturación, cobro, aprobación de reclamos)" vertex="1">
+          <mxGeometry height="36" width="1350" x="20" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="srcA" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=8;fillColor=#FFFFFF;strokeColor=#0B2545;fontSize=12;" value="Hospital A&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;EMR · 5 CSV&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="140" x="20" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="srcB" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=8;fillColor=#FFFFFF;strokeColor=#0B2545;fontSize=12;" value="Hospital B&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;EMR · 5 CSV&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="140" x="20" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="srcR" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#FFFFFF;strokeColor=#0B2545;fontSize=12;" value="Reclamos&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;aseguradoras · 2 CSV&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="140" x="20" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="srcC" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#FFFFFF;strokeColor=#0B2545;fontSize=12;" value="Códigos CPT&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;catálogo · 1 CSV&lt;/font&gt;" vertex="1">
+          <mxGeometry height="58" width="140" x="20" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="py" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#306998;strokeColor=#1E4A6E;fontColor=#FFFFFF;fontSize=12;" value="&lt;b&gt;Carga + EDA&lt;/b&gt;&lt;br&gt;Python · pandas&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;perfilado, nulos, atípicos&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="215" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="dbx" parent="1" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#FF6666;fontColor=#FFFFFF;strokeColor=#C0281A;fontSize=13;swimlaneFillColor=#FFF5F3;rounded=1;" value="Databricks · catálogo workspace (Unity Catalog)" vertex="1">
+          <mxGeometry height="290" width="580" x="405" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bronce" parent="dbx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CD7F32;strokeColor=#8B5A2B;fontColor=#FFFFFF;fontSize=12;" value="&lt;b&gt;BRONCE&lt;/b&gt;&lt;br&gt;salud_bronce&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;13 tablas crudas (texto)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="20" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="plata" parent="dbx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A8A9AD;strokeColor=#6E6E70;fontColor=#FFFFFF;fontSize=12;" value="&lt;b&gt;PLATA&lt;/b&gt;&lt;br&gt;salud_plata&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;7 tablas limpias y unificadas&lt;br&gt;Spark SQL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="210" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="oro" parent="dbx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4AF37;strokeColor=#9C7F1F;fontColor=#FFFFFF;fontSize=12;" value="&lt;b&gt;ORO&lt;/b&gt;&lt;br&gt;salud_oro&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;4 dim_ + 3 fact_&lt;br&gt;Spark SQL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="400" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_dbx" parent="dbx" style="text;html=1;fontSize=10;fontColor=#555555;align=center;" value="UNION A+B · clave id-fuente · TRY_CAST · cuarentena" vertex="1">
+          <mxGeometry height="24" width="300" x="140" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="dbx" source="bronce" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;strokeWidth=2;" target="plata">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="dbx" source="plata" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;strokeWidth=2;" target="oro">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pbi" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2C811;strokeColor=#B39200;fontColor=#000000;fontSize=12;" value="&lt;b&gt;Power BI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;modelo estrella · DAX&lt;br&gt;dashboard ejecutivo&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="1025" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="pa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0066FF;strokeColor=#0047B3;fontColor=#FFFFFF;fontSize=12;" value="&lt;b&gt;Power Automate&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;alerta de datos&lt;br&gt;flujo automático&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="150" x="1220" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="mail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0066FF;fontSize=11;" value="Correo Outlook&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;notificación al responsable&lt;/font&gt;" vertex="1">
+          <mxGeometry height="46" width="150" x="1220" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="xls" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#217346;fontSize=11;" value="Excel de incidencias&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;registro (OneDrive)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="46" width="150" x="1220" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="srcA" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;" target="py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="srcB" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;" target="py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="srcR" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;" target="py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="srcC" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;" target="py">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="py" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;fontSize=10;" target="bronce" value="Volumen + tablas">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="oro" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;fontSize=10;" target="pbi" value="SQL Warehouse&lt;br&gt;+ token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="pbi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0B2545;fontSize=10;" target="pa" value="alerta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="pa" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0066FF;" target="mail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="pa" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#217346;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" target="xls">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1390" y="270" />
+              <mxPoint x="1390" y="433" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lf2" parent="1" style="text;html=1;fontSize=12;fontStyle=1;fontColor=#306998;align=center;" value="Fase 2 · EDA (Python)" vertex="1">
+          <mxGeometry height="24" width="200" x="190" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lf3" parent="1" style="text;html=1;fontSize=12;fontStyle=1;fontColor=#C0281A;align=center;" value="Fase 3 · Limpieza y transformación (Spark SQL) · Modelo Medallón" vertex="1">
+          <mxGeometry height="24" width="580" x="405" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lf4" parent="1" style="text;html=1;fontSize=12;fontStyle=1;fontColor=#9C7F1F;align=center;" value="Fase 4 · Dashboard" vertex="1">
+          <mxGeometry height="24" width="180" x="1010" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lf5" parent="1" style="text;html=1;fontSize=12;fontStyle=1;fontColor=#0047B3;align=center;" value="Fase 5 · Alertas (RPA)" vertex="1">
+          <mxGeometry height="24" width="190" x="1200" y="470" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="modelo-estrella" name="Modelo Power BI">
+    <mxGraphModel dx="1398" dy="945" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="700" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t" parent="1" style="text;html=1;fontSize=20;fontStyle=1;fontColor=#0B2545;" value="Modelo estrella en Power BI (esquema salud_oro)" vertex="1">
+          <mxGeometry height="34" width="700" x="20" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="ft" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4AF37;strokeColor=#9C7F1F;fontSize=11;align=center;" value="&lt;b&gt;fact_transacciones&lt;/b&gt;&lt;hr&gt;clave_transaccion&lt;br&gt;clave_paciente · clave_medico&lt;br&gt;clave_departamento&lt;br&gt;fecha_servicio&lt;br&gt;monto_facturado · monto_pagado" vertex="1">
+          <mxGeometry height="130" width="220" x="420" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="fa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4AF37;strokeColor=#9C7F1F;fontSize=11;" value="&lt;b&gt;fact_atenciones&lt;/b&gt;&lt;hr&gt;clave_atencion&lt;br&gt;clave_paciente · clave_medico&lt;br&gt;clave_departamento&lt;br&gt;tipo_atencion" vertex="1">
+          <mxGeometry height="110" width="220" x="60" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="fr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D4AF37;strokeColor=#9C7F1F;fontSize=11;" value="&lt;b&gt;fact_reclamos&lt;/b&gt;&lt;hr&gt;clave_reclamo · clave_paciente&lt;br&gt;aseguradora · estado_reclamo&lt;br&gt;monto_reclamado · monto_pagado" vertex="1">
+          <mxGeometry height="110" width="230" x="780" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="dp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#0B2545;fontSize=11;" value="&lt;b&gt;dim_pacientes&lt;/b&gt;&lt;hr&gt;clave_paciente (1)&lt;br&gt;nombre · genero · fecha_nacimiento" vertex="1">
+          <mxGeometry height="80" width="220" x="417" y="449" as="geometry" />
+        </mxCell>
+        <mxCell id="dd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#0B2545;fontSize=11;" value="&lt;b&gt;dim_departamentos&lt;/b&gt;&lt;hr&gt;clave_departamento (1)&lt;br&gt;nombre" vertex="1">
+          <mxGeometry height="80" width="220" x="60" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#0B2545;fontSize=11;" value="&lt;b&gt;dim_medicos&lt;/b&gt;&lt;hr&gt;clave_medico (1)&lt;br&gt;nombre_completo · especialidad" vertex="1">
+          <mxGeometry height="80" width="220" x="420" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4CC;strokeColor=#B39200;fontSize=11;" value="&lt;b&gt;Calendario&lt;/b&gt; (DAX)&lt;hr&gt;Date (1) · Año · Mes" vertex="1">
+          <mxGeometry height="80" width="230" x="771" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="dp" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="ft">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="dp" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="fa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="dp" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="fr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="dd" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="ft">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="dd" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="fa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="dm" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="ft">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r8" edge="1" parent="1" source="dm" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="fa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="dc" style="html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#0B2545;" target="ft">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
