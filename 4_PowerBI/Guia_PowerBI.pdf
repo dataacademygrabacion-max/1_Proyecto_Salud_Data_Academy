@@ -1,105 +1,838 @@
-%PDF-1.4
-%“Œ‹ž ReportLab Generated PDF document (opensource)
+%PDF-1.3
+%âãÏÓ
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 5 0 R
+/PageMode /UseNone
+/Pages 2 0 R
+/Type /Catalog
 >>
 endobj
 2 0 obj
 <<
-/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+/Count 2
+/Kids [ 3 0 R 10 0 R ]
+/Type /Pages
 >>
 endobj
 3 0 obj
 <<
-/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+/Contents 4 0 R
+/MediaBox [ 0 0 595.2756 841.8898 ]
+/Parent 2 0 R
+/Resources <<
+/Font 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
 >>
 endobj
 4 0 obj
 <<
-/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+/Length 8838
 >>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F1 7.5 Tf 9 TL ET
+.501961 .501961 .501961 rg
+BT 1 0 0 1 56.69291 34.01575 Tm (Data Academy \267 Proyecto Integrador Data Analyst \267 Sector Salud \(RCM\)) Tj T* ET
+BT 1 0 0 1 516.9002 34.01575 Tm (P\341g. 1) Tj T* ET
+q
+1 0 0 1 62.69291 762.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL (Fase 4: Conectar Power BI a Databricks) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 743.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Proyecto Integrador \267 Sector Salud \226 Ciclo de Ingresos \(RCM\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 735.8661 cm
+Q
+q
+1 0 0 1 62.69291 707.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (0. Antes de empezar) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 688.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Cuenta en ) Tj /F2 9.5 Tf (Databricks Free Edition) Tj /F1 9.5 Tf ( \(o tu workspace de Databricks\) y ) Tj /F2 9.5 Tf (Power BI Desktop) Tj /F1 9.5 Tf ( instalado.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 656.8661 cm
+q
+BT 1 0 0 1 0 16.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En Databricks: ) Tj /F2 9.5 Tf (Workspace > Import) Tj /F1 9.5 Tf ( y sube los 3 notebooks \(carpetas ) Tj /F2 9.5 Tf (2_EDA_Python) Tj /F1 9.5 Tf ( y) Tj T* /F2 9.5 Tf (3_SQL_Databricks) Tj /F1 9.5 Tf (\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 637.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Ejecuta en orden: ) Tj /F2 9.5 Tf (01_carga_y_EDA) Tj /F1 9.5 Tf ( \(Python\) > ) Tj /F2 9.5 Tf (02_plata_SQL) Tj /F1 9.5 Tf ( \(SQL\) > ) Tj /F2 9.5 Tf (03_oro_SQL) Tj /F1 9.5 Tf ( \(SQL\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 618.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Comprueba en ) Tj /F2 9.5 Tf (Catalog > workspace > salud_oro) Tj /F1 9.5 Tf ( que existen las 7 tablas dim_ / fact_.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 590.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (1. Obtener los datos de conexi\363n \(Server hostname y HTTP path\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 571.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Men\372 izquierdo: ) Tj /F2 9.5 Tf (SQL Warehouses) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 552.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( Abre el warehouse \(en Free Edition: ) Tj /F2 9.5 Tf (Serverless Starter Warehouse) Tj /F1 9.5 Tf (\). Si est\341 detenido, pulsa ) Tj /F2 9.5 Tf (Start) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 533.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Pesta\361a ) Tj /F2 9.5 Tf (Connection details) Tj /F1 9.5 Tf (: copia ) Tj /F2 9.5 Tf (Server hostname) Tj /F1 9.5 Tf ( y ) Tj /F2 9.5 Tf (HTTP path) Tj /F1 9.5 Tf ( en un bloc de notas.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 510.8661 cm
+%PreformattedPara
+0 0 0 rg
+BT 1 0 0 1 5 11.8 Tm /F3 7.2 Tf 9.5 TL (Server hostname : dbc-xxxxxxxx-xxxx.cloud.databricks.com) Tj T* (HTTP path       : /sql/1.0/warehouses/xxxxxxxxxxxxxxxx) Tj T* ET
+Q
+q
+1 0 0 1 62.69291 482.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (2. Crear un token de acceso personal \(PAT\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 463.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( Clic en tu avatar \(arriba a la derecha\) > ) Tj /F2 9.5 Tf (Settings) Tj /F1 9.5 Tf ( > ) Tj /F2 9.5 Tf (Developer) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 444.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En ) Tj /F2 9.5 Tf (Access tokens) Tj /F1 9.5 Tf ( pulsa ) Tj /F2 9.5 Tf (Manage) Tj /F1 9.5 Tf ( > ) Tj /F2 9.5 Tf (Generate new token) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 425.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Descripci\363n: ) Tj /F4 9.5 Tf (powerbi_salud) Tj /F1 9.5 Tf ( \267 Duraci\363n: 90 d\355as > ) Tj /F2 9.5 Tf (Generate) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 406.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Copia el token \(empieza con ) Tj /F2 9.5 Tf (dapi...) Tj /F1 9.5 Tf (\). Solo se muestra una vez. No lo compartas ni lo subas a GitHub.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 378.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (3. Conectar desde Power BI Desktop) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 359.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( ) Tj /F2 9.5 Tf (Inicio > Obtener datos > M\341s...) Tj /F1 9.5 Tf ( y busca ) Tj /F2 9.5 Tf (Databricks) Tj /F1 9.5 Tf ( \(si tu workspace es de Azure, usa ) Tj /F2 9.5 Tf (Azure Databricks) Tj /F1 9.5 Tf (\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 340.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( Pega ) Tj /F2 9.5 Tf (Server hostname) Tj /F1 9.5 Tf ( y ) Tj /F2 9.5 Tf (HTTP path) Tj /F1 9.5 Tf (. Cat\341logo \(opcional\): ) Tj /F2 9.5 Tf (workspace) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 321.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Modo de conectividad: ) Tj /F2 9.5 Tf (Importar) Tj /F1 9.5 Tf ( \(m\341s r\341pido y suficiente para este proyecto\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 302.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (4.) Tj /F1 9.5 Tf ( Autenticaci\363n: ) Tj /F2 9.5 Tf (Token de acceso personal) Tj /F1 9.5 Tf ( > pega el token > ) Tj /F2 9.5 Tf (Conectar) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 283.8661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (5.) Tj /F1 9.5 Tf ( En el Navegador: ) Tj /F2 9.5 Tf (workspace > salud_oro) Tj /F1 9.5 Tf ( > marca las 7 tablas > ) Tj /F2 9.5 Tf (Cargar) Tj /F1 9.5 Tf (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 255.8661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (4. Modelo de datos \(vista Modelo\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 236.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Power BI puede detectar relaciones solo; verifica que queden as\355 \(1 a muchos, filtro \372nico\):) Tj T* ET
+Q
+Q
+q
+1 0 0 1 56.69291 156.8661 cm
+q
+.043137 .145098 .270588 rg
+n 0 80 481.8898 -16 re f*
+1 1 1 rg
+n 0 64 481.8898 -16 re f*
+.960784 .972549 .984314 rg
+n 0 48 481.8898 -16 re f*
+1 1 1 rg
+n 0 32 481.8898 -16 re f*
+.960784 .972549 .984314 rg
+n 0 16 481.8898 -16 re f*
+1 1 1 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 67 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Desde \(lado 1\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 119.3858 67 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Hacia \(lado muchos\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 346.1575 67 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Columna) Tj T* ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 6 51 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_pacientes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 119.3858 51 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones / fact_reclamos) Tj T* ET
+Q
+Q
+q
+1 0 0 1 346.1575 51 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_paciente) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 35 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_departamentos) Tj T* ET
+Q
+Q
+q
+1 0 0 1 119.3858 35 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones) Tj T* ET
+Q
+Q
+q
+1 0 0 1 346.1575 35 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_departamento) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 19 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_medicos) Tj T* ET
+Q
+Q
+q
+1 0 0 1 119.3858 19 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones / fact_atenciones) Tj T* ET
+Q
+Q
+q
+1 0 0 1 346.1575 19 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (clave_medico) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Calendario) Tj T* ET
+Q
+Q
+q
+1 0 0 1 119.3858 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_transacciones) Tj T* ET
+Q
+Q
+q
+1 0 0 1 346.1575 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Date - fecha_servicio) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.784314 .819608 .862745 RG
+.3 w
+n 0 80 m 481.8898 80 l S
+n 0 0 m 481.8898 0 l S
+n 0 0 m 0 80 l S
+n 481.8898 0 m 481.8898 80 l S
+n 0 64 m 481.8898 64 l S
+n 0 48 m 481.8898 48 l S
+n 0 32 m 481.8898 32 l S
+n 0 16 m 481.8898 16 l S
+n 113.3858 0 m 113.3858 80 l S
+n 340.1575 0 m 340.1575 80 l S
+Q
+Q
+Q
+q
+1 0 0 1 62.69291 111.8661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 29.5 Tm /F1 9.5 Tf 13 TL (Nota: los datos son sint\351ticos; solo ~5% de las transacciones encuentran su m\351dico en dim_medicos. Para) Tj T* (an\341lisis por m\351dico ver\341s muchas filas "\(En blanco\)": es esperado, com\351ntalo como hallazgo de calidad de) Tj T* (datos.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 92.86614 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Tabla Calendario \(Modelado > Nueva tabla\):) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 69.86614 cm
+%PreformattedPara
+0 0 0 rg
+BT 1 0 0 1 5 11.8 Tm /F3 7.2 Tf 9.5 TL (Calendario =) Tj T* (ADDCOLUMNS \() Tj T* ET
+Q
+ 
+
+endstream
 endobj
 5 0 obj
 <<
-/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+/F1 6 0 R
+/F2 7 0 R
+/F3 8 0 R
+/F4 9 0 R
 >>
 endobj
 6 0 obj
 <<
-/Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 7 0 obj
 <<
-/Contents 12 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 8 0 obj
 <<
-/PageMode /UseNone /Pages 10 0 R /Type /Catalog
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 9 0 obj
 <<
-/Author (\(anonymous\)) /CreationDate (D:20261008013548-05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20261008013548-05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
-  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/Name /F4
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 10 0 obj
 <<
-/Count 2 /Kids [ 6 0 R 7 0 R ] /Type /Pages
+/Contents 11 0 R
+/MediaBox [ 0 0 595.2756 841.8898 ]
+/Parent 2 0 R
+/Resources <<
+/Font 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
 >>
 endobj
 11 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2707
+/Length 8496
 >>
 stream
-Gau0E>>O;#&q9"FPZCs:XCdFGQc*<TOP%?RNe#A*=m\kXW+.d&KC(R63t+6AhnE*6i]*_I1+!5_6gX6DY55^^?Zd3Qprgh[r>=IR&Y+5X^ap>Y!HSYS7TXOh3a02b)(lBj(N0c7AGn-5f72>0(9iL/[qg*_<hFs1(aa<N-mFDk"j]3!q`GG[1Q8GR%u*\?$U:!I29Eg2nN\S&AgKQccLP`$/PT)]bG-83ETaOAp%\;!7c.YHgHs;6?e.+2VJ31$3ulubRi0![M]RqFCV&(`f,fD3\nI!Dj02rQ2R@a<0ZQ'J*Z.r(F?T)XTdDb+`Q9J8Qq',=('2t]`%qG>.1Ba=b&[_Rq'6[PnJ-:_i)GF06e9WI)uf,EEpSNUAi]cm"5@cF*>nFL_d[egKFV8sTU+,^60LfO!eF9_8n9^+i4McQgT=K*:G@,IE-5r$mF!8`1s%T$20+hAWZk3W$Wh7^f_)n3!]oZt^hC1\JkMo5_i/Vg#.bfl'I#gj'aZG2l?/ZJiPHrg"C).>*m/"l`jd6:0AoF%LFhQ$+H'9Ya2d\^.D0hu$^!U51>S05-<\V=4DA:9=>3@V^k-"e(+tmWQcl15_Wdrss4#&[_:LZ3.c6K\$s>;"&>9KcON:[#V0jD0oXRR_cEg6Mf&ZD]Hnp)pmr^l[09Kp#Yp[$<XsU=rZ+4[u]FTU;YJ"H!3WQo&^Sj7fW^%gJ$r&WG,\DGp9NLKWWWE5bkY/>:R\UO!:$1cmip/0(m>4e_kH]L9A+,4A7i.";:/rI7qHt;9V3.:A4\lO5b:)b?24NSH$VW'8_CS2k&\;-Vcp?k_&B5ACJNN;_P<J8SqrY^m*])a#.4U"5:I,T^>aFX#a3sN'*8=a\Tb@uPN\g*7Q7"d1(e.k%UEQEq^Y^Dq]01>i'R;9nZ/)`/I!I80T`V35Ab6o9LF[?tMbIrAi''-4<dV5s)=2aNciYJ:>,m;'U+\?%\^$9Lr((?9gg[P7nK;SYFI<;M6P*BqZij/;cSc3m#=sb$iu6l%Yn]7,IG!mC7%H>!*7JSX7#.->i^4LO0\SY8;fp\Le60<L]=OH8Z)76_c.R>J70:q/q@k8Y6?opL>&4qZ^CHO=P:G^?/qP6J>g'cb?l1_#bhC.%9*/C6EOB3gS3eq&5Q4d_PTL=0>X`$'FV-BV)(u_1)$nd=.@aq0d0VVQPM/%'P96uWf'Lmgl$.&)Y!+RC"q6_]DMr2knj1XE"8@5>O,s^68`]A?Nm:/lA0@fI%WBm\ZmbRg(Q`1t3@>;#mVo!hX;)_=4"@:aJ'[fLmT/CoR*7IZ=?$%BbXEf)j>Km#36kr2fVPGVT$sZLeL>3Kg6-`aH,=3_E7@/BRHbI31#0]G[7r/&/GH@d$[K%]_UPd3A=^9%H:CMcH5]ON:7u#Re1Fr?MUrL;-3Ri5Fcd@(J>&7uk#OP"Q5`]0`F;jO-Pj!I%C'Cek-1h2^sgXa2T:pB8n)jt[4j5;![s'0cXAG4%(MG@8Pi``@Z<]FP)u8t^uK&;T>US"1#9`h]B:1c/(qqBkmg+9.7r8OmFK>F+#XpPT`$_SrD93r/ZE#Eld"FW83s+7#crX,,4d[3\tb8$;pW>R5-o!qcX.#*5!Yg"qf;&r28r?M8%)nK2R*_1m/Kg%d!9lXbHPiFe>$OATK4tpf$M,Ldl-0&>OPtT\m0G2"1db+OGM0!J-R!hX1k'Aege$b/tELerCN-8QHf1FHE'Li[:>/:U943)ENumC+.2NTkdnEM?=:k8U!I)Dop(Z7/TaB^b>NA]3_O4NqD+VK3G$B\#HMk;eK&eGiH*L0OD:+`mV[0n+Qgi0lYWfMHFdp+B=mIN/?:i:q7!<j.'$T5m`_q5kDT*3:e](#^>gtk=[gb*O:KpOPr2$fLf9>L[$kEkr#H0?$8H.;H(".mP7ujlE<]C1@9JNs+1'K&\-o':@?SGb)63dAE4XSQqECIPh:_221r4=+M0pDON/'bB=Vk(l]AHF3r@Xsh*ShF)h_fbP"%L%<\P=7HHFT*D>i^-Jb-e>eEcKqg\]ZWUbjn`7`>9/HEs<n*,qdFgX/!(gSlK+HPF*l[mR.Z,*P+$1[_n"?lPm:qH>PS9Jf_dqRoIGC@jg$q)Wc/Z/Tr&RW/),d8p9Ue9sEEDEF:AnTIHFL_(`3[j^@tP(H#)BFso#rOCBOSB'q.K(:S2&Wg!*7fY0d:QJ3.RJS_"cMOoa[f^63Q\RI'+"&VtY(o?]*TSBbk0)Ip02KUN/Y+TPK\-"qGDZsK!!_f#/!7sR:@=W-uE<TTYg+JH`Bu'lmM'V"/gb*d3Ba;Fh&%DE">qY>ai?R.*S]rEIdSC=:Au#Cc^[FZ^YGs..a0=]6Ab<Q7cZ.pIcUW^!:Wr;GY6kb'7;uH@XM%tjD6E"YB'@3AD/B^>drGHSB4Cq6Q315H)[#lB*5H%9(r3%aJ2+Ys1fC#rW)]K#X@/P4l\EIK[r![Q1%lqeZMN<hdZ)KHC#b*YUtq,d$2.=Nb:-tO052'sci'--*0JP>:r<R6DccHLp)Xdo3f40Ra_M$n!H]nt?^C8Ym+K6,bQ-Ce`\M(7<Du7r(H4_0L&_0.mTe0T0i*ULrGkM)Z,j.Bi,fS"bAr"t?QRUIKR4b/r+/q%=$35.$:!+rQ_s2eM#11"jKp,(,GOD+$>&93-1rQZE<\@UR.H3TmimpqDrUUD<=X!(h,*E%2([o,(P=rUrk?+W7:"MEJtmer6k"X+~>endstream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F1 7.5 Tf 9 TL ET
+.501961 .501961 .501961 rg
+BT 1 0 0 1 56.69291 34.01575 Tm (Data Academy \267 Proyecto Integrador Data Analyst \267 Sector Salud \(RCM\)) Tj T* ET
+BT 1 0 0 1 516.9002 34.01575 Tm (P\341g. 2) Tj T* ET
+q
+1 0 0 1 62.69291 737.3661 cm
+%PreformattedPara
+0 0 0 rg
+BT 1 0 0 1 5 40.3 Tm /F3 7.2 Tf 9.5 TL (    CALENDAR \( MIN \( fact_transacciones[fecha_servicio] \), MAX \( fact_transacciones[fecha_servicio] \) \),) Tj T* (    "A\361o", YEAR \( [Date] \),) Tj T* (    "NumMes", MONTH \( [Date] \),) Tj T* (    "Mes", FORMAT \( [Date], "mmm" \)) Tj T* (\)) Tj T* ET
+Q
+q
+1 0 0 1 62.69291 709.3661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (5. Medidas DAX esenciales \(Modelado > Nueva medida\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 589.3661 cm
+%PreformattedPara
+0 0 0 rg
+BT 1 0 0 1 5 106.8 Tm /F3 7.2 Tf 9.5 TL (Total Facturado      = SUM \( fact_transacciones[monto_facturado] \)) Tj T* (Total Pagado         = SUM \( fact_transacciones[monto_pagado] \)) Tj T* (% Cobrado            = DIVIDE \( [Total Pagado], [Total Facturado] \)) Tj T* (Pacientes Atendidos  = DISTINCTCOUNT \( fact_transacciones[clave_paciente] \)) Tj T* (Total Atenciones     = COUNTROWS \( fact_atenciones \)) Tj T* (Ticket Promedio      = DIVIDE \( [Total Facturado], COUNTROWS \( fact_transacciones \) \)) Tj T* (Total Reclamos       = COUNTROWS \( fact_reclamos \)) Tj T* (Reclamos Aprobados   = CALCULATE \( [Total Reclamos], fact_reclamos[estado_reclamo] IN { "Aprobado", "Pagado" } \)) Tj T* (Reclamos Rechazados  = CALCULATE \( [Total Reclamos], fact_reclamos[estado_reclamo] IN { "Rechazado", "Denegado" } \)) Tj T* (% Aprobaci\363n         = DIVIDE \( [Reclamos Aprobados], [Total Reclamos] \)) Tj T* (% Rechazo            = DIVIDE \( [Reclamos Rechazados], [Total Reclamos] \)) Tj T* (Saldo Pendiente      = SUMX \( fact_reclamos, fact_reclamos[monto_reclamado] - fact_reclamos[monto_pagado] \)) Tj T* ET
+Q
+q
+1 0 0 1 62.69291 568.3661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 3.5 Tm /F1 9.5 Tf 13 TL (Valida: Total Facturado y % Aprobaci\363n deben coincidir con las consultas SQL del notebook 03_oro_SQL.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 540.3661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (6. Dashboard ejecutivo \(1 p\341gina\)) Tj T* ET
+Q
+Q
+q
+1 0 0 1 56.69291 402.3661 cm
+q
+.043137 .145098 .270588 rg
+n 0 132 481.8898 -16 re f*
+1 1 1 rg
+n 0 116 481.8898 -26 re f*
+.960784 .972549 .984314 rg
+n 0 90 481.8898 -16 re f*
+1 1 1 rg
+n 0 74 481.8898 -16 re f*
+.960784 .972549 .984314 rg
+n 0 58 481.8898 -16 re f*
+1 1 1 rg
+n 0 42 481.8898 -26 re f*
+.960784 .972549 .984314 rg
+n 0 16 481.8898 -16 re f*
+1 1 1 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 119 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Zona) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 119 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Visual) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 119 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Campos) Tj T* ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 6 103 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Arriba) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 103 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (5 tarjetas) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 93 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (Total Facturado, Total Pagado, % Cobrado, Pacientes Atendidos, %) Tj T* (Aprobaci\363n) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 77 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Centro izq.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 77 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Gr\341fico de l\355neas) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 77 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Calendario[Mes] vs Total Facturado y Total Pagado) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 61 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Centro der.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 61 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Barras horizontales) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 61 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (dim_departamentos[nombre] vs Total Facturado) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 45 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Abajo izq.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 45 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Anillo) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 45 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fact_reclamos[estado_reclamo] vs Total Reclamos) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 29 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Abajo der.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 29 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Tabla) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 19 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (fact_reclamos[aseguradora], Total Reclamos, % Aprobaci\363n, Saldo) Tj T* (Pendiente) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Lateral) Tj T* ET
+Q
+Q
+q
+1 0 0 1 91.03937 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Segmentadores) Tj T* ET
+Q
+Q
+q
+1 0 0 1 204.4252 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (fuente \(hospital\), tipo_visita, Calendario[Mes]) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.784314 .819608 .862745 RG
+.3 w
+n 0 132 m 481.8898 132 l S
+n 0 0 m 481.8898 0 l S
+n 0 0 m 0 132 l S
+n 481.8898 0 m 481.8898 132 l S
+n 0 116 m 481.8898 116 l S
+n 0 90 m 481.8898 90 l S
+n 0 74 m 481.8898 74 l S
+n 0 58 m 481.8898 58 l S
+n 0 42 m 481.8898 42 l S
+n 0 16 m 481.8898 16 l S
+n 85.03937 0 m 85.03937 132 l S
+n 198.4252 0 m 198.4252 132 l S
+Q
+Q
+Q
+q
+1 0 0 1 62.69291 370.3661 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16.5 Tm /F1 9.5 Tf 13 TL (Tip: los valores de las categor\355as ya vienen en espa\361ol \(ej. Aprobado, Pagado\); no necesitas traducirlos.) Tj T* (Revisa la tabla de valores en el Diccionario de Datos.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 342.3661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (7. Publicar y actualizar) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 323.3661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (1.) Tj /F1 9.5 Tf ( ) Tj /F2 9.5 Tf (Inicio > Publicar) Tj /F1 9.5 Tf ( a tu \341rea de trabajo de Power BI Service.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 291.3661 cm
+q
+BT 1 0 0 1 0 16.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (2.) Tj /F1 9.5 Tf ( En Service: modelo sem\341ntico > ) Tj /F2 9.5 Tf (Configuraci\363n > Credenciales del origen de datos) Tj /F1 9.5 Tf ( > Editar > Token de) Tj T* (acceso personal.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 272.3661 cm
+q
+BT 1 0 0 1 0 3.5 Tm 13 TL /F2 9.5 Tf 0 0 0 rg (3.) Tj /F1 9.5 Tf ( Activa ) Tj /F2 9.5 Tf (Actualizaci\363n programada) Tj /F1 9.5 Tf ( \(ej. diaria 7:00 a. m.\). El warehouse se enciende solo al consultar.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 244.3661 cm
+q
+.043137 .145098 .270588 rg
+BT 1 0 0 1 0 5 Tm /F2 13 Tf 18 TL (Problemas comunes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 56.69291 138.3661 cm
+q
+.043137 .145098 .270588 rg
+n 0 100 481.8898 -16 re f*
+1 1 1 rg
+n 0 84 481.8898 -16 re f*
+.960784 .972549 .984314 rg
+n 0 68 481.8898 -26 re f*
+1 1 1 rg
+n 0 42 481.8898 -16 re f*
+.960784 .972549 .984314 rg
+n 0 26 481.8898 -26 re f*
+1 1 1 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 87 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Problema) Tj T* ET
+Q
+Q
+q
+1 0 0 1 176.0787 87 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 2 Tm /F2 8 Tf 10 TL (Soluci\363n) Tj T* ET
+Q
+Q
+0 0 0 rg
+q
+1 0 0 1 6 71 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Power BI no conecta / tiempo agotado) Tj T* ET
+Q
+Q
+q
+1 0 0 1 176.0787 71 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (El SQL Warehouse est\341 detenido: in\355cialo y reintenta.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 55 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Error de credenciales) Tj T* ET
+Q
+Q
+q
+1 0 0 1 176.0787 45 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (El token expir\363 o se copi\363 mal: genera otro y ed\355talo en Configuraci\363n del origen de) Tj T* (datos.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 29 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (No veo salud_oro en el Navegador) Tj T* ET
+Q
+Q
+q
+1 0 0 1 176.0787 29 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (No ejecutaste 03_oro_SQL o est\341s en otro cat\341logo \(debe ser workspace\).) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 13 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 8 Tf 10 TL (Muchos "\(En blanco\)" por m\351dico) Tj T* ET
+Q
+Q
+q
+1 0 0 1 176.0787 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 12 Tm /F1 8 Tf 10 TL (Esperado: los IDs de m\351dico de las transacciones casi no existen en el maestro) Tj T* (\(dato sint\351tico\).) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.784314 .819608 .862745 RG
+.3 w
+n 0 100 m 481.8898 100 l S
+n 0 0 m 481.8898 0 l S
+n 0 0 m 0 100 l S
+n 481.8898 0 m 481.8898 100 l S
+n 0 84 m 481.8898 84 l S
+n 0 68 m 481.8898 68 l S
+n 0 42 m 481.8898 42 l S
+n 0 26 m 481.8898 26 l S
+n 170.0787 0 m 170.0787 100 l S
+Q
+Q
+Q
+ 
+
+endstream
 endobj
 12 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 2792
+/Author (\050anonymous\051)
+/CreationDate (D\07220261008013548\05505\04700\047)
+/Creator (\050unspecified\051)
+/Keywords ()
+/ModDate (D\07220261008013548\05505\04700\047)
+/Producer (ReportLab PDF Library \055 \050opensource\051)
+/Subject (\050unspecified\051)
+/Title (\050anonymous\051)
+/Trapped /False
 >>
-stream
-Gatm=s)6W4')t+E`@+W\jM\V.#.F-q,#ON[jXHu^d,)GPU1geje>_i3CI9b'])V_@f@\_`)hXTX"abH+B0Pp8U4J3:Rf)%P!T$Q/m<]:!*@B+*R>M<7>I^8pXP[5S="H>s[n9`PS=Tr>T6r7$BPZ>XT$h\%7g$Y.<39pZM%It884'!<&s%dN0\(LcN&Z0\DSk<Y9'DcYO)[^773m,;PB>DYCuI&p_:!u#g&5;<4[4_D$VZ"P1Rd4%ob9nrp%#ekWF9O_"n][*D^X5+T"a@;1+^E.Te()+nn,i)1ZKWM''bG^-RYqL^*P+nWa^cGhS(o[.1)[m!5!q@^n3pmpA43WIudjPnE*Jn4;0Z!8iVZ:ijq=3B`.?nh(Rh<VL7LcRn&j;G@9)'Zh83U+;7IUHeP)14cQ"Ui4mn.jU[.sIGEY'[g\$K`f7kHGE^pRG,F$NJ%-To-_#N)3"<dp'K-:Y/*Z2+-.&ZU"9%UT;,'D6/5S10X#`-e\tsReHOFR'\gbocBSNln>GBnQ?q<H<,;EFHA2L0Gl]Zk=aQ&A-1dIO^9=S3S'nK3Lgg[LN`NJSJC^Z]c;sYE4R';5Hn/f!J'NP_7kMIum1p#)FaJ+>N4_G!@M[66!7V&)hC.2q^&!SKUJH;81+rNu:lK7]_e[<nInLi>b_j2DkC*Va7'HK2gIR594R`-_`n`8hM0H#95F>p2Xcje'R,)7Uu$>B[_FRPYg8aZMp+6/k8fk`)YpYE#0&WoOrT@Jh/&ZJ\p]>SROEa&t/;j8G9E=Ut\&Y<hg*6sW<(S&a+KM3BRh[Vj+p*W9=Z`V;VM;/2m'0MXF56;%Xs'lI>+N5)gctcEI`:m$cn&gRW76LB3f#mgq(Z3[X%+sg`=#BL4p=4*4_R_pc.3kiN]Nno'k*Il'VOC+TDp&k>n"GRe#CU)-N*4eE_:/D=dHWVLWRI])dSkUsgp$+0F^_W2ZO:3J.L)k[.-iRdV4m'T7S=.TT1OR,mfKp"d49$K_kT"+J]iF_-I:lM/V3u?.t5L]+Mi!VO12VLJ;>Ln`n4?hN@2a!'>@OOKN=3kIo>q-.9J4@?Y579%trUf'7[tt2&\#VdeBN6E1`IGVQ.,c.2(eP*DB[9C`CuTeU#"[4TC"$`G`0i?Z5Z%fcJ,sWKqCQi`LNYFR[c!X3BppU[BFER8mJbd-]P6l'hG\r0E#kV41JNWmmEMXrn*!JM9)5jM`noV<aPtD+R$Y3r^:[8?G?%9i2?)Fa"8Uc[NMP5qQqZ`St"gl:95CODr%q/_[`GQS;9r-4e]as"74<F7.B.TQ12&/gQ+b:iuX6a>f1?[7^:"&ZGlOP+r,)M:-s4q?#:??sO+Lol16glX1,*GV*Rds7fV:i,Xp?T`5rIdH]D/)$X+IVFJ$6d5HLs,7@PmO[lq-*jDMkKN29>'T+qbJ?h0Q2*pJ(h?(hEkeA@4@ugE&\GlXEXCqe2_g'*_Sf^.AF?t.<650atH,RQ;VcA7*+D>p/GP2o"BkrXIOH9;^W+S-2lj2%aeROVD<f/cMVE7;bf$<]D+?q$UTKWEqE^qA9l3LOINPookXbr=_c5'l[m:rd+Z@q&@BNZe=JF2;EiYG`OhN0a=>Rr2FVK:^&6JOJZI/!lk93KqDcb?W.i?O_!qNCU]p9aC#I)^'.*&&n1p^d@N3Dllb3)XQ%b9ebZm@J3hQe_UaU)<A_Y8tMTd3Kb8(s=55\=f-oX+cOe/N&2Lm9*]2a)&jH*HF'I?s-W7^o(uL9?4mN5%P+68J&4IIJNU'EkArl!Pq,%Yi/f-lr8[J4b(Q(5LsrjL8F<TMR6\q=#BF`(Ke)fa@uZh*pdWBZ3l6bqns3UK\;1c5FRM;XGOJ#I8M-QY-Aqi)V"#^m$3kK_9ZL,b"m+<0f2.I1tm0tqbB/!>Z1Rt03I2bJ7+LnnO$je_PP>uPqRn&_YV41'u<SmU<,17Q46QH-Hf:p[%%<69/orV,,\j&q1J/P>j+Y.MlK6(eUtAPXdDe7E2KI@(6itHlSnY-Z^XM$$^Wl/]4V]/-&D,L;i,G0aZ:)#WeYdW0UC0eg&bCS=!pmXAdpN['f'&bg%?-mMMWX3R"g4O-kQXAjf[)8(-VO=$"Q3r,n)d+o$O@KcE[A:;pijB-Z!DhhFkBP0YVQ)11=POf%`NIldD0:K(<$rDAuh3rHM<]'sR=9CurdAm/>0-1>1(Pk$3jIa=`V)=$7Y]LOaN@W^%7(Q0Gg\f)^7HS:4niQm1H2^r%jeh\g//rAC'g1t2mPktUcI\_@Cb8O,X'E=%t/6e9H$(RebS0YUBX:DrM/V@5W"C4oDJAS=_<Y8jAY0P.JjKA6&m$+8E$<_l#YX^d0J0fr@DWKdPdlgX$^%r;gkG"g_F^g!mTBXg=^T!P5l.EP"?iaVO00cg0:pFIld74?(3Jh9'-lkc$\7=-O/Q"W!7os+G3!jBG`TR1paEQpN(,5Sj(^pmb4k,,#e4@beQ)*mFn$_Ig7JdC<@r'DkN65!N'#%O`sJViO`'rWKF8-B-AE$q6D!dGcO]fjL;R'u+:@0(uHMSH9N+mur.\0ELRHN3geT0meWV<P4M`)q>(VT4MIg0S=c,I)9GHkETnR-TXg1h+Ye46']."`Z!2nchLh_]+3dd`#5e:8_`lRB\)s>cd9e@=dPTM@'n&\e`#$`$"D-`dCF4Mhp*Yk"=_)c'<<'KLqm8QRJ3=^2S,hQ]Fs4C[HfY@H<o\D^nHd@WXIn:6ZLDYT;*3W9+"G<Eh@:q8SjmVEi3T2'qsn.I!+dP$X'D6n^DDHIe<ofKDcJaeg;0aEU7F%QO7hlk<Fi~>endstream
 endobj
 xref
 0 13
 0000000000 65535 f 
-0000000061 00000 n 
-0000000122 00000 n 
-0000000229 00000 n 
-0000000341 00000 n 
-0000000446 00000 n 
-0000000561 00000 n 
-0000000766 00000 n 
-0000000971 00000 n 
-0000001040 00000 n 
-0000001320 00000 n 
-0000001386 00000 n 
-0000004185 00000 n 
+0000000015 00000 n 
+0000000083 00000 n 
+0000000149 00000 n 
+0000000348 00000 n 
+0000009238 00000 n 
+0000009299 00000 n 
+0000009406 00000 n 
+0000009518 00000 n 
+0000009623 00000 n 
+0000009738 00000 n 
+0000009939 00000 n 
+0000018488 00000 n 
 trailer
 <<
-/ID 
-[<7e9e40e9e59a60dc85d1f50e5f0482d7><7e9e40e9e59a60dc85d1f50e5f0482d7>]
-% ReportLab generated PDF document -- digest (opensource)
-
-/Info 9 0 R
-/Root 8 0 R
 /Size 13
+/Root 1 0 R
+/Info 12 0 R
+/ID [ <7e9e40e9e59a60dc85d1f50e5f0482d7> <7e9e40e9e59a60dc85d1f50e5f0482d7> ]
 >>
 startxref
-7069
+18813
 %%EOF

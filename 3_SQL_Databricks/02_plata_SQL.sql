@@ -230,7 +230,7 @@ FROM (
 
 -- MAGIC %md
 -- MAGIC ## 7 · Códigos CPT (catálogo de procedimientos)
--- MAGIC Estandarizamos `estado_codigo` ("No change" → "No Change").
+-- MAGIC Estandarizamos `estado_codigo` ("Sin cambios" → "Sin Cambios").
 
 -- COMMAND ----------
 
@@ -240,7 +240,7 @@ SELECT DISTINCT
     categoria_procedimiento,
     codigo_cpt,
     descripcion_procedimiento,
-    CASE WHEN LOWER(estado_codigo) = 'no change' THEN 'No Change' ELSE estado_codigo END AS estado_codigo,
+    CASE WHEN LOWER(estado_codigo) = 'sin cambios' THEN 'Sin Cambios' ELSE estado_codigo END AS estado_codigo,
     'hosa' AS fuente,
     CASE WHEN codigo_cpt IS NULL OR LOWER(estado_codigo) = 'null' THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga

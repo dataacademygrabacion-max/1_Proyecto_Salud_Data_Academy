@@ -150,7 +150,7 @@ print("Transacciones con monto_pagado > monto_facturado:", (trans.monto_pagado >
 
 # COMMAND ----------
 
-display(bronce["codigos_cpt"]["estado_codigo"].value_counts().reset_index())   # ojo: "No Change" vs "No change"
+display(bronce["codigos_cpt"]["estado_codigo"].value_counts().reset_index())   # ojo: "Sin Cambios" vs "Sin cambios"
 display(bronce["reclamos_ha"]["estado_reclamo"].value_counts().reset_index())
 display(bronce["atenciones_ha"]["tipo_atencion"].value_counts().reset_index())
 

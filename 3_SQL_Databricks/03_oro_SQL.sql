@@ -69,7 +69,7 @@ FROM salud_oro.fact_transacciones;
 SELECT
     aseguradora,
     COUNT(*)                                                                                AS total_reclamos,
-    ROUND(AVG(CASE WHEN estado_reclamo IN ('Approved', 'Paid') THEN 1 ELSE 0 END) * 100, 2) AS pct_aprobados,
+    ROUND(AVG(CASE WHEN estado_reclamo IN ('Aprobado', 'Pagado') THEN 1 ELSE 0 END) * 100, 2) AS pct_aprobados,
     ROUND(SUM(monto_reclamado - monto_pagado), 2)                                           AS saldo_pendiente
 FROM salud_oro.fact_reclamos
 GROUP BY aseguradora
