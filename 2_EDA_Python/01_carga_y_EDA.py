@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # 01 · Carga y Análisis Exploratorio (EDA) con Python – Capa Bronce
 # MAGIC **Fase 2 del proyecto.** Con **pandas** cargamos los CSV crudos (ya traducidos al español) como tablas Bronce
@@ -36,12 +40,18 @@ spark.sql(f"CREATE VOLUME IF NOT EXISTS {CATALOGO}.salud_bronce.archivos")
 
 import pandas as pd
 
-RUTA_BRONCE = f"/Volumes/{CATALOGO}/salud_bronce/archivos/"
+RUTA_BRONCE = f"/Workspace/Users/dataacademygrabacion@gmail.com/Repos/1_Proyecto_Salud_Data_Academy/datos_bronce"
+
 TABLAS = ["departamentos_ha", "departamentos_hb", "medicos_ha", "medicos_hb",
           "pacientes_ha", "pacientes_hb", "atenciones_ha", "atenciones_hb",
           "transacciones_ha", "transacciones_hb", "reclamos_ha", "reclamos_hb", "codigos_cpt"]
 
-bronce = {t: pd.read_csv(RUTA_BRONCE + f"{t}.csv") for t in TABLAS}
+bronce = {t: pd.read_csv(RUTA_BRONCE + f"/{t}.csv") for t in TABLAS}
+
+# COMMAND ----------
+
+import pandas as pd 
+df=pd.read_csv('/Workspace/Users/dataacademygrabacion@gmail.com/Repos/1_Proyecto_Salud_Data_Academy/datos_bronce/departamentos_ha.csv')
 
 # COMMAND ----------
 
@@ -52,10 +62,16 @@ bronce = {t: pd.read_csv(RUTA_BRONCE + f"{t}.csv") for t in TABLAS}
 # COMMAND ----------
 
 for t in TABLAS:
-    df = pd.read_csv(RUTA_BRONCE + f"{t}.csv", dtype=str)
+    df = pd.read_csv(RUTA_BRONCE + f"/{t}.csv", dtype=str)
     spark.createDataFrame(df).write.mode("overwrite").option("overwriteSchema", "true") \
         .saveAsTable(f"{CATALOGO}.salud_bronce.{t}")
     print(f"{CATALOGO}.salud_bronce.{t}: {len(df)} filas")
+
+# COMMAND ----------
+
+# conecccion a base datos 
+spark.createDataFrame(df).write.mode("overwrite").option("overwriteSchema", "true") \
+        .saveAsTable(f"{CATALOGO}.salud_bronce.departamentos_ha")
 
 # COMMAND ----------
 

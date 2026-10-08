@@ -25,6 +25,11 @@ USE CATALOG workspace;
 
 -- COMMAND ----------
 
+SELECT *
+FROM workspace.salud_bronce.departamentos_ha
+
+-- COMMAND ----------
+
 CREATE OR REPLACE TABLE salud_plata.departamentos AS
 SELECT DISTINCT
     CONCAT(id_departamento, '-', fuente) AS clave_departamento,
