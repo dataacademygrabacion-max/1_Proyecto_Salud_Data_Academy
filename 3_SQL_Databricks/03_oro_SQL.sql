@@ -20,16 +20,16 @@ USE CATALOG workspace;
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE salud_oro.dim_departamentos AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.departamentos WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.departamentos WHERE en_cuarentena = false;
 
 CREATE OR REPLACE TABLE salud_oro.dim_medicos AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.medicos WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.medicos WHERE en_cuarentena = false;
 
 CREATE OR REPLACE TABLE salud_oro.dim_pacientes AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.pacientes WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.pacientes WHERE en_cuarentena = false;
 
 CREATE OR REPLACE TABLE salud_oro.dim_codigos_cpt AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.codigos_cpt WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.codigos_cpt WHERE en_cuarentena = false;
 
 -- COMMAND ----------
 
@@ -39,13 +39,13 @@ SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.codigos_cpt WHERE 
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE salud_oro.fact_atenciones AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.atenciones WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.atenciones WHERE en_cuarentena = false;
 
 CREATE OR REPLACE TABLE salud_oro.fact_transacciones AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.transacciones WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.transacciones WHERE en_cuarentena = false;
 
 CREATE OR REPLACE TABLE salud_oro.fact_reclamos AS
-SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM salud_plata.reclamos WHERE en_cuarentena = false;
+SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.reclamos WHERE en_cuarentena = false;
 
 -- COMMAND ----------
 
@@ -61,7 +61,7 @@ SELECT
     ROUND(SUM(monto_pagado), 2)                              AS total_pagado,
     ROUND(SUM(monto_pagado) / SUM(monto_facturado) * 100, 2) AS pct_cobrado,
     COUNT(DISTINCT clave_paciente)                           AS pacientes_atendidos
-FROM salud_oro.fact_transacciones;
+FROM workspace.salud_oro.fact_transacciones;
 
 -- COMMAND ----------
 

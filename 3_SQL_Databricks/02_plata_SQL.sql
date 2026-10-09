@@ -30,7 +30,7 @@ FROM workspace.salud_bronce.departamentos_ha
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.departamentos AS
+CREATE OR REPLACE TABLE workspace.salud_plata.departamentos AS
 SELECT DISTINCT
     CONCAT(id_departamento, '-', fuente) AS clave_departamento,
     id_departamento,
@@ -39,9 +39,9 @@ SELECT DISTINCT
     CASE WHEN id_departamento IS NULL OR nombre IS NULL THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
 FROM (
-    SELECT *, 'hosa' AS fuente FROM salud_bronce.departamentos_ha
+    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.departamentos_ha
     UNION ALL
-    SELECT *, 'hosb' AS fuente FROM salud_bronce.departamentos_hb
+    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.departamentos_hb
 );
 
 -- COMMAND ----------
@@ -52,7 +52,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.medicos AS
+CREATE OR REPLACE TABLE workspace.salud_plata.medicos AS
 SELECT DISTINCT
     CONCAT(split_part(id_medico, '-', 2), '-', fuente) AS clave_medico,
     id_medico,
@@ -68,9 +68,9 @@ SELECT DISTINCT
     CASE WHEN id_medico IS NULL OR id_departamento IS NULL THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
 FROM (
-    SELECT *, 'hosa' AS fuente FROM salud_bronce.medicos_ha
+    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.medicos_ha
     UNION ALL
-    SELECT *, 'hosb' AS fuente FROM salud_bronce.medicos_hb
+    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.medicos_hb
 );
 
 -- COMMAND ----------
@@ -81,7 +81,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.pacientes AS
+CREATE OR REPLACE TABLE workspace.salud_plata.pacientes AS
 SELECT DISTINCT
     CONCAT(id_paciente, '-', fuente)        AS clave_paciente,
     id_paciente,
@@ -101,12 +101,12 @@ SELECT DISTINCT
 FROM (
     SELECT id_paciente, nombre, apellido, segundo_nombre, nro_seguro_social, telefono,
            genero, fecha_nacimiento, direccion, fecha_modificacion, 'hosa' AS fuente
-    FROM salud_bronce.pacientes_ha
+    FROM workspace.salud_bronce.pacientes_ha
     UNION ALL
     SELECT codigo AS id_paciente, p_nombre AS nombre, p_apellido AS apellido, s_nombre AS segundo_nombre,
            nro_seguro_social, telefono, genero, fecha_nacimiento, direccion,
            fecha_actualizacion AS fecha_modificacion, 'hosb' AS fuente
-    FROM salud_bronce.pacientes_hb
+    FROM workspace.salud_bronce.pacientes_hb
 );
 
 -- COMMAND ----------
@@ -116,7 +116,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.atenciones AS
+CREATE OR REPLACE TABLE workspace.salud_plata.atenciones AS
 SELECT DISTINCT
     CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
     id_atencion,
@@ -136,9 +136,9 @@ SELECT DISTINCT
               OR LOWER(tipo_atencion) = 'null' THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
 FROM (
-    SELECT *, 'hosa' AS fuente FROM salud_bronce.atenciones_ha
+    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.atenciones_ha
     UNION ALL
-    SELECT *, 'hosb' AS fuente FROM salud_bronce.atenciones_hb
+    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.atenciones_hb
 );
 
 -- COMMAND ----------
@@ -148,7 +148,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.transacciones AS
+CREATE OR REPLACE TABLE workspace.salud_plata.transacciones AS
 SELECT DISTINCT
     CONCAT(id_transaccion, '-', fuente)   AS clave_transaccion,
     id_transaccion,
@@ -181,9 +181,9 @@ SELECT DISTINCT
               OR fecha_visita IS NULL THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
 FROM (
-    SELECT *, 'hosa' AS fuente FROM salud_bronce.transacciones_ha
+    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.transacciones_ha
     UNION ALL
-    SELECT *, 'hosb' AS fuente FROM salud_bronce.transacciones_hb
+    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.transacciones_hb
 );
 
 -- COMMAND ----------
@@ -193,7 +193,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.reclamos AS
+CREATE OR REPLACE TABLE workspace.salud_plata.reclamos AS
 SELECT DISTINCT
     CONCAT(id_reclamo, '-', fuente)       AS clave_reclamo,
     id_reclamo,
@@ -221,9 +221,9 @@ SELECT DISTINCT
               OR LOWER(estado_reclamo) = 'null' THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
 FROM (
-    SELECT *, 'hosa' AS fuente FROM salud_bronce.reclamos_ha
+    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.reclamos_ha
     UNION ALL
-    SELECT *, 'hosb' AS fuente FROM salud_bronce.reclamos_hb
+    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.reclamos_hb
 );
 
 -- COMMAND ----------
@@ -234,7 +234,7 @@ FROM (
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE salud_plata.codigos_cpt AS
+CREATE OR REPLACE TABLE workspace.salud_plata.codigos_cpt AS
 SELECT DISTINCT
     CONCAT(codigo_cpt, '-', 'hosa')  AS clave_cpt,
     categoria_procedimiento,
@@ -244,7 +244,7 @@ SELECT DISTINCT
     'hosa' AS fuente,
     CASE WHEN codigo_cpt IS NULL OR LOWER(estado_codigo) = 'null' THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
-FROM salud_bronce.codigos_cpt;
+FROM workspace.salud_bronce.codigos_cpt;
 
 -- COMMAND ----------
 
@@ -253,10 +253,10 @@ FROM salud_bronce.codigos_cpt;
 
 -- COMMAND ----------
 
-SELECT 'departamentos' AS tabla, COUNT(*) AS filas, SUM(CAST(en_cuarentena AS INT)) AS en_cuarentena FROM salud_plata.departamentos
-UNION ALL SELECT 'medicos',       COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.medicos
-UNION ALL SELECT 'pacientes',     COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.pacientes
-UNION ALL SELECT 'atenciones',    COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.atenciones
-UNION ALL SELECT 'transacciones', COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.transacciones
-UNION ALL SELECT 'reclamos',      COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.reclamos
+SELECT 'departamentos' AS tabla, COUNT(*) AS filas, SUM(CAST(en_cuarentena AS INT)) AS en_cuarentena FROM workspace.salud_plata.departamentos
+UNION ALL SELECT 'medicos',       COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.medicos
+UNION ALL SELECT 'pacientes',     COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.pacientes
+UNION ALL SELECT 'atenciones',    COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.atenciones
+UNION ALL SELECT 'transacciones', COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.transacciones
+UNION ALL SELECT 'reclamos',      COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.reclamos
 UNION ALL SELECT 'codigos_cpt',   COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.codigos_cpt;
