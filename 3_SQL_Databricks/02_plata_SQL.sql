@@ -188,6 +188,12 @@ FROM (
 
 -- COMMAND ----------
 
+select year(fecha_servicio) ,count(1)
+from workspace.salud_oro.fact_transacciones
+group by all
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC ## 6 · Reclamos a aseguradoras
 
