@@ -54,6 +54,14 @@ Los catálogos (`pacientes`, `medicos`, `departamentos` y `codigos_cpt`) **no ca
   - De enero a septiembre, el estado del reclamo sale de la distribución original (aprobación ≈ 40%).
   - **Octubre 2026:** el estado se forzó para que la aprobación quede **por debajo del 40%**: Aprobado 17%, Pagado 15%, Pendiente 22%, Rechazado 24%, Denegado 22%.
 
+### 3.2.1 Montos de reclamos (corrección 02/11/2026)
+Antes los montos eran aleatorios (45% de reclamos con `monto_pagado` > `monto_reclamado`, rechazados con pago). Ahora, en todas las filas:
+- `copago` (fijo) y `deducible` se conservan, topados a `monto_reclamado`.
+- `coaseguro` = % × (`monto_reclamado` − `deducible` − `copago`): Medicare 20%, Medicaid 5%, privadas 10/20/30%.
+- `monto_pagado` (lo que pagó la aseguradora) = `monto_reclamado` − `copago` − `deducible` − `coaseguro` **solo si** `estado_reclamo = Pagado`; en cualquier otro estado es 0.
+- `tipo_pagador`: Medicare/Medicaid = `Público`; Aetna, BlueCross y UnitedHealthcare = `Privado`.
+- Estados y fechas no cambian, así que % Aprobación y % Rechazo siguen iguales.
+
 ### 3.3 Atenciones
 - **Datos de 2025:**
   - Cada atención que tiene facturación toma la fecha de su primera transacción. Así, `fecha_atencion` coincide con `fecha_servicio`.
