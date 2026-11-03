@@ -49,6 +49,12 @@ SELECT * EXCEPT (en_cuarentena, fecha_carga) FROM workspace.salud_plata.reclamos
 
 -- COMMAND ----------
 
+select year(fecha_atencion) ,count(1)
+from workspace.salud_oro.fact_atenciones
+group by all
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC ## Validación: KPIs del negocio
 -- MAGIC Estos números deben coincidir con tu dashboard en Power BI.
