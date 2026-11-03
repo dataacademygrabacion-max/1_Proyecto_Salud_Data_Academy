@@ -4,23 +4,23 @@
 # environment_version = "6"
 # ///
 # MAGIC %md
-# MAGIC # 00 · EDA por origen – conocer cada archivo antes de cargarlo
-# MAGIC **Antes del notebook `01_carga_y_EDA`.** Aquí exploramos **un archivo a la vez** (departamentos, médicos,
-# MAGIC pacientes, atenciones, transacciones, reclamos y códigos CPT), con cantidades y gráficos, para sacar los
-# MAGIC primeros *insights*. No escribe nada en Databricks: solo lee los CSV.
+# MAGIC # 00 · EDA paso a paso – de un archivo a todos
+# MAGIC **Antes del notebook `01_carga_y_EDA`.** Aprendemos a explorar datos **de menos a más**:
 # MAGIC
-# MAGIC | Orden | Notebook | Qué hace |
-# MAGIC |---|---|---|
-# MAGIC | 1 | **00_EDA_por_origen** (este) | Exploración manual y visual de cada origen |
-# MAGIC | 2 | `01_carga_y_EDA` | Carga automática a Bronce + perfilado general |
-# MAGIC | 3 | `02_plata_SQL` → `03_oro_SQL` | Limpieza y tablas para Power BI |
+# MAGIC 1. **Parte 1:** exploramos **un solo archivo** (`transacciones_ha.csv`) a mano, paso a paso.
+# MAGIC 2. **Parte 2:** juntamos esos pasos en **una función** `explorar()`.
+# MAGIC 3. **Parte 3:** usamos la función con **los dos orígenes** (Hospital A y Hospital B) y los comparamos.
+# MAGIC 4. **Parte 4:** con un `for` la aplicamos a **todos los archivos**.
 # MAGIC
-# MAGIC Usamos **seaborn** (encima de matplotlib) porque hace cada gráfico en una sola línea.
+# MAGIC En cada análisis seguimos siempre el mismo patrón:
+# MAGIC **① conectar (leer el CSV) → ② crear una tabla resumen → ③ graficar esa tabla.**
+# MAGIC
+# MAGIC Después seguimos con `01_carga_y_EDA`, que hace la carga a Bronce de forma automática.
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Paso 0 · Librerías y funciones de ayuda
+# MAGIC ## Paso 0 · Librerías y ruta de los archivos
 
 # COMMAND ----------
 
@@ -29,260 +29,312 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sns.set_theme(style="whitegrid", palette="Blues_r")
-plt.rcParams["figure.figsize"] = (10, 4)
+sns.set_theme(style="whitegrid")
 
-# Misma ruta que 01_carga_y_EDA; si corres el archivo en tu PC usa la carpeta local
+# Misma ruta que 01_carga_y_EDA (si lo corres en tu PC, usa la carpeta local)
 RUTA_BRONCE = "/Workspace/Users/dataacademygrabacion@gmail.com/Repos/1_Proyecto_Salud_Data_Academy/datos_bronce"
 if not os.path.exists(RUTA_BRONCE):
     RUTA_BRONCE = "../datos_bronce"
 
 try:
-    display
-except NameError:  # fuera de Databricks
+    display  # existe en Databricks
+except NameError:
     display = print
 
+# COMMAND ----------
 
-def cargar(origen):
-    """Une Hospital A y B de un mismo origen y agrega la columna 'hospital'."""
-    a = pd.read_csv(f"{RUTA_BRONCE}/{origen}_ha.csv").assign(hospital="A")
-    b = pd.read_csv(f"{RUTA_BRONCE}/{origen}_hb.csv").assign(hospital="B")
-    return a, b
-
-
-def resumen(df, nombre):
-    """Tamaño, nulos y duplicados de una tabla."""
-    print(f"{nombre}: {len(df):,} filas | {df.shape[1]} columnas | "
-          f"{int(df.isna().sum().sum())} celdas nulas | {int(df.duplicated().sum())} filas duplicadas")
-
-
-def a_fecha(df, columnas):
-    for c in columnas:
-        df[c] = pd.to_datetime(df[c], errors="coerce")
-    return df
+# MAGIC %md
+# MAGIC # Parte 1 · Explorar UN archivo a mano
+# MAGIC Trabajamos con las transacciones (facturación) del **Hospital A**.
+# MAGIC Cada celda responde una sola pregunta.
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 1 · Departamentos
-# MAGIC **Pregunta:** ¿los dos hospitales tienen los mismos departamentos?
+# MAGIC ### 1.1 · ¿Cómo se ven los datos?
 
 # COMMAND ----------
 
-dep_a, dep_b = cargar("departamentos")
-resumen(dep_a, "departamentos_ha")
-resumen(dep_b, "departamentos_hb")
-
-comparar = dep_a.merge(dep_b, on="id_departamento", how="outer", suffixes=("_A", "_B"))
-display(comparar[["id_departamento", "nombre_A", "nombre_B"]])
-print("Departamentos con distinto nombre entre A y B:", (comparar.nombre_A != comparar.nombre_B).sum())
+df = pd.read_csv(f"{RUTA_BRONCE}/transacciones_ha.csv")
+df.head()
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 2 · Médicos
-# MAGIC **Preguntas:** ¿cuántos médicos tiene cada hospital? ¿Qué especialidades predominan?
+# MAGIC ### 1.2 · ¿Cuántas filas y columnas tiene?
 
 # COMMAND ----------
 
-med_a, med_b = cargar("medicos")
-resumen(med_a, "medicos_ha")
-resumen(med_b, "medicos_hb")
-medicos = pd.concat([med_a, med_b], ignore_index=True)
+print("Filas:", df.shape[0])
+print("Columnas:", df.shape[1])
 
-fig, ax = plt.subplots(1, 2, figsize=(14, 5))
-sns.countplot(data=medicos, x="hospital", ax=ax[0])
-ax[0].set_title("Médicos por hospital")
-sns.countplot(data=medicos, y="especialidad", hue="hospital",
-              order=medicos.especialidad.value_counts().index, ax=ax[1])
-ax[1].set_title("Médicos por especialidad")
-plt.tight_layout()
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 1.3 · ¿Qué tipo de dato tiene cada columna?
+# MAGIC Ojo: las fechas llegan como `object` (texto). En Plata las convertiremos a fecha con SQL.
+
+# COMMAND ----------
+
+df.dtypes
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 1.4 · ¿Hay valores nulos o filas duplicadas?
+# MAGIC Es como hacer en SQL: `SELECT COUNT(*) FROM tabla WHERE columna IS NULL`.
+
+# COMMAND ----------
+
+print("Nulos por columna:")
+print(df.isna().sum())
+print("Filas duplicadas:", df.duplicated().sum())
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 1.5 · ¿Cómo son los montos? (mínimo, promedio, máximo)
+# MAGIC Es como `SELECT MIN(monto), AVG(monto), MAX(monto) FROM tabla`.
+
+# COMMAND ----------
+
+df[["monto_facturado", "monto_pagado"]].describe().round(2)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 1.6 · Tabla resumen por categoría → gráfico
+# MAGIC **Tabla resumen** = un `GROUP BY` de SQL:
+# MAGIC ```sql
+# MAGIC SELECT tipo_visita, COUNT(*) AS transacciones, SUM(monto_facturado) AS facturado, SUM(monto_pagado) AS cobrado
+# MAGIC FROM transacciones_ha GROUP BY tipo_visita
+# MAGIC ```
+
+# COMMAND ----------
+
+resumen_visita = (
+    df.groupby("tipo_visita")
+      .agg(transacciones=("id_transaccion", "count"),
+           facturado=("monto_facturado", "sum"),
+           cobrado=("monto_pagado", "sum"))
+      .reset_index()
+      .sort_values("transacciones", ascending=False)
+)
+resumen_visita["pct_cobrado"] = (resumen_visita["cobrado"] / resumen_visita["facturado"]).round(3)
+display(resumen_visita.round(2))
+
+# COMMAND ----------
+
+# Gráfico hecho a partir de la tabla resumen
+sns.barplot(data=resumen_visita, x="tipo_visita", y="transacciones")
+plt.title("Transacciones por tipo de visita")
 plt.show()
 
-print("Formato de id_medico en A:", med_a.id_medico.iloc[0], "| en B:", med_b.id_medico.iloc[0])
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 1.7 · Tabla resumen por rangos de monto → gráfico
+# MAGIC `pd.cut` agrupa los montos en rangos, como un `CASE WHEN` en SQL:
+# MAGIC ```sql
+# MAGIC SELECT CASE WHEN monto_facturado < 250 THEN '0-250' WHEN ... END AS rango, COUNT(*)
+# MAGIC FROM transacciones_ha GROUP BY rango
+# MAGIC ```
+
+# COMMAND ----------
+
+df["rango_facturado"] = pd.cut(df["monto_facturado"], bins=[0, 250, 500, 750, 1000],
+                               labels=["0-250", "250-500", "500-750", "750-1000"])
+
+resumen_rango = df.groupby("rango_facturado", observed=True).size().reset_index(name="transacciones")
+display(resumen_rango)
+
+# COMMAND ----------
+
+sns.barplot(data=resumen_rango, x="rango_facturado", y="transacciones")
+plt.title("¿Cuánto se factura por transacción?")
+plt.show()
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 3 · Pacientes
-# MAGIC **Preguntas:** ¿las columnas coinciden? ¿Cómo se reparten por género y edad? ¿Qué campos vienen vacíos?
+# MAGIC ### 1.8 · Una regla de negocio: ¿lo pagado supera lo facturado?
+# MAGIC No debería pasar. Si pasa, es un dato a revisar (irá a cuarentena o se corrige en Plata).
 
 # COMMAND ----------
 
-pac_a, pac_b = cargar("pacientes")
-resumen(pac_a, "pacientes_ha")
-resumen(pac_b, "pacientes_hb")
-print("Columnas solo en A:", sorted(set(pac_a.columns) - set(pac_b.columns)))
-print("Columnas solo en B:", sorted(set(pac_b.columns) - set(pac_a.columns)))
-
-# Para explorar juntos, renombramos B igual que A (en Plata se hace lo mismo con SQL)
-pac_b = pac_b.rename(columns={"codigo": "id_paciente", "p_nombre": "nombre", "p_apellido": "apellido",
-                              "s_nombre": "segundo_nombre", "fecha_actualizacion": "fecha_modificacion"})
-pacientes = a_fecha(pd.concat([pac_a, pac_b], ignore_index=True), ["fecha_nacimiento"])
-pacientes["edad"] = (pd.Timestamp("today") - pacientes.fecha_nacimiento).dt.days // 365
-
-fig, ax = plt.subplots(1, 3, figsize=(16, 4))
-sns.countplot(data=pacientes, x="genero", hue="hospital", ax=ax[0])
-ax[0].set_title("Pacientes por género")
-sns.histplot(data=pacientes, x="edad", hue="hospital", bins=20, ax=ax[1])
-ax[1].set_title("Distribución de edad")
-nulos = pacientes.isna().sum()
-nulos[nulos > 0].plot.barh(ax=ax[2], color="#B45309")
-ax[2].set_title("Celdas nulas por columna")
-plt.tight_layout()
-plt.show()
-
-print("Teléfonos con formatos distintos (ejemplos):", pacientes.telefono.sample(5, random_state=1).tolist())
+pagado_mayor = df[df["monto_pagado"] > df["monto_facturado"]]
+print("Transacciones con pagado > facturado:", len(pagado_mayor))
+print(f"Porcentaje: {len(pagado_mayor) / len(df):.1%}")
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 4 · Atenciones
-# MAGIC **Preguntas:** ¿qué tipo de atención es más común? ¿Cómo evolucionan por mes?
-
-# COMMAND ----------
-
-ate_a, ate_b = cargar("atenciones")
-resumen(ate_a, "atenciones_ha")
-resumen(ate_b, "atenciones_hb")
-atenciones = a_fecha(pd.concat([ate_a, ate_b], ignore_index=True), ["fecha_atencion"])
-atenciones["mes"] = atenciones.fecha_atencion.dt.to_period("M").dt.to_timestamp()
-
-fig, ax = plt.subplots(1, 2, figsize=(16, 4))
-sns.countplot(data=atenciones, y="tipo_atencion", hue="hospital",
-              order=atenciones.tipo_atencion.value_counts().index, ax=ax[0])
-ax[0].set_title("Atenciones por tipo")
-por_mes = atenciones.groupby(["mes", "hospital"]).size().reset_index(name="atenciones")
-sns.lineplot(data=por_mes, x="mes", y="atenciones", hue="hospital", marker="o", ax=ax[1])
-ax[1].set_title("Atenciones por mes")
-plt.tight_layout()
-plt.show()
-
-print("Rango de fechas:", atenciones.fecha_atencion.min().date(), "→", atenciones.fecha_atencion.max().date())
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ## 5 · Transacciones (facturación)
-# MAGIC **Preguntas:** ¿cuánto se factura y cuánto se cobra? ¿Hay montos que no cuadran?
-
-# COMMAND ----------
-
-tra_a, tra_b = cargar("transacciones")
-resumen(tra_a, "transacciones_ha")
-resumen(tra_b, "transacciones_hb")
-trans = a_fecha(pd.concat([tra_a, tra_b], ignore_index=True), ["fecha_servicio", "fecha_pago"])
-trans["mes"] = trans.fecha_servicio.dt.to_period("M").dt.to_timestamp()
-
-display(trans[["monto_facturado", "monto_pagado"]].describe().round(2))
-
-fig, ax = plt.subplots(1, 3, figsize=(18, 4))
-sns.histplot(data=trans, x="monto_facturado", hue="hospital", bins=30, ax=ax[0])
-ax[0].set_title("Distribución del monto facturado")
-sns.boxplot(data=trans, x="tipo_visita", y="monto_facturado", ax=ax[1])
-ax[1].set_title("Monto facturado por tipo de visita")
-sns.scatterplot(data=trans.sample(2000, random_state=1), x="monto_facturado", y="monto_pagado",
-                alpha=0.4, ax=ax[2])
-lim = trans.monto_facturado.max()
-ax[2].plot([0, lim], [0, lim], color="#B45309", linestyle="--", label="pagado = facturado")
-ax[2].legend()
-ax[2].set_title("Facturado vs pagado (muestra)")
-plt.tight_layout()
-plt.show()
-
-mensual = trans.groupby("mes")[["monto_facturado", "monto_pagado"]].sum()
-mensual.plot.bar(figsize=(14, 4), color=["#1E3A8A", "#2A78D6"], title="Facturado vs cobrado por mes")
-plt.show()
-
-print(f"% cobrado total: {trans.monto_pagado.sum() / trans.monto_facturado.sum():.1%}")
-print("Pagado > facturado:", (trans.monto_pagado > trans.monto_facturado).sum(), "transacciones")
-print("Pago antes del servicio:", (trans.fecha_pago < trans.fecha_servicio).sum(), "transacciones")
-print("id_medico de transacciones que existe en el catálogo de médicos:",
-      f"{trans.id_medico.isin(medicos.id_medico).mean():.0%}", "(ej.", trans.id_medico.iloc[0], "vs", medicos.id_medico.iloc[0], ")")
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ## 6 · Reclamos a aseguradoras
-# MAGIC **Preguntas:** ¿qué % se aprueba (meta 40%)? ¿Qué aseguradora rechaza más?
-# MAGIC ¿Cuánto paga el paciente y cuánto la aseguradora?
+# MAGIC ### ✍️ Insights de la Parte 1
+# MAGIC - El archivo tiene ~19 mil transacciones y **no tiene nulos ni duplicados**.
+# MAGIC - Las fechas vienen como **texto** → hay que convertirlas.
+# MAGIC - Los montos facturados van de ~$50 a ~$1,000.
+# MAGIC - Hay transacciones donde **se pagó más de lo facturado** → problema de calidad.
 # MAGIC
-# MAGIC Regla del costo: **reclamado = copago + deducible + coaseguro (paciente) + pagado (aseguradora)**.
-# MAGIC La aseguradora solo paga cuando el estado es `Pagado`.
-
-# COMMAND ----------
-
-rec_a, rec_b = cargar("reclamos")
-resumen(rec_a, "reclamos_ha")
-resumen(rec_b, "reclamos_hb")
-reclamos = a_fecha(pd.concat([rec_a, rec_b], ignore_index=True), ["fecha_reclamo"])
-reclamos["aprobado"] = reclamos.estado_reclamo.isin(["Aprobado", "Pagado"])
-reclamos["rechazado"] = reclamos.estado_reclamo.isin(["Rechazado", "Denegado"])
-reclamos["paga_paciente"] = reclamos.copago + reclamos.deducible + reclamos.coaseguro
-reclamos["mes"] = reclamos.fecha_reclamo.dt.to_period("M").dt.to_timestamp()
-
-fig, ax = plt.subplots(1, 2, figsize=(16, 4))
-sns.countplot(data=reclamos, x="estado_reclamo", hue="hospital", ax=ax[0])
-ax[0].set_title("Reclamos por estado")
-por_aseg = reclamos.groupby("aseguradora").rechazado.mean().sort_values()
-sns.barplot(x=por_aseg.values, y=por_aseg.index, ax=ax[1])
-ax[1].set_title("% de rechazo por aseguradora")
-plt.tight_layout()
-plt.show()
-
-aprob_mes = reclamos.groupby("mes").aprobado.mean()
-ax = aprob_mes.plot(marker="o", figsize=(14, 4), title="% de aprobación por mes")
-ax.axhline(0.40, color="#B45309", linestyle="--", label="meta 40%")
-ax.legend()
-plt.show()
-
-# Quién paga cada reclamo pagado
-pagados = reclamos[reclamos.estado_reclamo == "Pagado"]
-reparto = pagados.groupby("aseguradora")[["monto_pagado", "copago", "deducible", "coaseguro"]].sum()
-ax = reparto.plot.barh(stacked=True, figsize=(12, 4), title="Reclamos pagados: aseguradora vs paciente (USD)")
-ax.legend(bbox_to_anchor=(1, 1))
-plt.tight_layout()
-plt.show()
-
-print(f"% aprobación global: {reclamos.aprobado.mean():.1%}")
-print(f"En reclamos pagados, el paciente cubre en promedio "
-      f"{pagados.paga_paciente.sum() / pagados.monto_reclamado.sum():.1%} del costo")
-display(pd.crosstab(reclamos.aseguradora, reclamos.tipo_pagador))
+# MAGIC 🤔 **¿Y si tenemos 13 archivos?** Repetir estas 8 celdas 13 veces es mucho trabajo… ¡hagamos una función!
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## 7 · Códigos CPT (catálogo de procedimientos)
-# MAGIC **Preguntas:** ¿qué categorías tienen más procedimientos? ¿Los textos están estandarizados?
+# MAGIC # Parte 2 · Convertir los pasos en una función
+# MAGIC La función `explorar()` hace lo mismo que la Parte 1, pero para **cualquier** tabla:
+# MAGIC - Resume filas, columnas, nulos y duplicados.
+# MAGIC - Describe las columnas **numéricas** (mín, promedio, máx).
+# MAGIC - Para cada columna de **texto con pocas categorías** (10 o menos): crea la **tabla resumen** y luego su **gráfico**.
 
 # COMMAND ----------
 
-cpt = pd.read_csv(f"{RUTA_BRONCE}/codigos_cpt.csv")
-resumen(cpt, "codigos_cpt")
+def explorar(df, nombre, graficos=True):
+    print("=" * 60)
+    print(f"📄 {nombre}")
+    print("=" * 60)
 
-fig, ax = plt.subplots(1, 2, figsize=(16, 4))
-top = cpt.categoria_procedimiento.value_counts().head(10)
-sns.barplot(x=top.values, y=top.index, ax=ax[0])
-ax[0].set_title("Top 10 categorías de procedimientos")
-sns.countplot(data=cpt, x="estado_codigo", ax=ax[1])
-ax[1].set_title("estado_codigo (ojo con mayúsculas)")
-plt.tight_layout()
+    # 1. Tamaño, nulos y duplicados
+    print("Filas:", df.shape[0], "| Columnas:", df.shape[1])
+    print("Celdas nulas:", df.isna().sum().sum(), "| Filas duplicadas:", df.duplicated().sum())
+
+    nulos = df.isna().sum()
+    if nulos.sum() > 0:
+        print("Columnas con nulos:", nulos[nulos > 0].to_dict())
+
+    # 2. Columnas numéricas
+    numericas = df.select_dtypes(include="number").columns
+    if len(numericas) > 0:
+        display(df[numericas].describe().round(2))
+
+    # 3. Columnas de texto con pocas categorías: tabla resumen → gráfico
+    categorias = [c for c in df.select_dtypes(include="object").columns if df[c].nunique() <= 10]
+    for col in categorias:
+        resumen = df.groupby(col).size().reset_index(name="cantidad").sort_values("cantidad", ascending=False)
+        display(resumen)
+
+        if graficos:
+            sns.barplot(data=resumen, x="cantidad", y=col)
+            plt.title(f"{nombre} · {col}")
+            plt.show()
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### Probamos la función con el mismo archivo de la Parte 1
+# MAGIC Debe dar los mismos números que vimos a mano.
+
+# COMMAND ----------
+
+explorar(df, "transacciones_ha")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Parte 3 · Usar la función con los dos orígenes (Hospital A y B)
+# MAGIC Ahora exploramos los **reclamos** de los dos hospitales con una sola línea cada uno.
+
+# COMMAND ----------
+
+reclamos_a = pd.read_csv(f"{RUTA_BRONCE}/reclamos_ha.csv")
+reclamos_b = pd.read_csv(f"{RUTA_BRONCE}/reclamos_hb.csv")
+
+explorar(reclamos_a, "reclamos_ha", graficos=False)
+explorar(reclamos_b, "reclamos_hb", graficos=False)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 3.1 · Comparar A vs B: tabla resumen → gráfico
+# MAGIC Unimos las dos tablas con `pd.concat` (como un `UNION ALL` en SQL) y agregamos la columna `hospital`.
+# MAGIC Luego: `SELECT hospital, estado_reclamo, COUNT(*) FROM reclamos GROUP BY hospital, estado_reclamo`.
+
+# COMMAND ----------
+
+reclamos_a["hospital"] = "A"
+reclamos_b["hospital"] = "B"
+reclamos = pd.concat([reclamos_a, reclamos_b], ignore_index=True)
+
+resumen_estado = reclamos.groupby(["hospital", "estado_reclamo"]).size().reset_index(name="reclamos")
+display(resumen_estado)
+
+# COMMAND ----------
+
+sns.barplot(data=resumen_estado, x="estado_reclamo", y="reclamos", hue="hospital")
+plt.title("Reclamos por estado: Hospital A vs B")
 plt.show()
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Insights iniciales (complétalos con lo que ves en los gráficos)
-# MAGIC | Origen | Lo que encontramos | Qué haremos |
+# MAGIC ### 3.2 · KPI: % de aprobación por hospital (meta 40%)
+# MAGIC Un reclamo cuenta como aprobado si su estado es `Aprobado` o `Pagado`.
+
+# COMMAND ----------
+
+reclamos["aprobado"] = reclamos["estado_reclamo"].isin(["Aprobado", "Pagado"])
+
+resumen_aprobacion = (
+    reclamos.groupby("hospital")
+            .agg(reclamos=("id_reclamo", "count"), aprobados=("aprobado", "sum"))
+            .reset_index()
+)
+resumen_aprobacion["pct_aprobacion"] = (resumen_aprobacion["aprobados"] / resumen_aprobacion["reclamos"]).round(3)
+display(resumen_aprobacion)
+
+# COMMAND ----------
+
+sns.barplot(data=resumen_aprobacion, x="hospital", y="pct_aprobacion")
+plt.axhline(0.40, color="orange", linestyle="--", label="Meta 40%")
+plt.title("% de aprobación por hospital")
+plt.legend()
+plt.show()
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 3.3 · ¿Quién paga una atención? Ejemplo con un reclamo pagado
+# MAGIC **monto reclamado = copago + deducible + coaseguro (paga el paciente) + monto pagado (paga la aseguradora)**
+
+# COMMAND ----------
+
+ejemplo = reclamos[reclamos["estado_reclamo"] == "Pagado"].iloc[0]
+paciente = ejemplo["copago"] + ejemplo["deducible"] + ejemplo["coaseguro"]
+
+print("Reclamo:", ejemplo["id_reclamo"], "-", ejemplo["aseguradora"])
+print(f"Monto reclamado:      ${ejemplo['monto_reclamado']:,.2f}")
+print(f"  Paga el paciente:   ${paciente:,.2f}  (copago + deducible + coaseguro)")
+print(f"  Paga la aseguradora: ${ejemplo['monto_pagado']:,.2f}")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Parte 4 · Todos los archivos con un `for`
+# MAGIC La misma función, ahora en bucle. Dejamos `graficos=False` para que la salida no sea enorme;
+# MAGIC cámbialo a `True` si quieres ver todos los gráficos.
+
+# COMMAND ----------
+
+ARCHIVOS = ["departamentos_ha", "departamentos_hb", "medicos_ha", "medicos_hb",
+            "pacientes_ha", "pacientes_hb", "atenciones_ha", "atenciones_hb",
+            "transacciones_ha", "transacciones_hb", "reclamos_ha", "reclamos_hb", "codigos_cpt"]
+
+for archivo in ARCHIVOS:
+    tabla = pd.read_csv(f"{RUTA_BRONCE}/{archivo}.csv")
+    explorar(tabla, archivo, graficos=False)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## ✍️ Insights finales (anótalos para tu informe)
+# MAGIC | Archivo | Lo que encontramos | Qué haremos en Plata (SQL) |
 # MAGIC |---|---|---|
-# MAGIC | Departamentos | Mismos IDs en A y B | Clave `id + fuente` |
-# MAGIC | Médicos | El catálogo usa `H1-PROV0001` pero los hechos usan `PROV0001`: 0% de coincidencia | Quitar el prefijo `H1-`/`H2-` en Plata para poder relacionarlos |
-# MAGIC | Pacientes | Hospital B usa otros nombres de columna (`codigo`, `p_nombre`…) y tiene nulos | Modelo de datos común + cuarentena |
-# MAGIC | Atenciones | Distribución por tipo y tendencia mensual | Relacionar con calendario |
-# MAGIC | Transacciones | Hay pagos mayores a lo facturado y pagos antes del servicio | Reglas de calidad / cuarentena |
-# MAGIC | Reclamos | % aprobación cerca de la meta del 40% y baja en oct-2026 | KPI y alerta en Power BI |
-# MAGIC | Códigos CPT | `estado_codigo` con mayúsculas inconsistentes | Estandarizar en Plata |
+# MAGIC | Pacientes | El Hospital B usa otros nombres de columna (`codigo`, `p_nombre`…) y tiene nulos | Unificar columnas y mandar nulos a cuarentena |
+# MAGIC | Médicos | El catálogo usa `H1-PROV0001`, pero las transacciones usan `PROV0001` | Quitar el prefijo para poder relacionarlos |
+# MAGIC | Transacciones | Pagos mayores a lo facturado | Regla de calidad |
+# MAGIC | Reclamos | % de aprobación cerca de la meta del 40% | KPI y alerta en Power BI |
+# MAGIC | Códigos CPT | `estado_codigo` con mayúsculas distintas ("Sin Cambios" / "Sin cambios") | Estandarizar texto |
+# MAGIC | Todos | Fechas como texto | Convertir con `TRY_CAST(... AS DATE)` |
 # MAGIC
 # MAGIC ### ➡️ Siguiente paso
-# MAGIC Abre **`01_carga_y_EDA`** y ejecútalo completo (*Run all*): carga estos mismos CSV como tablas Bronce
-# MAGIC y hace el perfilado general automático (nulos, duplicados, atípicos y categorías).
+# MAGIC Abre **`01_carga_y_EDA`** y ejecútalo completo (*Run all*): carga estos mismos archivos como tablas Bronce
+# MAGIC en Databricks y hace el perfilado general de forma automática.
