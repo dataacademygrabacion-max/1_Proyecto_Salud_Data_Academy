@@ -188,9 +188,7 @@ FROM (
 
 -- COMMAND ----------
 
-select year(fecha_servicio) ,count(1)
-from workspace.salud_oro.fact_transacciones
-group by all
+
 
 -- COMMAND ----------
 
