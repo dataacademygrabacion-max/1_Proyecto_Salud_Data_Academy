@@ -30,19 +30,23 @@ FROM workspace.salud_bronce.departamentos_ha
 
 -- COMMAND ----------
 
-CREATE OR REPLACE TABLE workspace.salud_plata.departamentos AS
+--CREATE OR REPLACE TABLE workspace.salud_plata.departamentos AS
 SELECT DISTINCT
     CONCAT(id_departamento, '-', fuente) AS clave_departamento,
     id_departamento,
     nombre,
     fuente,
     CASE WHEN id_departamento IS NULL OR nombre IS NULL THEN true ELSE false END AS en_cuarentena,
-    current_timestamp() AS fecha_carga
-FROM (
+    current_timestamp() AS fecha_carga 
+    FROM (
     SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.departamentos_ha
     UNION ALL
     SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.departamentos_hb
 );
+
+-- COMMAND ----------
+
+SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.departamentos_ha
 
 -- COMMAND ----------
 
@@ -72,6 +76,12 @@ FROM (
     UNION ALL
     SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.medicos_hb
 );
+
+-- COMMAND ----------
+
+select split(id_medico,'-')[1]
+        ,split_part(id_medico,'-',3) --gestiona errores
+from salud_bronce.medicos_ha
 
 -- COMMAND ----------
 
@@ -113,6 +123,10 @@ FROM (
 
 -- MAGIC %md
 -- MAGIC ## 4 · Atenciones (visitas)
+
+-- COMMAND ----------
+
+select now()
 
 -- COMMAND ----------
 

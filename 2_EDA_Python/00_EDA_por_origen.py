@@ -19,6 +19,10 @@
 
 # COMMAND ----------
 
+!pip install seaborn
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## Paso 0 · Librerías y ruta de los archivos
 
@@ -126,8 +130,22 @@ display(resumen_visita.round(2))
 # COMMAND ----------
 
 # Gráfico hecho a partir de la tabla resumen
-sns.barplot(data=resumen_visita, x="tipo_visita", y="transacciones")
-plt.title("Transacciones por tipo de visita")
+ax = sns.barplot(data=resumen_visita, x="tipo_visita", y="cobrado")
+
+# 3 formas de etiquetar las barras (elige una):
+
+# 1) Miles: fmt="{:,.0f}" → 1,250,000
+ax.bar_label(ax.containers[0], fmt="$ {:,.0f}")
+
+# 2) Porcentaje: los valores deben ser fracciones (ej. 0.83) para que salga 83.0%
+# ax.bar_label(ax.containers[0], fmt="{:.1%}")
+
+# 3) Millones: divide el valor entre 1e6 y agrega la letra M → $1.3M
+# ax.bar_label(ax.containers[0], labels=[f"${v/1e6:,.1f}M" for v in resumen_visita["cobrado"]])
+
+plt.title("% cobrado por tipo de visita")
+plt.xlabel("Tipo de visita")
+plt.ylabel("% cobrado (monto pagado / facturado)")
 plt.show()
 
 # COMMAND ----------
