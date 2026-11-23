@@ -50,11 +50,6 @@ bronce = {t: pd.read_csv(RUTA_BRONCE + f"/{t}.csv") for t in TABLAS}
 
 # COMMAND ----------
 
-import pandas as pd 
-df=pd.read_csv('/Workspace/Users/dataacademygrabacion@gmail.com/Repos/1_Proyecto_Salud_Data_Academy/datos_bronce/departamentos_ha.csv')
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC ## Paso 2.1 · Cargar Bronce como tablas (para limpiarlas luego con SQL)
 # MAGIC Se guardan **todo como texto**, tal como llegan. Los tipos (fechas, montos) se corrigen en Plata con SQL.
@@ -69,9 +64,16 @@ for t in TABLAS:
 
 # COMMAND ----------
 
-# conecccion a base datos 
-spark.createDataFrame(df).write.mode("overwrite").option("overwriteSchema", "true") \
-        .saveAsTable(f"{CATALOGO}.salud_bronce.departamentos_ha")
+# sin releer el CSV: leemos la tabla Bronce que ya se cargó en el paso 2.1
+# df_spark = spark.table(f"{CATALOGO}.salud_bronce.departamentos_ha")
+
+# print(f"{CATALOGO}.salud_bronce.departamentos_ha: {df_spark.count()} filas")
+# display(df_spark.limit(10))
+
+# COMMAND ----------
+
+# df=spark.table("workspace.salud_bronce.atenciones_ha")
+# df.display()
 
 # COMMAND ----------
 
