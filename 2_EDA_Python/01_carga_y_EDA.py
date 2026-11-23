@@ -69,12 +69,6 @@ for t in TABLAS:
 
 # COMMAND ----------
 
-# conecccion a base datos 
-spark.createDataFrame(df).write.mode("overwrite").option("overwriteSchema", "true") \
-        .saveAsTable(f"{CATALOGO}.salud_bronce.departamentos_ha")
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC ## Paso 3 · Perfilado general: filas, columnas, nulos y duplicados
 

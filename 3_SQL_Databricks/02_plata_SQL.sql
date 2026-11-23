@@ -117,29 +117,41 @@ FROM (
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE workspace.salud_plata.atenciones AS
-SELECT DISTINCT
-    CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
-    id_atencion,
-    id_paciente,
-    id_medico,
-    id_departamento,
-    CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
-    CONCAT(id_medico, '-', fuente)        AS clave_medico,
-    CONCAT(id_departamento, '-', fuente)  AS clave_departamento,
-    TRY_CAST(fecha_atencion AS DATE)      AS fecha_atencion,
-    tipo_atencion,
-    codigo_procedimiento,
-    TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
-    TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
-    fuente,
-    CASE WHEN id_atencion IS NULL OR id_paciente IS NULL OR fecha_atencion IS NULL
-              OR LOWER(tipo_atencion) = 'null' THEN true ELSE false END AS en_cuarentena,
+WITH base AS (
+    SELECT DISTINCT
+        CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
+        id_atencion,
+        id_paciente,
+        id_medico,
+        id_departamento,
+        CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
+        CONCAT(id_medico, '-', fuente)        AS clave_medico,
+        CONCAT(id_departamento, '-', fuente)  AS clave_departamento,
+        TRY_CAST(fecha_atencion AS DATE)      AS fecha_atencion,
+        tipo_atencion,
+        codigo_procedimiento,
+        TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
+        TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
+        fuente
+    FROM (
+        SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.atenciones_ha
+        UNION ALL
+        SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.atenciones_hb
+    )
+)
+SELECT
+    b.*,
+    CASE WHEN b.id_atencion IS NULL OR b.id_paciente IS NULL OR b.fecha_atencion IS NULL
+              OR b.tipo_atencion IS NULL OR LOWER(b.tipo_atencion) = 'null'
+              OR p.clave_paciente IS NULL          -- huérfano: paciente inexistente
+              OR m.clave_medico IS NULL            -- huérfano: médico inexistente
+              OR d.clave_departamento IS NULL      -- huérfano: departamento inexistente
+         THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
-FROM (
-    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.atenciones_ha
-    UNION ALL
-    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.atenciones_hb
-);
+FROM base b
+LEFT JOIN workspace.salud_plata.pacientes     p ON b.clave_paciente     = p.clave_paciente
+LEFT JOIN workspace.salud_plata.medicos       m ON b.clave_medico       = m.clave_medico
+LEFT JOIN workspace.salud_plata.departamentos d ON b.clave_departamento = d.clave_departamento;
 
 -- COMMAND ----------
 
@@ -149,42 +161,56 @@ FROM (
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE workspace.salud_plata.transacciones AS
-SELECT DISTINCT
-    CONCAT(id_transaccion, '-', fuente)   AS clave_transaccion,
-    id_transaccion,
-    id_atencion,
-    id_paciente,
-    id_medico,
-    id_departamento,
-    CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
-    CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
-    CONCAT(id_medico, '-', fuente)        AS clave_medico,
-    CONCAT(id_departamento, '-', fuente)  AS clave_departamento,
-    TRY_CAST(fecha_visita AS DATE)        AS fecha_visita,
-    TRY_CAST(fecha_servicio AS DATE)      AS fecha_servicio,
-    TRY_CAST(fecha_pago AS DATE)          AS fecha_pago,
-    tipo_visita,
-    ROUND(TRY_CAST(monto_facturado AS DOUBLE), 2) AS monto_facturado,
-    tipo_monto,
-    ROUND(TRY_CAST(monto_pagado AS DOUBLE), 2)    AS monto_pagado,
-    id_reclamo,
-    id_pagador,
-    codigo_procedimiento,
-    codigo_cie,
-    linea_negocio,
-    id_medicaid,
-    id_medicare,
-    TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
-    TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
-    fuente,
-    CASE WHEN id_transaccion IS NULL OR id_atencion IS NULL OR id_paciente IS NULL
-              OR fecha_visita IS NULL THEN true ELSE false END AS en_cuarentena,
+WITH base AS (
+    SELECT DISTINCT
+        CONCAT(id_transaccion, '-', fuente)   AS clave_transaccion,
+        id_transaccion,
+        id_atencion,
+        id_paciente,
+        id_medico,
+        id_departamento,
+        CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
+        CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
+        CONCAT(id_medico, '-', fuente)        AS clave_medico,
+        CONCAT(id_departamento, '-', fuente)  AS clave_departamento,
+        TRY_CAST(fecha_visita AS DATE)        AS fecha_visita,
+        TRY_CAST(fecha_servicio AS DATE)      AS fecha_servicio,
+        TRY_CAST(fecha_pago AS DATE)          AS fecha_pago,
+        tipo_visita,
+        ROUND(TRY_CAST(monto_facturado AS DOUBLE), 2) AS monto_facturado,
+        tipo_monto,
+        ROUND(TRY_CAST(monto_pagado AS DOUBLE), 2)    AS monto_pagado,
+        id_reclamo,
+        id_pagador,
+        codigo_procedimiento,
+        codigo_cie,
+        linea_negocio,
+        id_medicaid,
+        id_medicare,
+        TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
+        TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
+        fuente
+    FROM (
+        SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.transacciones_ha
+        UNION ALL
+        SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.transacciones_hb
+    )
+)
+SELECT
+    b.*,
+    CASE WHEN b.id_transaccion IS NULL OR b.id_atencion IS NULL OR b.id_paciente IS NULL
+              OR b.fecha_visita IS NULL
+              OR b.fecha_pago < b.fecha_servicio
+              OR b.monto_pagado > b.monto_facturado
+              OR a.clave_atencion IS NULL          -- huérfano: atención inexistente
+              OR p.clave_paciente IS NULL          -- huérfano: paciente inexistente
+              OR m.clave_medico IS NULL            -- huérfano: médico inexistente
+         THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
-FROM (
-    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.transacciones_ha
-    UNION ALL
-    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.transacciones_hb
-);
+FROM base b
+LEFT JOIN workspace.salud_plata.atenciones a ON b.clave_atencion = a.clave_atencion AND a.en_cuarentena = false
+LEFT JOIN workspace.salud_plata.pacientes  p ON b.clave_paciente = p.clave_paciente
+LEFT JOIN workspace.salud_plata.medicos    m ON b.clave_medico   = m.clave_medico;
 
 -- COMMAND ----------
 
@@ -198,37 +224,52 @@ FROM (
 -- COMMAND ----------
 
 CREATE OR REPLACE TABLE workspace.salud_plata.reclamos AS
-SELECT DISTINCT
-    CONCAT(id_reclamo, '-', fuente)       AS clave_reclamo,
-    id_reclamo,
-    id_transaccion,
-    id_paciente,
-    id_atencion,
-    id_medico,
-    id_departamento,
-    CONCAT(id_transaccion, '-', fuente)   AS clave_transaccion,
-    CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
-    TRY_CAST(fecha_servicio AS DATE)      AS fecha_servicio,
-    TRY_CAST(fecha_reclamo AS DATE)       AS fecha_reclamo,
-    aseguradora,
-    TRY_CAST(monto_reclamado AS DOUBLE)   AS monto_reclamado,
-    TRY_CAST(monto_pagado AS DOUBLE)      AS monto_pagado,
-    estado_reclamo,
-    tipo_pagador,
-    TRY_CAST(deducible AS DOUBLE)         AS deducible,
-    TRY_CAST(coaseguro AS DOUBLE)         AS coaseguro,
-    TRY_CAST(copago AS DOUBLE)            AS copago,
-    TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
-    TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
-    fuente,
-    CASE WHEN id_reclamo IS NULL OR id_paciente IS NULL OR id_transaccion IS NULL
-              OR LOWER(estado_reclamo) = 'null' THEN true ELSE false END AS en_cuarentena,
+WITH base AS (
+    SELECT DISTINCT
+        CONCAT(id_reclamo, '-', fuente)       AS clave_reclamo,
+        id_reclamo,
+        id_transaccion,
+        id_paciente,
+        id_atencion,
+        id_medico,
+        id_departamento,
+        CONCAT(id_transaccion, '-', fuente)   AS clave_transaccion,
+        CONCAT(id_paciente, '-', fuente)      AS clave_paciente,
+        CONCAT(id_atencion, '-', fuente)      AS clave_atencion,
+        CONCAT(id_medico, '-', fuente)        AS clave_medico,
+        CONCAT(id_departamento, '-', fuente)  AS clave_departamento,
+        TRY_CAST(fecha_servicio AS DATE)      AS fecha_servicio,
+        TRY_CAST(fecha_reclamo AS DATE)       AS fecha_reclamo,
+        aseguradora,
+        ROUND(TRY_CAST(monto_reclamado AS DOUBLE), 2) AS monto_reclamado,
+        ROUND(TRY_CAST(monto_pagado AS DOUBLE), 2)    AS monto_pagado,
+        estado_reclamo,
+        tipo_pagador,
+        ROUND(TRY_CAST(deducible AS DOUBLE), 2)       AS deducible,
+        ROUND(TRY_CAST(coaseguro AS DOUBLE), 2)       AS coaseguro,
+        ROUND(TRY_CAST(copago AS DOUBLE), 2)          AS copago,
+        TRY_CAST(fecha_insercion AS DATE)     AS fecha_insercion,
+        TRY_CAST(fecha_modificacion AS DATE)  AS fecha_modificacion,
+        fuente
+    FROM (
+        SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.reclamos_ha
+        UNION ALL
+        SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.reclamos_hb
+    )
+)
+SELECT
+    b.*,
+    CASE WHEN b.id_reclamo IS NULL OR b.id_paciente IS NULL OR b.id_transaccion IS NULL
+              OR b.estado_reclamo IS NULL OR LOWER(b.estado_reclamo) = 'null'
+              OR b.fecha_reclamo < b.fecha_servicio
+              OR b.monto_pagado > b.monto_reclamado
+              OR t.clave_transaccion IS NULL       -- huérfano: transacción inexistente
+              OR a.clave_atencion IS NULL          -- huérfano: atención inexistente
+         THEN true ELSE false END AS en_cuarentena,
     current_timestamp() AS fecha_carga
-FROM (
-    SELECT *, 'hosa' AS fuente FROM workspace.salud_bronce.reclamos_ha
-    UNION ALL
-    SELECT *, 'hosb' AS fuente FROM workspace.salud_bronce.reclamos_hb
-);
+FROM base b
+LEFT JOIN workspace.salud_plata.transacciones t ON b.clave_transaccion = t.clave_transaccion AND t.en_cuarentena = false
+LEFT JOIN workspace.salud_plata.atenciones    a ON b.clave_atencion    = a.clave_atencion    AND a.en_cuarentena = false;
 
 -- COMMAND ----------
 
@@ -263,4 +304,4 @@ UNION ALL SELECT 'pacientes',     COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM
 UNION ALL SELECT 'atenciones',    COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.atenciones
 UNION ALL SELECT 'transacciones', COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.transacciones
 UNION ALL SELECT 'reclamos',      COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.reclamos
-UNION ALL SELECT 'codigos_cpt',   COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM salud_plata.codigos_cpt;
+UNION ALL SELECT 'codigos_cpt',   COUNT(*), SUM(CAST(en_cuarentena AS INT)) FROM workspace.salud_plata.codigos_cpt;
